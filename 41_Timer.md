@@ -12,7 +12,7 @@ setTimeout(name => console.log(`Hi! ${name}.`), 1000, 'Lee');
 setTimeout(() => console.log('Hello!'));
 ```
 
-# 41-02
+# 41-02 
 
 ```javascript
 // 1초(1000ms) 후 타이머가 만료되면 콜백 함수가 호출된다.

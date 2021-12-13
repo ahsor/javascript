@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="box" id="box"> 0 </div>
+    <button> 1 증가 </button>
+    <script>
+        let num = 0; 
+       document.getElementsByTagName('button')[0].addEventListener('click', function(event){
+           console.log(event.target);
+           console.log(num++);
+           box.value = num; // 갱신되지 않음 
+           document.getElementById('box').innerHTML = num;
+       })
+    </script>
+</body>
+</html>

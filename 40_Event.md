@@ -1,3 +1,35 @@
+# 주요 이벤트 핸들러
+1. 태그 내의 속성으로 선언하기
+2. 요소 객체의 프로퍼티로 선언하기 
+3. adddEventListener 메소드로 선언하기
+
+
+.addClass()
+.setAttribute('class', '클래스')
+.classList.add('클래스')
+
+.removeClass()
+.classList.remove()
+.classList.toggle()
+
+브라우저의 capture flow 순서는 바꿀수 없으나
+copture와 bubble은 선택할 수 있다. 
+
+
+Propagation Up = capture
+.stopPropagation()
+
+html에서 이벤트 실행시 bubble실행이라면 모두 실행이 안될 수 있음 
+
+
+이벤트에 공통적으로 들어가는 메소드도 있고 속성도 있음 
+currentTarget, target은 공통 속성
+
+a를 클릭하면 다른 페이지로 이동한다
+checkbox 클릭시 
+는 기본 로직
+기본 로직을 변경하고 싶을 때 preventDefault()
+
 # 40-01
 
 ```html

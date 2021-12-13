@@ -1,3 +1,72 @@
+# DOM(Document Object Model)
+js를 이용해서 표시되는 웹페이지를 동적으로 동작할 수 있도록 해주는 인터페이스 
+문서에 포함되는 요소나 속성, 텍스트를 요소노드, 속성논드, 텍스트 노드의 객체로 처리한다. 
+또한 노드를 추가/추출/치환/삭제 하기위한 범용적인 수단을 제공 한다. 
+트리구조 google 에서 이미지 찾아 보기 
+즉, 다음과 같은 일을 할 수 있다. 
+- html 요소 가져오기 
+- <html> 요소, <body> 요소 가져오기 
+- 자식요소, 전후 요소, 부모 요소 가져오기 
+- 요소 생성하기
+- 요소 삭제하기
+- 요소 복제하기
+- 요소 추가하기
+- 요소 데이터 가져오거나 변경하기
+- 요소 속성을 가져오거나 변경하기
+- 요소 클래스속성을 추가하거나 삭제하기
+- 다른 요소로 변경하기 
+- 스타일 변경하기
+
+
+# [DOM 요소취득]
+단일요소(htmlElement) 반환
+getElementById
+id값이 중복되는 경우에도 처음에 일치하는 요소를 하나만 반환하지만
+브라우저나 버전에 따라 변동될 수 있다. 
+
+# 다중요소 반환 : 요소의 집합 즉 배열을 반환
+|getElementsByTagName()| 요소 배열(HTMLCollection)|
+|getElementsByClassName()| 요소 배열(HTMLCollection) |
+|getElementsByName()| 요소배열|
+|querySelector()| 요소 |
+|querySelectorAll()| 요소 배열(NodeList) |
+
+HTMLCollection 주요 속성
+length : 요소의 수 반환
+item(i) : i번째 노드를 반환, 이 메소드는 배열로 대체할 수도 있다. 
+
+```
+let listNames = document.getElementsByName("tab");
+console.log(listNames.length);
+for (var i = 0; i < listNames.length; i++) {
+  console.log(listNames.item(i).href);
+  // item() 로 접근
+  console.log(listNames[i].href);
+  // 배열로 접근 가능
+}
+```      
+childNodes 프로퍼티는 getElementsByName/querySelectorAll 메소드와 같이 NodeList 반환하지만
+추가적으로 노드의 속성을 파악할 수 있다.
+nodelist에 포함되는 노드는 element뿐만이 아니라 개행이나 공백도 텍스트로 간주되며
+프로퍼티 또한 요소 노드와 텍스트 노드로 취득할 가능성이 있다.
+때문에 필요한 요소만을 꺼내기 위해 요소노드인지 확인할 필요가 있다.
+    
+      리턴값   
+      1. 요소노드
+      2. 속성노드
+      3. 텍스트 노드
+      4. CDATA 섹션
+      5. 실제 참조 노드
+      6. 실제 선언 노드
+      7. 처리 명령 노드
+      8. 주석 노드
+      9. 문서 노드
+      10. 문서형 선언 노드 
+      11. 문서의 단편(fragment)
+      12. 기법 선언 노드 
+
+
+
 # 39-01
 
 ```html
@@ -598,7 +667,7 @@ $elems.forEach(elem => elem.className = 'blue');
 ```
 
 # 39-26
-# P703 노드 이미지 첨부
+# ppt 노드 이미지 첨부
 ```html
 <!DOCTYPE html>
 <html>
@@ -613,7 +682,7 @@ $elems.forEach(elem => elem.className = 'blue');
 ```
 
 # 39-27
-# 텍스트 노들 회비하기 위한 마크업이나 가독성이 떨어짐
+# 텍스트 노드를 회기하기 위한 마크업이나 가독성이 떨어짐
 ```html
 <ul id="fruits"><li
   class="apple">Apple</li><li

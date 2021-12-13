@@ -3,22 +3,40 @@
 자바스크립트는 다양한 데이터 타입을 추가하여 사용할 수 있다
 그러나 가능한 동일한 데이터를 사용하는 것이 바람직함
 
-# 27-01
+# 27-01 배열 초기화
 
 ```javascript
-const arr = ['apple', 'banana', 'orange'];
+const arr1 = [];
+const arr2 = [1, 2, 3];
+const arr3 = ['apple', 'banana', 'orange'];
+const arr4 = ['apple', false, '사자'];
+const arr5 = new Array('apple','banana');
+// 배열의 데이터는 순서대로 0~ 이상의 인덱스를 가진다.
+const arr = [
+  'string',
+  10,
+  true,
+  null,
+  undefined,
+  NaN,
+  Infinity,
+  [ ],
+  { },
+  function () {}
+];
 ```
 
-# 27-02
+# 27-02 배열 사용
 
 ```javascript
+// 배열명[인덱스]로 데이터를 지정하여 사용할 수 있다. 
 arr[0] // -> 'apple'
 arr[1] // -> 'banana'
 arr[2] // -> 'orange'
 ```
 
 # 27-03
-
+배열의 길이를 반환
 ```javascript
 arr.length // -> 3
 ```
@@ -62,6 +80,7 @@ for (let i = 0; i < arr.length; i++) {
 # 27-08
 
 ```javascript
+// 함수로 수업 
 // 선형 검색을 통해 배열(array)에 특정 요소(target)가 존재하는지 확인한다.
 // 배열에 특정 요소가 존재하면 특정 요소의 인덱스를 반환하고, 존재하지 않으면 -1을 반환한다.
 function linearSearch(array, target) {
@@ -875,7 +894,11 @@ result = result.concat([5, 6]);
 console.log(result); // [1, 2, 3, 4, 5, 6]
 ```
 
-# 27-60
+# 27-60 배열 결합하기
+|메소드 | 의미 | 반환 |
+|---|---|---|
+| 배열1.concat(배열2, 배열3))|배열1에 배열2, 배열3을 결합|배열|
+|[...배열1, ...배열2, ...배열3]|배열1, 배열2, 배열3을 결합|배열|
 
 ```javascript
 let result = [1, 2].concat([3, 4]);
@@ -886,7 +909,10 @@ result = [...[1, 2], ...[3, 4]];
 console.log(result); // [1, 2, 3, 4]
 ```
 
-# 27-61
+# 27-61 배열 요소 중 일부 부분 변환하기 
+|메소드 | 의미 | 반환 |
+|---|---|---|
+| 배열.splice(위치, 추출개수, 요소1, 요소2)|지정위치요소추출, 요소추가|배열|
 
 ```javascript
 const arr = [1, 2, 3, 4];
@@ -898,6 +924,11 @@ const result = arr.splice(1, 2, 20, 30);
 console.log(result); // [2, 3]
 // splice 메서드는 원본 배열을 직접 변경한다.
 console.log(arr); // [1, 20, 30, 4]
+```
+```
+const arr = ['귤', '사과'];
+array3.splice(1, 0, '바나나');
+// ['귤','바나나', '사과']
 ```
 
 # 27-62
@@ -1042,7 +1073,40 @@ console.log(_todos === todos); // false
 console.log(_todos[0] === todos[0]); // true
 ```
 
-# 27-72
+# 27-72  reduce(), reduceRight()
+배열의 요소를 계산하여 하나의 값을 만들고 싶을 때
+
+```
+const priceList = [15000, 5000, 20000];
+let sum = 0; 
+for(const price of PriceList){
+  sum += price; 
+}
+console.log(sum);
+```
+
+```
+const priceList = [15000, 5000, 20000];
+//const sum = priceList.reduce((prev, next)=> {return prev+next});
+const sum = priceList.reduce((prev, next)=> prev+next);
+console.log(sum);
+```
+```javascript : 문자열 결합
+
+const fruits = ['바나나', '오렌지', '사과'];
+const str = fruits.reduce( (prev, next )=> prev+next);
+console.log(str);
+
+const fruitss = [['바나나', '오렌지', '사과'],['귤', '포도']];
+const strs = fruitss.reduce( (prev, next )=> prev.concat(next));
+console.log(strs);
+
+// 오름차순(ascending) 정렬
+fruits.sort();
+
+// sort 메서드는 원본 배열을 직접 변경한다.
+console.log(fruits); // ['바나나', '사과', '오렌지']
+```
 
 ```javascript
 function sum() {
@@ -1086,6 +1150,9 @@ console.log(sum(1, 2, 3)); // 6
 ```
 
 # 27-75
+|메소드 | 의미 | 반환 |
+|---|---|---|
+| 배열1.join(['결합문자열 생략가능']))|배열 요소를 결합해 문자열 만들기|문자열|
 
 ```javascript
 const arr = [1, 2, 3, 4];
@@ -1101,7 +1168,7 @@ arr.join(''); // -> '1234'
 arr.join(':'); // -> '1:2:3:4'
 ```
 
-# 27-76
+# 27-76 역순으로 출력하기 
 
 ```javascript
 const arr = [1, 2, 3];
@@ -1200,12 +1267,23 @@ arr.includes(3, -1); // -> true
 ```
 
 # 27-84
+|메소드 | 의미 | 반환 |
+|---|---|---|
+| 배열.indexOf(검색데이터, [시작위치*])| 요소의 인덱스 위치 검색하기|숫자|
+|배열.lastIndexOf(검색데이터, [시작위치*])|끝에서 부터 요소의 인덱스 위치 검색하기|숫자|
+|배열.includes(검색데이터, [시작위치*])|요소의 포함 여부 확인하기|논리값|
 
 ```javascript
 [NaN].indexOf(NaN) !== -1; // -> false
 [NaN].includes(NaN);       // -> true
 ```
-
+```
+['바나나', '오렌지', '사과'].indexOf('바나나');
+[ 0, 2, 4, 6, 4, 2, 0].indexOf(4);  // 2
+[ 0, 2, 4, 6, 4, 2, 0].lastIndexOf(4); // 4
+['바나나', '오렌지', '사과'].includes('바나나'); // true
+[ 0, 2, 4, 6, 4, 2, 0].includes(3);  // false
+```
 # 27-85
 
 ```javascript
@@ -1352,6 +1430,82 @@ console.log(todos);
   { id: 4, content: 'JavaScript' }
 ]
 */
+```
+
+# 배열 요소를 알파벳 순 정렬
+```
+const arr1 = ['grape', 'Orange', 'apple'];
+arr1.sort();
+console.log(arr1);
+
+const arr2 = ['grape', 'Orange', 'apple'];
+arr1.sort((a,b)=>a.localeCompare(b));
+console.log(arr2);
+```
+# example 객체를 포함하는 배열 정렬하기 
+```
+<main class="centering">
+  <div class="button-wrapper">
+    <button class="ascending">오름차순</button>
+    <button class="descending">내림차순</button>
+  </div>
+  <ul class="user_list">
+  
+  </ul>
+  <script>
+  // 데이터
+const userDataList = [
+  { id: 2, name: '곰' },
+  { id: 10, name: '여우' },
+  { id: 4, name: '사자' },
+  { id: 29, name: '기린' },
+  { id: 101, name: '호랑이' }
+];
+
+// 데이터 표시 업데이트
+function updateList() {
+  let listHtml = '';
+
+  for (const data of userDataList) {
+    listHtml += `<li>${data.id} : ${data.name}</li>`;
+  }
+
+  document.querySelector('.user_list').innerHTML = listHtml;
+}
+
+// 오름차순 정렬
+function sortByAscending() {
+  userDataList.sort((a, b) => {
+    return a.id - b.id;
+  });
+
+  updateList();
+}
+
+// 내림차순 정렬
+function sortByDescending() {
+  userDataList.sort((a, b) => {
+    return b.id - a.id;
+  });
+
+  updateList();
+}
+
+// 오름차순 버튼 클릭 시 처리 작업
+document.querySelector('.ascending').addEventListener('click', (event) => {
+  sortByAscending();
+});
+
+// 내림차순 버튼 클릭 시 처리 작업
+document.querySelector('.descending').addEventListener('click', () => {
+  sortByDescending();
+});
+
+// 오름차순으로 초기 정렬
+sortByAscending();
+  
+  </script>
+</main>
 ```
 
 # 27-95
@@ -1519,6 +1673,9 @@ arr.forEach(v => console.log(v)); // 1, 3
 ```
 
 # 27-106
+- 요소를 추출하여 새로운 배열을 만들고 싶을 때 
+- 배열 요소 전체에 대한 처리 작업을 하고 싶을 때 
+- ID와 이름을 가지는 객체 배열에서  ID만 가지는 새로운 배열을 만들고 싶을 때 
 
 ```javascript
 const numbers = [1, 4, 9];
@@ -1536,6 +1693,19 @@ console.log(roots);   // [ 1, 2, 3 ]
 console.log(numbers); // [ 1, 4, 9 ]
 ```
 
+```
+const numbers = [1, 4, 9];
+const userIdList = numbers.map(item => `userid_${item}`);
+console.log(userIdList);
+// ['userid_1' ,'userid_4','userid_9']
+```
+
+```
+const numbers = [1, 4, 9];
+const userIdList = numbers.map((item, index )=> `userid_${index+1}_${item}`);
+console.log(userIdList);
+// ['userid_1_1' ,'userid_2_4','userid_3_9']
+```
 # 27-107
 
 ```javascript
@@ -1550,7 +1720,15 @@ console.log(numbers); // [ 1, 4, 9 ]
 요소값: 3, 인덱스: 2, this: [1,2,3]
 */
 ```
-
+```
+const apiData=[
+    { id:10, name:'곰'},
+    { id:20, name:'사자'},
+    { id:31, name:'여우'},
+  ];
+const idList = apiData.map(value => value.id);
+console.log( idList ); // [10, 20, 31]
+```
 # 27-108
 
 ```javascript
@@ -1861,7 +2039,16 @@ console.log(priceSum); // 600
 ```
 
 # 27-130
+|메소드 | 의미 | 반환 |
+|---|---|---|
+| 배열.find(콜백함수)| 콜백함수 조건에 맞는 첫요소|요소|
+| 배열.findIndex(콜백함수)| 콜백함수 조건에 맞는 첫요소의 인덱스|숫자|
 
+```
+const myArray = ['곰', '사자', '여우', '원숭이'];
+const targetUser = myArray.find( el => el === '사자' );
+console.log( targetUser); 
+```
 ```javascript
 const users = [
   { id: 1, name: 'Lee' },
@@ -1871,7 +2058,8 @@ const users = [
 ];
 
 // id가 2인 첫 번째 요소를 반환한다. find 메서드는 배열이 아니라 요소를 반환한다.
-users.find(user => user.id === 2); // -> {id: 2, name: 'Kim'}
+const el = users.find(user => user.id === 2); // -> {id: 2, name: 'Kim'}
+console.log( el )
 ```
 
 # 27-131
@@ -1912,6 +2100,59 @@ users.findIndex(predicate('id', 2)); // -> 1
 
 // name이 'Park'인 요소의 인덱스를 구한다.
 users.findIndex(predicate('name', 'Park')); // -> 3
+```
+
+
+# example 유저정보가 담긴 배열에서 id를 기준으로 정보를 가져옴 
+```
+<body class="chapter-3">
+<main class="main">
+  <div class="search-word-wrapper">
+    <label>유저 ID<input id="search-id-input" type="text"></label>
+  </div>
+  
+  <p id="search-result">
+    유저 검색 결과 없음
+  </p>
+</main>
+<script>
+// id 키와 name 키를 가지는 유저 
+const userDataList = [
+  { id: 123, name: '곰' },
+  { id: 1021, name: '사자' },
+  { id: 6021, name: '여우' }
+];
+
+/** 검색 ID 입력창  */
+const searchIdInput = document.querySelector('#search-id-input');
+
+/** 검색 결과 표시창  */
+const searchResult = document.querySelector('#search-result');
+
+// 문자가 입력될 때마다 내용 체크
+searchIdInput.addEventListener('keyup', () => {
+  // 검색 ID 가져오기
+  const searchId = Number(event.target.value);
+  findUser(searchId);
+});
+
+/*** 유저 검색  */
+function findUser(searchId) {
+  // 해당 데이터 가져오기
+  const targetData = userDataList.find((data) => data.id === searchId);
+
+  // 해당 데이터가 없으면 ‘유저 검색 결과 없음’ 표시 후 종료
+  if (targetData == null) {
+    searchResult.textContent = '유저 검색 결과 없음';
+    return;
+  }
+
+  // 검색 결과의 이름을 표시
+  searchResult.textContent = targetData.name;
+}
+
+</script>
+</body>
 ```
 
 # 27-133

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+    var numbers = [1,2, 3, 4, 5, 6, 7,  8, 9, 10];
+    var newNum1 = numbers.map( function(number){
+        return number * 2; 
+    }) 
+    console.log( newNum1 )
+        
+    function addNum(number){
+        return number + 2; 
+    }    
+    // 괄호하나로 없이 호출할 수 있고 
+    var newNum2 = numbers.map( addNum )  
+    console.log( newNum2 )
+    
+    // 괄호하나로 없이 호출할 수 있고 
+    var newNum3 = numbers.map( numbers => numbers *2 )  
+    console.log( newNum3 )
+    
+        
+    var students = [
+        { id:1, name: 'kim'},
+        { id:2, name: 'park'},
+        { id:3, name: 'lee'},
+        { id:4, name: 'choi'},
+    ]  
+    
+    var names = students.map( student => student.name )
+    // 내부 변수는 아무거나 할 수 있음 
+    // var names = students.map( x => x.name )
+    console.log(names)
+        
+    var aryTwo = [ [1,2,3], [4,5,6], [7,8,9]];
+    var newNum4 = aryTwo.map( t => t.map( n => n * 2))
+                // 넘겨주는 객체명 aryTwo 주의 
+    console.log( newNum4 )
+    </script>
+</body>
+</html>
+
+
+
+
+
+

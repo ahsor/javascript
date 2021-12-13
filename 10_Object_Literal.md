@@ -396,7 +396,52 @@ function Person(name, age){
     return this;
 }
 ```
+# 10-26 객체값 확인 in
+```
+"use strict";
 
+var name = "홍길동";
+var age = 30;
+var card = {
+  name, // name : name
+  age, // age = age
+  tel: "010-5475-0763",
+  fax: "02-789-8878",
+  email: "honggilgdong@gmail.com",
+};
+
+console.log(card);
+
+card.gender = "male";
+card.hairColor = "brown";
+console.log(card);
+
+delete card.hairColor;
+console.log(card);
+
+console.log(card.name);
+console.log(card["name"]);
+console.log(card.birthDay); // 존재하지 않은 속성 접근 undefined 출력
+console.log("birthDay" in card); // card에 birthDay 존재하지 않음을 확인하고  결과는 false
+console.log("age" in card); // true
+```
 # 10-25  for in
+```
+// 객체를 이용한 미성년자 구분
+const kim = {
+  name: "kim",
+  age: 30,
+};
+
+const park = {
+  name: "park",
+};
+
+for (key in kim) {
+  console.log(key);
+  // key 값은 x, y등 변수명으로 대체하면 됨
+}
+```
+
 # 10-25  for of
 # 10-25  Object.assign

@@ -1,5 +1,4 @@
 # 20-01
-
 ```javascript
 function foo() {
   x = 10;

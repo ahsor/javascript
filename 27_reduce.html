@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var numbers = [5, 8, 33, 22, -2, -99, 18, 30];
+        const sum1 = numbers.reduce(function(adding, currentValue){
+            console.log('currentValue = ' + currentValue +',  adding = ' + adding )
+            return adding + currentValue;
+        });
+        console.log("sum1 = " + sum1);
+
+        const sum2 = numbers.reduce((adding, currentValue)=> adding + currentValue);
+        console.log("sum2 = " + sum2);
+
+        var students = [
+            {id:1, name:'kim', age:30},
+            {id:2, name:'lee', age:29},
+            {id:3, name:'park', age:28},
+            {id:4, name:'bea', age:33},
+        ]
+        const sum3 = students.reduce((adding, currentValue)=> adding + currentValue.age, 0);
+        // 초기값이 필요. 
+        console.log("sum3 = " + sum3);
+        console.log("avg = " + sum3/students.length);
+    </script>
+</body>
+</html>
