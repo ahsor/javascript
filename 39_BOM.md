@@ -247,24 +247,172 @@ window.scrollTo(0, 1000);
 ```
 
 # 타이틀 변경하기 
-- 페이지 원하는 부분에 스크롤 하고 싶을 때
+- 타이틀을 동적으로 변환하고 싶을 때 
+- 읽지 않은 메시지 건수를 타이틀 바에 표시하고 싶을 때 
 
 
 |syntex| 의미|반환|
 |---|---|----|
-|scrollTo(X,Y)| 지정한 좌표까지 스크롤 하고 싶을 때 | 없음 |
+|document.title| 페이지 타이틀 | 문자열 |
 
 ```
-window.scrollTo(0, 1000);
+const title = document.title; 
+document.title = '타이틀 내용';
+```
+```
+<main>
+    <p><button id="btnApple" class="red">사과</button></p>
+    <p><button id="btnOrange" class="orange">오렌지</button></p>
+</main>
+
+document.querySelector('#btnApple').addEventListener('click', () => {
+  document.title = '🍎사과';
+});
+
+document.querySelector('#btnOrange').addEventListener('click', () => {
+  document.title = '🍊오렌지';
+});
+
+```
+# 포커스 확인하기 
+- 포커스에 맞춰져 있을 때만 멀티미디어 재생을 하고 싶을 때 
+
+|syntex| 의미|반환|
+|---|---|----|
+|focus| 포커스가 맞춰져 있을 때  | - |
+|blur| 포커스가 벗어나 있을 때  | - |
+
+``` 여러개의 윈도우를 열어두고 왔다 갔다 확인 할 것 
+<main>
+    <p id="log">포커스를 벗어난 상태</p>
+</main>
+
+window.addEventListener('focus', () => {
+  document.querySelector('#log').innerHTML = '포커스 상태';
+});
+
+window.addEventListener('blur', () => {
+  document.querySelector('#log').innerHTML = '포커스를 벗어난 상태';
+});
+
 ```
 
+# 전체화면 표시하기 
+- 콘텐츠를 전체화면으로 표시하고 싶을 때 
+- 동영상을 전체 화면으로 재생하고 싶을 때 
+- 이어지는 콘텐츠를 표시하고 싶을 때 
 
 ```
+<main>
+    <p><button id="btn" class="blue">전체 화면 설정</button></p>
+    <p><button id="btnExit" class="orange">전체 화면 해제</button></p>
+</main>
+
+const btn = document.querySelector('#btn');
+btn.addEventListener('click', (event) => {
+  // 전체 화면 전환
+  myRequestFullScreen(document.body);
+  //  let element = document.body; 로 직접 구현할 수 있음 
+});
+
+function myRequestFullScreen(element) {
+  if (element.requestFullscreen) {
+    // 표준 사양
+    element.requestFullscreen();
+  } else if (element.webkitRequestFullscreen) {
+    // Safari, Chrome
+    element.webkitRequestFullscreen();
+  } else if (element.mozRequestFullScreen) {
+    // Firefox
+    element.mozRequestFullScreen();
+  } else if (element.msRequestFullscreen) {
+    // IE11+
+    element.msRequestFullscreen();
+  }
+}
+
+const btnExit = document.querySelector('#btnExit');
+btnExit.addEventListener('click', (event) => {
+  // 전체 화면 해제
+  myCancelFullScreen();
+});
+
+function myCancelFullScreen() {
+  if (document.exitFullscreen) {
+    // 표준 사양
+    document.exitFullscreen();
+  } else if (document.webkitCancelFullScreen) {
+    // Safari, Chrome
+    document.webkitCancelFullScreen();
+  } else if (document.mozCancelFullScreen) {
+    // Firefox
+    document.mozCancelFullScreen();
+  } else if (document.msExitFullscreen) {
+    // IE 11+
+    document.msExitFullscreen();
+  }
+}
+
+```
+
+# 온라인/오프라인 대응하기 
+|syntex| 의미|반환|
+|---|---|----|
+|navigator| 네트워크 상태 가져오기 | 진리값 |
+
+반환값이 true인 경우 네트워크 온라인 상태를 나타내며, 해당 속성은 읽기만 가능하다. 
+브라우저의 네트워크 상황을 감시하여 오프라인 상태일 때 화면에 해당 상태를 표시하는 기능 등에 사용할 수 있다. 
+
+<img src="./images/onoff.png">
+크롬 개발자 툴 > network 
+```
+<main class="centering">
+    <p class="log"></p>
+  </main>
 ```
 ```
+// 접속 상태 확인
+const isOnline = navigator.onLine;
+if (isOnline === true) {
+  console.log('온라인 상태입니다.');
+} else {
+  console.log('오프라인 상태입니다.');
+}
+```
+
+```
+// 온라인 상태가 되면 실행되는 이벤트
+window.addEventListener('online', () => {
+  console.log('온라인 상태입니다.');
+});
+
+// 오프라인 상태가 되면 실행되는 이벤트
+window.addEventListener('offline', () => {
+  console.log('️오프라인 상태입니다.');
+});
 ```
 ```
-```
-```
+// log함수를 이용한 확인
+function log(message) {
+  document.querySelector('.log').innerHTML = message;
+}
+// 접속 상태 확인
+if (isOnline === true) {
+  log('온라인 상태입니다.');
+} else {
+  log('오프라인 상태입니다.');
+}
+
+// 온라인 상태가 되면 실행되는 이벤트
+window.addEventListener('online', () => {
+  log('📶온라인 상태입니다.');
+});
+
+// 오프라인 상태가 되면 실행되는 이벤트
+window.addEventListener('offline', () => {
+  log('❎️오프라인 상태입니다.');
+});
+
+
 ```
 

@@ -1721,6 +1721,8 @@ console.log(userIdList);
 */
 ```
 ```
+// id만을 추출하여 새로운 배열 만들기 
+
 const apiData=[
     { id:10, name:'곰'},
     { id:20, name:'사자'},
@@ -1770,6 +1772,7 @@ console.log(prefixer.add(['transition', 'user-select']));
 ```
 
 # 27-110
+조건에 만족하는 배열 요소를 추출하여 새배열 만들기 
 
 ```javascript
 const numbers = [1, 2, 3, 4, 5];

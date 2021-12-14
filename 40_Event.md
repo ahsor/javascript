@@ -1,6 +1,75 @@
-# 주요 이벤트 핸들러
-1. 태그 내의 속성으로 선언하기
-2. 요소 객체의 프로퍼티로 선언하기 
+# 이벤트 처리 
+- 브라우저는 처리해야 할 특정 사건이 발생하면 이를 감지하고 이벤트를 발생시킨다. 
+- 클릭, 탭, 스크롤, 화면 불러오기, JSON 읽어 오기등 다양한 이벤트 존재 
+- 이벤트가 발생했을 때 호출될 함수를 이벤트 핸들러
+- 이벤트가 발생했을 때 브라우저에게 이벤트 핸들러의 호출을 위임하는 것을 이벤트 핸들러 등록이라 한다. 
+- 이와 같이 프로그램 흐름을 이벤트 중심으로 제어하는 것을 이벤트 드리븐 프로그래밍이라 한다. 
+- 즉 유저 조작에 따라 작업을 처리하고 싶을 때 이벤트를 핸들러를 사용하여 어플리케이션과 상호작용 할 수 있다. 
+
+
+# 이벤트 종류 
+[https://developer.mozilla.org/ko/docs/Web/API/Event] https://developer.mozilla.org/ko/docs/Web/API/Event
+
+## 마우스 이벤트 
+|이벤트 타입| 이벤트 발생 시점|
+|---|---|
+|click| 마우스 버튼을 클릭했을 때 |
+|dblclick| 마우스 버튼을 더블클릭했을 때 |
+|mousedown| 마우스 버튼을 눌렀을 때 |
+|mouseup| 누르고 있던 마우스 버튼을 놓았을 때  |
+|mousemove| 마우스커서를 움직였을 때  |
+|mouseenter| 마우스커서를 HTML 요소 **안**으로 이동했을 때(**버블링되지 않음**) |
+|mouseover| 마우스커서를 HTML 요소 **안**으로 이동했을 때(**버블링됨**)  |
+|mouseleave| 마우스커서를 HTML 요소 **밖**으로 이동했을 때(**버블링되지 않음**)  |
+|mouseout| 마우스커서를 HTML 요소 **밖**으로 이동했을 때(**버블링됨**)  |
+
+## 키보드 이벤트 
+|이벤트 타입| 이벤트 발생 시점|
+|---|---|
+|keydown| **모든 키**를 누렀을 때 발생 , 문자, 숫자, 특수문자, enter키를 눌렀을 때 연속 발생 |
+|keypress| **문자** 키를 누렀을 때 발생 , 문자, 숫자, 특수문자, enter키를 눌렀을 때 연속 발생, 폐지됨 |
+|keyup| 누르고 있던 키를 놓았을 때 한 번만 발생|
+
+## 포커스 이벤트 
+|이벤트 타입| 이벤트 발생 시점|
+|---|---|
+|focus| HTML 요소가 포커스를 받았을 때(**버블링 되지 않음**)|
+|blur| HTML 요소가 포커스를 잃었을 때(**버블링 되지 않음**)|
+|focusin| HTML 요소가 포커스를 받았을 때(**버블링 됨**)|
+|blurout| HTML 요소가 포커스를 잃었을 때(**버블링 됨**)|
+
+## 값 변경 이벤트 
+|이벤트 타입| 이벤트 발생 시점|
+|---|---|
+|input| input(text, checkbox, radio), select, textarea 요소의 값이 **입력**되었을 때|
+|change| input(text, checkbox, radio), select, textarea 요소의 값이 ***변경***되었을 때|
+|readystatechange| HTML 문서의 로드와 파싱 상태를 나타내는 document.readyState 프로퍼티 값('loading','interactive', 'complete')이 변경될 때|
+
+- 사용자가 입력을 하고 있을때는 input 이벤트가 발생하고 사용자가 입력을 종료하여 값이 변경되면 change 이벤트가 발생한다. 
+
+## DOM 뮤테이션 이벤트 
+|이벤트 타입| 이벤트 발생 시점|
+|---|---|
+|DOMcontentLoaded| HTML 문서의 로드와 파싱이 완료되어 DOM 생성이 완료되었을 때 |
+
+## 뷰 이벤트 
+|이벤트 타입| 이벤트 발생 시점|
+|---|---|
+|resize| 브라우저 윈도우 크기를 변경할 때 연속적으로 발생, 오직 window 객체에서만 발생|
+|scroll| document(웹페이지) 또는 html 요소를 스크롤할때  연속적으로 발생|
+
+## 리소스 이벤트 
+|이벤트 타입| 이벤트 발생 시점|
+|---|---|
+|load| DOMcontentLoaded 이벤트가 발생한 이후 , 모든 리소의 로딩이 완료되었을 때 발생|
+|unload| 리소스가 언로드 될때 (주로 새로운 웹페이지를 요청한 경우 )|
+|abort| 리소스 로딩이 중단되었을 때 |
+|error| 리소스 로딩이 실패했을 때 |
+
+
+# 주요 이벤트 핸들러 사용
+1. 어트리뷰트 방식 : 태그 내의 속성으로 선언하기
+2. 프로퍼티 방식 : 요소 객체의 프로퍼티로 선언하기 
 3. adddEventListener 메소드로 선언하기
 
 
@@ -30,25 +99,7 @@ checkbox 클릭시
 는 기본 로직
 기본 로직을 변경하고 싶을 때 preventDefault()
 
-# 40-01
-
-```html
-<!DOCTYPE html>
-<html>
-<body>
-  <button>Click me!</button>
-  <script>
-    const $button = document.querySelector('button');
-
-    // 사용자가 버튼을 클릭하면 함수를 호출하도록 요청
-    $button.onclick = () => { alert('button click'); };
-  </script>
-</body>
-</html>
-```
-
-# 40-02
-
+# 40-01 어트리뷰트 방식
 ```html
 <!DOCTYPE html>
 <html>
@@ -62,6 +113,27 @@ checkbox 클릭시
 </body>
 </html>
 ```
+# 40-02
+```html
+<!DOCTYPE html>
+<html>
+<body>
+  <button>Click me!</button>
+  <script>
+    const $button = document.querySelector('button');
+
+    // 사용자가 버튼을 클릭하면 함수를 호출하도록 요청
+    $button.onclick = function(){ alert('button click'); };
+  </script>
+  <script>
+    const $button = document.querySelector('button');
+
+    // 화살표함수로 표현
+    $button.onclick = () => { alert('button click'); };
+  </script>
+</body>
+</html>
+```
 
 # 40-03
 
@@ -70,6 +142,15 @@ function onclick(event) {
   sayHi('Lee');
 }
 ```
+
+
+```event 정보 출력 
+function onclick(event) {
+  console.log(event);
+  console.log(event.target);
+}
+```
+
 
 # 40-04
 
@@ -145,7 +226,7 @@ function onclick(event) {
 </html>
 ```
 
-# 40-09
+# 40-09 addEventListener 방식
 
 ```html
 <!DOCTYPE html>
@@ -162,11 +243,62 @@ function onclick(event) {
 
     // addEventListener 메서드 방식
     $button.addEventListener('click', function () {
+      // 함수를 직접 제작할 수도 있고 
       console.log('button click');
     });
   </script>
 </body>
 </html>
+```
+
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+  <button>Click me!</button>
+  <script>
+    const $button = document.querySelector('button');
+    
+    // 함수를 밖으로 뺄 수도 있고 
+    // function onClickButton() {
+    //   console.log('button click');
+    // }
+
+    // 다음과 같이 화살표 함수로 바꿀 수 있다. 
+    // 변수처럼 사용되므로 addEventListener보다 상위에서 호출 되어야 한다. 
+    const onClickButton = () => console.log('buttin click');
+
+    // addEventListener 메서드 방식
+    $button.addEventListener('click', onClickButton, option);
+
+    // option 을 두어 capture, bubble을 설정할 수 있다. 
+  </script>
+</body>
+</html>
+```
+# addEventListener 방식 
+.addEventListener('click', onClickButton, option);
+option은 반드시 설정할 필요는 업ㅅ고 생략하면 false
+
+|옵션| 의미| 타입}
+|---|---|
+|capture| 이벤트 캡쳐 여부 | 논리값 |
+|once| 리스너 1회 실행 여부| 논리값 |
+|passive| 패시브 이벤트 여부 | 논리값 |
+
+```
+  <button class="button">Click me!</button>
+
+  const option = { 
+      once : true  // 한번만 실행하고 싶은 경우 
+  }
+  document.querySelector('.button')
+          .addEventListener('click', onClickButton , option);
+
+  function onClickButton(){
+    alert('버튼 클릭');
+  }        
 ```
 
 # 40-10
@@ -262,7 +394,9 @@ function onclick(event) {
 </html>
 ```
 
-# 40-14
+# 40-14 removeEventListener 주의점
+- 함수명을 지정하여 사용한다. (화살표 함수는 사용불가)
+- addEventListener()와 같은 인수를 사용하여 지정한다.(옵션포함)
 
 ```javascript
 // 이벤트 핸들러 등록
@@ -301,6 +435,31 @@ $button.addEventListener('click', function () {
 <body>
   <button>Click me!</button>
   <script>
+   const $button = document.querySelector('button');
+
+function handleClick(){console.log('button click'); }
+
+// 이벤트 핸들러 프로퍼티 방식으로 이벤트 핸들러 등록
+$button.addEventListener('click', handleClick)
+
+setTimeout(()=>{
+  $button.removeEventListener('click', handleClick);
+  console.log('event remove')
+}, 3000)
+  </script>
+</body>
+</html>
+```
+# example 3초 후 이벤트 리스너 삭제 
+- 함수명을 지정하여 사용한다. (화살표 함수는 사용불가)
+- addEventListener()와 같은 인수를 사용하여 지정한다.(옵션포함)
+
+```html error
+<!DOCTYPE html>
+<html>
+<body>
+  <button>Click me!</button>
+  <script>
     const $button = document.querySelector('button');
 
     const handleClick = () => console.log('button click');
@@ -308,14 +467,65 @@ $button.addEventListener('click', function () {
     // 이벤트 핸들러 프로퍼티 방식으로 이벤트 핸들러 등록
     $button.onclick = handleClick;
 
-    // removeEventListener 메서드로 이벤트 핸들러를 제거할 수 없다.
-    $button.removeEventListener('click', handleClick);
-
-    // 이벤트 핸들러 프로퍼티에 null을 할당하여 이벤트 핸들러를 제거한다.
-    $button.onclick = null;
+    setTimeout(()=>{
+      $button.removeEventListener('click', onClickButton);
+    }, 3000)
   </script>
 </body>
 </html>
+```
+
+``` 삭제 유의사항 지킴
+<!DOCTYPE html>
+<html>
+<body>
+  <button class="button">Click me!</button>
+  <script>
+     const $button = document.querySelector('button');
+
+    function handleClick(){
+      console.log('button click');
+    }
+
+    // 이벤트 핸들러 프로퍼티 방식으로 이벤트 핸들러 등록
+    $button.addEventListener('click', handleClick)
+
+    setTimeout(()=>{
+      $button.removeEventListener('click', handleClick);
+      console.log('event remove')
+    }, 3000)
+  </script>
+</body>
+</html>
+```
+
+## 페이지 로드시 이벤트 (리소스 이벤트 )
+|이벤트 타입| 이벤트 발생 시점|
+|---|---|
+|DOMcontentLoaded| HTML 문서의 로드와 파싱이 완료되어 DOM 생성이 완료되었을 때 |
+|load| DOMcontentLoaded 이벤트가 발생한 이후 , 모든 리소의 로딩이 완료되었을 때 발생|
+```
+<body>
+  <main class="large">
+    <div class="box">박스</div>
+    <div class="box">박스</div>
+    <div class="box">박스</div>
+  </main>
+  <script>
+   // DOM 액세스 타이밍에 처리 실행
+    window.addEventListener('DOMContentLoaded', () => {
+      // .box요소 개수 가져오기
+      const boxNum = document.querySelectorAll('.box').length;
+      // 로그 출력
+      console.log(`.box 요소의 개수는 ${boxNum}입니다.`); // 3개
+    });
+
+  </script>
+  // window.addEventListener('DOMContentLoaded', () => {를 사용하지 않은 경우 로딩보다 자바스크립트가 먼저 실행될 경우 .box를 가져올 수 없게 된다. 그러므로 결과는 0 개
+  // defer와 찾이점 확인하기 
+  // defer는 병렬 처리로 파싱과 상관없이 javascript를 실행할 준비를 하고 html이 모두 파싱된 후 실행되므로 처리속도가 빠르다. 
+  // DOMContentLoaded 는 병렬처리 방법은 아닌다. 
+</body>
 ```
 
 # 40-18
@@ -488,9 +698,42 @@ $checkbox.onchange = e => {
 };
 ```
 
-# 40-25
+# 40-25  마우스 조작 move, up, down
+# 40-25-1  마우스 조작 move, up, down
 
-```html
+```<body>
+<main class="main">
+  <div id="log2"></div>
+</main>
+<script>
+    // 조작 영역
+    const logArea = document.querySelector('#log2');
+
+    // 영역에서 마우스 버튼을 누르면 로그를 출력
+    logArea.addEventListener('mousedown', () => {
+      logArea.innerHTML = `마우스 클릭 이벤트 발생`;
+        console.log('down');
+    });
+
+    // 영역에서 마우스 버튼을 떼면 로그를 출력
+    logArea.addEventListener('mouseup', () => {
+      logArea.innerHTML = `마우스 버튼을 떼는 이벤트 발생`;
+        console.log('up');
+    });
+
+    // 영역에서 마우스를 움직이면 로그를 출력
+    logArea.addEventListener('mousemove', () => {
+      logArea.innerHTML = `마우스 이동 이벤트 발생`;
+        console.log('move');
+    });
+
+</script>```
+
+
+# 40-25-1  마우스 조작 move, up, down
+```html 마우스 조작으로 박스 이동
+박스를 이동시키보세요. 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -549,7 +792,207 @@ $checkbox.onchange = e => {
 </body>
 </html>
 ```
+# 40-25-2  마우스 조작 enter, leave
+다음 예제는 이벤트 버블링이 일어나는 over, out으로 바꾸어 실행해 볼 것 
 
+```
+<body>
+<main class="main centering">
+  <h1>mouseenter</h1>
+
+  <div class="box">
+    <div class="inner">
+    </div>
+  </div>
+</main>
+<script>
+document.querySelector('.box').addEventListener('mouseenter', () => {
+  log('.box 요소 위치에 마우스가 있음');
+});
+
+document.querySelector('.inner').addEventListener('mouseenter', () => {
+  log('.inner 요소 위치에 마우스가 있음');
+});
+
+function log(message) {
+  console.log(message);
+}
+
+</script>
+</body>
+```
+## 이벤트 버블링 확인 예제
+```
+ <title>Document</title>
+    <style>
+      body {
+        width: 100%;
+        height: 100vh;
+      }
+      .box {
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">box</div>
+    <script>
+      const html = document.documentElement;
+      // 브라우저가 지정한 html 이름
+      const body = document.body;
+      const box = document.querySelector(".box");
+
+      html.addEventListener(
+        "click",
+        function () {
+          console.log("html click");
+        },
+        false
+      );
+      // false=버블링=생략해도 기본 버블링 설정
+      body.addEventListener(
+        "click",
+        function () {
+          console.log("body click");
+        },
+        false
+      );
+      box.addEventListener(
+        "click",
+        function () {
+          console.log("box click");
+        },
+        false
+      );
+      // .box 클릭과 body 클릭 후 실행을 상세히 확인해보기
+    </script>
+  </body>
+
+```
+
+``` 이벤트 캡쳐링 확인
+    <style>
+      body {
+        width: 100%;
+        height: 100vh;
+      }
+      .box {
+        background-color: orange;
+      }
+      /* .box 클릭과 body 클릭 후 실행을 상세히 확인해보기 */
+    </style>
+  </head>
+  <body>
+    <div class="box">box</div>
+    <script>
+      const html = document.documentElement;
+      // 브라우저가 지정한 html 이름
+      const body = document.body;
+      const box = document.querySelector(".box");
+
+      html.addEventListener(
+        "click",
+        function () {
+          console.log("html click");
+        },
+        true
+      );
+      // false=버블링=생략해도 기본 버블링 설정
+      body.addEventListener(
+        "click",
+        function () {
+          console.log("body click");
+        },
+        true
+      );
+      box.addEventListener(
+        "click",
+        function () {
+          console.log("box click");
+        },
+        false
+      );
+      // .box는 true를 주는 것이 의미가 없음
+    </script>
+  </body>
+```
+
+``` 버블링과 캡쳐링 방지
+<style>
+      body {
+        width: 100%;
+        height: 100vh;
+      }
+      .box {
+        background-color: orange;
+      }
+      /* .stopPropagation() */
+    </style>
+  </head>
+  <body>
+    <div class="box">box</div>
+    <script>
+      const html = document.documentElement;
+      // 브라우저가 지정한 html 이름
+      const body = document.body;
+      const box = document.querySelector(".box");
+
+      html.addEventListener(
+        "click",
+        function (e) {
+          e.stopPropagation();
+          //html에서 이벤트 실행시 bubble실행이라면 모두 실행이 취소되는 황당함 발생
+
+          console.log("html click");
+        },
+        true
+      );
+      // false=버블링=생략해도 기본 버블링 설정
+      body.addEventListener(
+        "click",
+        function () {
+          console.log("body click");
+        },
+        true
+      );
+      box.addEventListener(
+        "click",
+        function () {
+          console.log("box click");
+        },
+        false
+      );
+      // .box는 true를 주는 것이 의미가 없음
+    </script>
+```
+
+``` 이벤트 버블링 방지 e.preventDefault();
+<style>
+      body {
+        width: 100%;
+        height: 100vh;
+      }
+      .box {
+        background-color: orange;
+      }
+      /* .stopPropagation() */
+    </style>
+<body>
+    <form action="">
+      <input type="text" />
+      <button type="submit">제출</button>
+      <input type="submit" />
+    </form>
+    <script>
+      const form = document.querySelector("form");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        // button을 click하는 이벤트를 사용할 수도 있으나
+        // submit은 submit 이벤트를 관례적 사용
+      });
+    </script>
+  </body>
+```
 # 40-26
 
 ```html
@@ -1151,7 +1594,71 @@ console.log(customEvent.bubbles); // true
 console.log(customEvent.cancelable); // true
 ```
 
-# 40-49
+# 40-49  마우스 좌표 확인하기 
+click, mousemove 등 MouseEvent객체는 이벤트 발생 시점의 좌표 정보가 포함되어 있고
+기준 위치에 대해 몇 가지 속성을 가진다. 
+pageX, pageY는 스크롤 분량 정보도 포함하고 있다. 
+
+|속성|내용|타입|
+|---|---|---|
+|event.clientX|브라우저 좌측 상단 기준 X 좌표|숫자 |
+|event.clientY|브라우저 좌측 상단 기준 Y 좌표|숫자 |
+|event.offsetX|요소 좌측 상단 기준 X 좌표|숫자 |
+|event.offsetY|요소 좌측 상단 기준 Y 좌표|숫자 |
+|event.pageX|페이지 좌측 상단 기준 X 좌표|숫자 |
+|event.pageY|페이지 좌측 상단 기준 Y 좌표|숫자 |
+|event.screenX|디바이스 좌측 상단 기준 X 좌표|숫자 |
+|event.screenY|디바이스 좌측 상단 기준 Y 좌표|숫자 |
+
+
+
+``` 케릭터 이동 
+<style>
+      body {
+      background-size: cover;
+      background: url("../common/bg_nature.jpg") center;
+    }
+
+    .character {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  
+  </style>
+</head>
+<body>
+<!-- 캐릭터 이미지 -->
+<div class="character">
+</div>
+<script>
+ /** 캐릭터 이미지  */
+const character = document.querySelector('.character');
+
+// 화면에서 마우스 클릭 시 캐릭터 이동 시작
+document.addEventListener('mousedown', () => {
+  console.log( event.clientX, event.clientY);
+  // 마우스 움직임 좌표 확인하기 
+
+  // 마우스 움직임에 따라 캐릭터 이동
+  document.addEventListener('mousemove', onMouseMove);
+
+  // 화면에서 마우스 클릭을 떼면 캐릭터 이동이 멈춤
+  document.addEventListener('mouseup', () => {
+    document.removeEventListener('mousemove', onMouseMove);
+  });
+});
+
+/**
+ * 마우스 움직임에 따른 처리
+ */
+function onMouseMove(event) {
+  character.style.left = `${event.clientX - 100}px`;
+  character.style.top = `${event.clientY - 100}px`;
+}
+    
+</script>
+```
 
 ```javascript
 // MouseEvent 생성자 함수로 click 이벤트 타입의 커스텀 이벤트 객체를 생성
@@ -1241,4 +1748,283 @@ console.log(customEvent.type); // foo
   </script>
 </body>
 </html>
+```
+
+# 스크롤 이벤트 처리하기 
+
+```
+<style>
+      body {
+      height: 20000px;
+      overflow: scroll;
+      display: block;
+    }
+
+    .main {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+</style>
+</head>
+<body class="chapter-7">
+<main class="centering">
+  <h1>콘솔을 확인해 주세요.</h1>
+</main>
+<script>
+// 스크롤 시 문구와 함께 좌표가 출력
+window.addEventListener('scroll', () => {
+  console.log('스크롤 작업', window.scrollX, window.scrollY);
+});
+    
+</script>
+```
+
+# 텍스트 선택 이벤트 처리
+
+```
+<div class="box">안녕하세요.</div>
+<script>
+  // 드래그 대상 요소
+  const $box = document.querySelector('.box').addEventListener('selectstart', ()=>{
+      console.log('텍스트가 선택되었습니다.');
+      // 단순히 클릭하여도 선택된 것으로 간주하여 콘솔에 표시함 
+  })
+  
+</script>
+```
+
+# example : tooltip(말풍선) 
+html 구조에 따라 pageX, pageY를 사용할 수도 있으니 
+구조디자인을 확인 후 작업
+단 js로 실행시 가상 클래스로 디자인한 경우 class를 제어할 수 없다. 
+
+```
+<main class="centering large">
+  <p class="paragraph">Hello, this is a Javascript programming book.</p>
+  <div id="balloon"></div>
+</main>
+
+<script>
+// 말풍선 요소
+const balloon = document.querySelector('#balloon');
+
+// 대상 문자열 요소
+const paragraph = document.querySelector('.paragraph');
+
+// 선택 작업 시 처리
+paragraph.addEventListener('selectstart', () => {
+  // 클릭 해제 시 처리
+  paragraph.addEventListener(
+    'mouseup',
+    (event) => {
+      // 선택한 문자열 가져오기※
+      const selectionCharacters = window.getSelection().toString();
+
+      if (selectionCharacters.length > 0) {
+        // 한 글자 이상인 경우 문자를 표시
+        balloon.innerHTML = selectionCharacters;
+        balloon.classList.add('on');
+        balloon.style.left =
+          `${event.clientX - balloon.clientWidth / 2}px`;
+        balloon.style.top =
+          `${event.clientY - balloon.clientHeight * 2}px`;
+      } else {
+        // 선택된 문자열이 없으면 말풍선 닫기
+        removePopup();
+      }
+    },
+    {
+      once: true
+    }
+  );
+});
+
+// 말풍선 클릭 시 닫기
+balloon.addEventListener('click', removePopup);
+
+// 말풍선 닫기 처리
+function removePopup() {
+  balloon.classList.remove('on');
+}
+    
+</script>
+```
+
+```
+body {
+  background-size: cover;
+  background: url("../common/bg_nature_3.jpg") center;
+  position: relative;
+}
+
+main {
+  position: static;
+}
+
+.paragraph {
+  font-size: 2rem;
+  font-weight: bold;
+  -webkit-text-stroke: 1px white;
+  text-stroke: 1px white;
+}
+
+#balloon {  // position상 부모는 body
+  font-size: 1.2rem;  cursor: pointer;
+  position: absolute;   left: 50%;  top: 50%;
+  text-align: center;
+  padding: 5px;
+  min-width: 60px;
+  color: #171717; font-size: 12px;
+  background: white;
+  border-radius: 5px;
+  display: none;  opacity: 0;
+}
+
+#balloon::before { /* 말풍선의 삼각형 */
+  content: '';
+  position: absolute;  top: 100%;  left: 50%; 
+  /* 부모의 100% 아래에 배치 */
+  margin-left: -10px;  /* transform:translateX(-50%)*/
+  border: 10px solid transparent;
+  border-top: 10px solid white;
+}
+
+#balloon.on {
+  opacity: 1;
+  display: block;
+  transition: 300ms all;
+}
+
+```
+
+# 터치 디바이스 사용 확인하기  : 39_BOM 확인
+- 데스크탑과 모바일 브라우저에 따라 처리를 구분하고 싶을 때
+- 터치 사용 여부의 확인을 하고 싶을 때 
+
+|syntex| 의미|반환|
+|---|---|----|
+|window.ontouchstart| 터치 기능 시작 이벤트 | 함수 |
+|navigator.pointerEnabled| 포인터 사용 가능 여부 | 진리값 |
+|navigator.maxTouchPoints| 포인터 최대치 | 숫자 |
+
+```
+const isSupported = !!(
+    'ontouchstart' in window || 
+    (navigator.pointerEnabled && navigator.maxTouchPoints > 0)
+)
+console.log( isSupported ? 'touchEnable' : 'touchDisable');
+//ontouchstart 단말기를 확인할 수 있다. 
+//navigator.pointerEnabled 로 터치디바이스를 확인할 수 있고 
+// navigator.maxTouchPoints > 0 이상인 경우도 터치 가능한 디바이스를 확인할 수 있다. 
+```
+
+# 터치이벤트 
+|이벤트 타입| 이벤트 발생 시점|
+|---|---|
+|touchstart| 터치 시작 시점 |
+|touchmove| 터치 포인트를 움직이는 시점|
+|touchend| 터치 종료 시점|
+
+마우스와 달리 터치는 멀티 터치가 가능하다. 
+멀티 터치는 이벤트가 동시에 발생하기 때문에 터치 이벤트가 동시에 작동하게 되며,
+event.changedTouches를 사용하여 각각의 터치 정보에 엑세스 할 수 있다. 
+event.changedTouches는 터치정보를 배열로 가지며, 인덱스 0부터 정보를 순차적으로 저장한다. 
+pageX, pageY 속성으로 터치 위치를 확인할 수 있다. 
+
+# 터치이벤트 정보확인
+|속성|내용|타입|
+|---|---|---|
+|터치정보.clientX|브라우저 좌측 상단 기준 X 좌표|숫자 |
+|터치정보.clientY|브라우저 좌측 상단 기준 Y 좌표|숫자 |
+|터치정보.offsetX|요소 좌측 상단 기준 X 좌표|숫자 |
+|터치정보.offsetY|요소 좌측 상단 기준 Y 좌표|숫자 |
+|터치정보.pageX|페이지 좌측 상단 기준 X 좌표|숫자 |
+|터치정보.pageY|페이지 좌측 상단 기준 Y 좌표|숫자 |
+|터치정보.screenX|디바이스 좌측 상단 기준 X 좌표|숫자 |
+|터치정보.screenY|디바이스 좌측 상단 기준 Y 좌표|숫자 |
+
+```
+.box {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  overflow: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+<main class="main centering">
+  <div class="box">
+    <p>터치가 가능한 디바이스에서 확인해 주세요.</p>
+    <p class="log"></p>
+  </div>
+</main>
+<script>
+const isSupported = !!(
+    'ontouchstart' in window || 
+    (navigator.pointerEnabled && navigator.maxTouchPoints > 0)
+)
+console.log( isSupported ? 'touchEnable' : 'touchDisable');
+alert(  isSupported ? 'touchEnable' : 'touchDisable');
+
+// 터치 이벤트 확인용 box
+const targetBox = document.querySelector('.box');
+// 로그 출력 영역
+const logArea = document.querySelector('.log');
+
+// 터치 시작 시 영역에 로그 표시
+targetBox.addEventListener('touchstart', () => {
+  logArea.innerHTML = '터치 시작';
+});
+
+// 터치 위치 이동 시 영역에 로그 표시
+targetBox.addEventListener('touchmove', () => {
+  logArea.innerHTML = '터치 위치 이동';
+});
+
+// 터치 종료 시 영역에 로그 표시
+targetBox.addEventListener('touchend', () => {
+  logArea.innerHTML = '터치 종료';
+});
+
+</script>
+</body>
+```
+
+# example 드래그시 터치 포인트를 좌표로 반환 
+```
+<main class="main centering">
+  <div class="box">
+    <h2>changedTouches</h2>
+    <p class="log"></p>
+  </div>
+</main>
+<!--
+jemicomit.dothome.co.kr/126_touch
+-->
+<script>
+// 터치 영역
+const targetBox = document.querySelector('.box');
+targetBox.addEventListener('touchstart', (event) => {
+  console.log( event.changedTouches);    
+  // 터치 시작시 터치 정보를 나타냄
+})
+// 로그
+const log = document.querySelector('.log');
+
+// 화면의 터치 위치 변경 시 로그 표시
+targetBox.addEventListener('touchmove', () => {
+  const touch = event.changedTouches;
+
+  log.innerHTML = `
+   ${touch[0].pageX.toFixed(2)}<br>
+   ${touch[0].pageY.toFixed(2)}
+  `;
+});
+    
+</script>
 ```
