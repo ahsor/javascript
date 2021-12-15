@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>샘플</title>
+  <link rel="stylesheet" href="../../common/css/style.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="main.js" defer></script>
+</head>
+<body class="chapter-7">
+<main class="main centering">
+  <div class="box">
+    <h2>changedTouches</h2>
+    <p class="log"></p>
+  </div>
+</main>
+<!--
+jemicomit.dothome.co.kr/126_touch
+-->
+<script>
+// 터치 영역
+const targetBox = document.querySelector('.box');
+targetBox.addEventListener('touchstart', () => {
+  console.log( event.changedTouches);    
+})
+// 로그
+const log = document.querySelector('.log');
+
+// 화면의 터치 위치 변경 시 로그 표시
+targetBox.addEventListener('touchmove', () => {
+  const touch = event.changedTouches;
+
+  log.innerHTML = `
+   ${touch[0].pageX.toFixed(2)}<br>
+   ${touch[0].pageY.toFixed(2)}
+  `;
+});
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>샘플</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="main.js" defer></script>
+</head>
+<body>
+<main>
+  <textarea class="textarea"></textarea>
+  <p>현재 <span class="string_num">0</span>문자를 입력 중입니다.</p>
+  
+</main>
+<script>
+/** 텍스트 영역 */
+const textarea = document.querySelector('.textarea');
+
+/** 입력중인 문자 수 */
+const string_num = document.querySelector('.string_num');
+
+//  텍스트를 입력할 때마다 onKeyUp( )을 실행
+textarea.addEventListener('keydown', handleKeydown);
+
+function handleKeydown( event) {
+     const keyCode = event.keyCode; 
+     if(keyCode === 39){
+         console.log(`-> 입력됨`);
+     }
+    if(keyCode === 37){
+         console.log(`<- 입력됨`);
+     }
+    if(keyCode === 38){
+         console.log(`↑ 입력됨`);
+     }
+    if(keyCode === 40){
+         console.log(`↓ 입력됨`);
+     }
+    
+}
+    
+</script>
+</body>
+</html>
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>샘플</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="main.js" defer></script>
+  <style>
+  .textarea {
+      width: 100%;
+      height: calc(100% - 40px);
+      font-size: 40px;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+  
+  </style>
+</head>
+<body>
+<main>
+  <textarea class="textarea"></textarea>
+</main>
+<script>
+document.querySelector('.textarea').addEventListener('keydown', () => {
+  console.log('키가 눌러졌습니다.');
+});
+document.querySelector('.textarea').addEventListener('keypress', () => {
+  console.log('문자가 입력되었습니다.');
+});
+document.querySelector('.textarea').addEventListener('keyup', () => {
+  console.log('키 눌림이 해제되었습니다.');
+});
+</script>
+</body>
+</html>
+

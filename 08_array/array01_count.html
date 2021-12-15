@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{ height: 100vh;}
+    </style>
+</head>
+<body>
+    <script>
+        // let array1 = new Array(4321);
+        // console.log( array1.length)
+        // 배열은 요소를 최대 4,294,967,295개 가질 수 있다.
+        // new Array(4294967295);
+
+        let startColor = ['red', 'green', 'blue', 'purple'];
+        let endColor = ['yellow', 'pink', 'skyblue', 'gray'];
+
+        setInterval( fillGradient, 3000);
+        function fillGradient(){
+            let randomNum = Math.floor(Math.random()*4);
+            document.body.style.background = `linear-gradient(${startColor[randomNum]}, ${endColor[Math.abs(randomNum-3)]})`;
+        }
+    </script>
+</body>
+</html>

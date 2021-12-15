@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{ height: 100vh;
+            --start:hsl(0, 100%, 50%);
+            --end:hsl(322, 100%, 50%);
+            background: linear-gradient(-235deg, var(--start), var(--end));
+        }
+        
+    </style>
+</head>
+<body>
+    <script>
+        const body = document.body;
+
+        setInterval( fillGradient, 3000);
+        function fillGradient(){
+            const randomHue = Math.floor(Math.random()*360);
+            const startColor = `hsl(${randomHue}, 100%, 50%)`; 
+            const endColor = `hsl(${-randomHue}, 100%, 50%)`; 
+            body.style.setProperty('--start', startColor);
+            body.style.setProperty('--end', endColor);
+        }
+
+        //console.log(body.style.getPropertyValue());
+        console.log(window.getComputedStyle(body).getPropertyValue('--start'));
+    </script>
+</body>
+</html>

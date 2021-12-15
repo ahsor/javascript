@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>샘플</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="main.js" defer></script>
+  <style>
+  .textarea {
+      width: 100%;
+      height: calc(100% - 40px);
+      font-size: 40px;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+  
+  </style>
+</head>
+<body>
+<main>
+  <textarea class="textarea"></textarea>
+</main>
+<script>
+
+document.querySelector('.textarea').addEventListener('keyup', (event) => {
+    // 입력 'a'에 대한 결과 출력 
+    console.log(`event.key : ${event.key}`); // a 눌러진 키값 반환
+    console.log(`event.code : ${event.code}`); // KeyA, KeyB
+    console.log(`event.altKey : ${event.altKey}`); // false
+    console.log(`event.ctrlKey : ${event.ctrlKey}`); // false
+    console.log(`event.shiftKey : ${event.shiftKey}`); // false
+    console.log(`event.metaKey : ${event.metaKey}`); // false
+    console.log(`event.repeat : ${event.repeat}`); // false
+    console.log(`event.isComposing : ${event.isComposing}`); // false
+  
+    
+});
+</script>
+</body>
+</html>
+

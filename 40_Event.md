@@ -1772,7 +1772,8 @@ pageX, pageY는 스크롤 분량 정보도 포함하고 있다.
 |event.screenX|디바이스 좌측 상단 기준 X 좌표|숫자 |
 |event.screenY|디바이스 좌측 상단 기준 Y 좌표|숫자 |
 
-
+<img src="images/pos.png">
+사진 출처: https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively
 
 ``` 케릭터 이동 
 <style>
