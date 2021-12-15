@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <style>
+        .box{ position: fixed; width:100%; height: 100%; left:0; top:0; 
+            background: url(https://bxslider.com/assets/images/plant.jpg);}
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script src='../script/jquery-3.6.0.min.js'></script>
+    <script>
+        const i01 = 'https://bxslider.com/assets/images/plant.jpg';
+        const i02 = 'https://bxslider.com/assets/images/daisies.jpg';
+        const i03 = 'https://bxslider.com/assets/images/succulents.jpg';
+
+        const box = document.querySelector('.box');
+        // box.addEventListener('mousemove', function(event){
+        //     let posX = event.screenX%3; 
+
+        // })
+        $('body').mousemove(function(ev){
+            let pos = Math.floor( ev.pageX/$(window).width()*3);
+            console.log( pos );
+            switch(pos){
+                case 0 : $('.box').css('background', `url(${i01})`); break; 
+                case 1 : $('.box').css('background', `url(${i02})`); break; 
+                case 2 : $('.box').css('background', `url(${i03})`); break; 
+            }
+        })
+        /*
+        $('body').mousemove(function(ev){
+            let pos = Math.floor( ev.pageX/$(window).width()*3);
+            console.log( pos );
+            switch(pos){
+                case 0 : $('.box img').attr('src', i01); break; 
+                case 1 : $('.box img').attr('src', i02); break; 
+                case 2 : $('.box img').attr('src', i03); break; 
+            }
+        })
+        */
+        /*
+        $('body').mousemove(function(ev){
+            let pos = Math.floor( ev.pageX/$(window).width()*3);
+            console.log( pos );
+            $('.box img').hide();
+            $('.box img').eq(pos).show();
+        })
+        */
+    </script>
+</body>
+</html>

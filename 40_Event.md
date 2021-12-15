@@ -281,7 +281,7 @@ function onclick(event) {
 .addEventListener('click', onClickButton, option);
 option은 반드시 설정할 필요는 업ㅅ고 생략하면 false
 
-|옵션| 의미| 타입}
+|옵션| 의미| 타입|
 |---|---|
 |capture| 이벤트 캡쳐 여부 | 논리값 |
 |once| 리스너 1회 실행 여부| 논리값 |
@@ -585,9 +585,43 @@ function onclick(event) {
 }
 ```
 
-# 40-21
+# 40-21 키보드 이벤트 
+|이벤트 타입| 이벤트 발생 시점|
+|---|---|
+|keydown| **모든 키**를 누렀을 때 발생 , 문자, 숫자, 특수문자, enter키를 눌렀을 때 연속 발생 |
+|keypress| **문자** 키를 누렀을 때 발생, alt, shift, ctrl, enter에서는 동작하지 않음, 키를 눌렀을 때 연속 발생, 폐지됨 |
+|keyup| 누르고 있던 키를 놓았을 때 한 번만 발생|
 
-```html
+```
+  <style>
+  .textarea {
+      width: 100%;
+      height: calc(100% - 40px);
+      font-size: 40px;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+  
+  </style>
+</head>
+<body>
+<main>
+  <textarea class="textarea"></textarea>
+</main>
+<script>
+document.querySelector('.textarea').addEventListener('keydown', () => {
+  console.log('키가 눌러졌습니다.');
+});
+document.querySelector('.textarea').addEventListener('keypress', () => {
+  console.log('문자가 입력되었습니다.');
+});
+document.querySelector('.textarea').addEventListener('keyup', () => {
+  console.log('키 눌림이 해제되었습니다.');
+});
+</script>
+```
+
+# 키보드 클릭시 객체 확인하기 
+```html  
 <!DOCTYPE html>
 <html>
 <body>
@@ -624,6 +658,134 @@ function onclick(event) {
 </body>
 </html>
 ```
+
+``` 문자 입력시 문자수 계산하기
+<style>
+  .textarea {
+      width: 100%;
+      height: calc(100% - 40px);
+      font-size: 40px;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    p {
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: -1px -1px 1px #333333, 1px 1px #ffffff;
+      margin: 0;
+    }
+  
+  </style>
+</head>
+<body>
+<main>
+  <textarea class="textarea"></textarea>
+  <p>현재 <span class="string_num">0</span>문자를 입력 중입니다.</p>
+</main>
+<script>
+/** 텍스트 영역 */
+const textarea = document.querySelector('.textarea');
+
+/** 입력중인 문자 수 */
+const string_num = document.querySelector('.string_num');
+
+//  텍스트를 입력할 때마다 onKeyUp( )을 실행
+textarea.addEventListener('keyup', onKeyUp);
+
+function onKeyUp() {
+  // 입력된 텍스트
+  const inputText = textarea.value;
+  // 문자 수를 반영
+  string_num.innerText = inputText.length;
+}
+
+</script>
+```
+# 입력된 키 정보 확인 
+
+|옵션| 의미| 타입|
+|---|---|
+|키보드 이벤트.key|눌러진 키의 값 | 문자열 |
+|키보드 이벤트.code|눌러진 버튼의 코드| 문자열 |
+|키보드 이벤트.altkey|눌러진 키의 값 확인, alt키 여부 | 진리값 |
+|키보드 이벤트.ctrlkey|눌러진 키의 값 확인, ctrl키 여부 | 진리값 |
+|키보드 이벤트.shiftkey|눌러진 키의 값 확인, shift키 여부 | 진리값 |
+|키보드 이벤트.metakey|윈도우 로고키, 맥 커맨드키, meta키 여부 | 진리값 |
+|키보드 이벤트.repeatkey|현재 눌러진 키 상태 확인 | 진리값 |
+|키보드 이벤트.isComposing|입력 중 상태 확인, 특수기호 등 입력변환 작업 중일 때 true | 진리값 |
+|키보드 이벤트.keycode| 눌러진 키의 아스키 코드 값| 숫자 |
+
+```  키눌림 상태 확인 
+<style>
+  .textarea {
+      width: 100%;
+      height: calc(100% - 40px);
+      font-size: 40px;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+  
+  </style>
+</head>
+<body>
+<main>
+  <textarea class="textarea"></textarea>
+</main>
+<script>
+
+document.querySelector('.textarea').addEventListener('keyup', (event) => {
+    // 입력 'a'에 대한 결과 출력 
+    console.log(`event.key : ${event.key}`); // a 눌러진 키값 반환
+    console.log(`event.code : ${event.code}`); // KeyA, KeyB
+    console.log(`event.altKey : ${event.altKey}`); // false
+    console.log(`event.ctrlKey : ${event.ctrlKey}`); // false
+    console.log(`event.shiftKey : ${event.shiftKey}`); // false
+    console.log(`event.metaKey : ${event.metaKey}`); // false
+    console.log(`event.repeat : ${event.repeat}`); // false
+    console.log(`event.isComposing : ${event.isComposing}`); // false  
+});
+</script>
+```
+# 기타 키코드값 확인
+https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode 
+
+``` 
+<main>
+  <textarea class="textarea"></textarea>
+  <p>현재 <span class="string_num">0</span>문자를 입력 중입니다.</p>
+  
+</main>
+<script>
+// https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode    
+/** 텍스트 영역 */
+const textarea = document.querySelector('.textarea');
+
+/** 입력중인 문자 수 */
+const string_num = document.querySelector('.string_num');
+
+//  텍스트를 입력할 때마다 onKeyUp( )을 실행
+textarea.addEventListener('keydown', handleKeydown);
+
+function handleKeydown( event) {
+     const keyCode = event.keyCode; 
+     if(keyCode === 39){
+         console.log(`-> 입력됨`);
+     }
+    if(keyCode === 37){
+         console.log(`<- 입력됨`);
+     }
+    if(keyCode === 38){
+         console.log(`↑ 입력됨`);
+     }
+    if(keyCode === 40){
+         console.log(`↓ 입력됨`);
+     }
+    
+}
+    
+</script>
+```
+
 
 # 40-22
 
