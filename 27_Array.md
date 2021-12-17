@@ -3,6 +3,29 @@
 자바스크립트는 다양한 데이터 타입을 추가하여 사용할 수 있다
 그러나 가능한 동일한 데이터를 사용하는 것이 바람직함
 
+| 메소드 | 의미 | 반환값 |
+|---|---|---|
+|배열.length| 배열의 길이 반환 | 숫자 |
+|배열.pop()| 배열의 마지막 요소 삭제**(원본변경)**| 삭제된요소|
+|배열.shift()| 배열의 첫번째 요소 삭제**(원본변경)**| 삭제된요소|
+|배열.push()| 배열의 마지막 요소 추가**(원본변경)**| 전체요소개수(숫자)|
+|배열.unshift()| 배열의 첫번째 요소 추가**(원본변경)**| 전체요소개수(숫자)|
+|배열.splice()| 배열 중간의 요소 추가 삭제 | 배열|
+|배열.concat()| 배열과 배열을 결합하여 새로운 배열 생성 | 배열|
+|배열.slice()| 전달된 범위의 요소들을 복사하여 배열로 반환 | 배열|
+|배열.join()| 배열요소를 결합하여 문자열 만들기 | 문자열|
+|배열.reverse()| 배열역순 정렬| 배열|
+|배열.fill()| 전달된 인수로 배열의 초기화 | 배열|
+|배열.indexOf()|요소의 인덱스 위치 검색 | 숫자|
+|배열.includes()| 요소의 포함여부 확인 | 논리값|
+|배열.reduce()| 요소를 처리하여 하나의 값생성 | 임의의 값|
+|배열.map()| 콜백함수로 새로운 배열로 반환 | 배열|
+|배열.filter()| 콜백함수로 조건을 만족하는 데이터를 생성 | 배열|
+|[...배열]| 유사배열 객체를 배열로 반환 | 배열|
+|배열.from| 유사배열 객체를 배열로 반환 | 배열|
+|배열.forEach()| 배열의 순회| |
+
+
 # 27-01 배열 초기화
 
 ```javascript
@@ -77,7 +100,11 @@ for (let i = 0; i < arr.length; i++) {
 }
 ```
 
-# 27-08
+# 27-08  example
+자료구조상 배열은 동일한 크기의 메모리 공간에 빈틈없이 연속적으로 나열된 자료구조이다. 
+데이터타입은 하나로 통일되어 있으며 서로 인접되어 있다.(밀집배열) 
+이러한 밀집배열은 인덱스를 통해서 메모리를 효율적으로 접근할 수 있다는 장점이 있지만 
+배열에서 특정 요소를 검색하는 경우 선형검색을 하므로 시간 복잡도 O(n)
 
 ```javascript
 // 함수로 수업 
@@ -98,6 +125,12 @@ console.log(linearSearch([1, 2, 3, 4, 5, 6], 0)); // -1
 ```
 
 # 27-09
+자바스크립트 배열은 일반적인 배열의 동작을 흉내낸 특수한 객체. 
+인덱스를 나타내는 문자열을 키로 갖고 length 속성을 갖는 특수한 객체이다. 
+일반적인 배열은 인덱스를 이용해 데이터를 빠르게 접근할 수 있다. 
+하지만 특정요소를 검색하거나 요소를 삽입, 삭제 하는 경우 효율적이지 안다. 
+
+👍 자바스크립트 배열은 해시테이블로 구현된 객체이므로 인덱스로 요소에 접근하는 경우 일반적인 배열보다 성능적인 면에서 느린 단점이 있다. 하지만 특정요소를 검색하거나 요소를 삽입, 삭제 하는 경우 일반적인 배열보다 빠른 성능을 기대할 수 있다. 
 
 ```javascript
 // "16.2. 프로퍼티 어트리뷰트와 프로퍼티 디스크립터 객체" 참고
@@ -216,6 +249,11 @@ console.log(Object.getOwnPropertyDescriptors(arr));
 ```
 
 # 27-17
+
+자료구조상 배열은 동일한 크기의 메모리 공간에 빈틈없이 연속적으로 나열된 자료구조이다. 
+데이터타입은 하나로 통일되어 있으며 서로 인접되어 있다.(밀집배열) 
+이러한 밀집배열은 인덱스를 통해서 메모리를 효율적으로 접근할 수 있다는 장점이 있지만 
+배열에서 특정 요소를 검색하는 경우 선형검색을 하므로 시간 복잡도 o(n)
 
 ```javascript
 // 희소 배열
@@ -466,6 +504,7 @@ arr[-1] = 6;
 console.log(arr); // [1, 2, foo: 3, bar: 4, '1.1': 5, '-1': 6]
 
 // 프로퍼티는 length에 영향을 주지 않는다.
+// 빈배열은 배열개수로 계산
 console.log(arr.length); // 2
 ```
 
@@ -483,6 +522,14 @@ console.log(arr.length); // 3
 ```
 
 # 27-40
+arr.splice( start, deleteCount, item ...);
+start : 원본 배열의 요소를 제거하기 시작할 인덱스
+        start만 지정하면 모든 요소 삭제
+        start가 음수이면 마지막 요소를 가리킨다. 
+deleteCount : start부터 제거할 요소의 개수 
+        0인경우 아무 요소도 삭제하지 않는다. 
+
+item : 제거한 위치에 삽입할 요소들의 목록, 생략하면 원본 요소를 제거만 한다. 
 
 ```javascript
 const arr = [1, 2, 3];
@@ -520,6 +567,7 @@ console.log(result); // [1, 2, 3]
 ```
 
 # 27-42
+전달된 인수가 배열이면 true, 배열이 아니면 false
 
 ```javascript
 // true
@@ -540,6 +588,8 @@ Array.isArray({ 0: 1, length: 1 })
 ```
 
 # 27-43
+indexOf()는 배열에 특정요소가 존재하는 확인하고 특정요소가 없으면 -1을 반환한다.
+ES7에서는 indexOf() 대신 가독성이 좋은 includes()를 사용한다.
 
 ```javascript
 const arr = [1, 2, 2, 3];
@@ -609,10 +659,64 @@ console.log(arr); // [1, 2, 3]
 const arr = [1, 2];
 
 // ES6 스프레드 문법
+[ spread(전개) 연산자 ]
+-나열형 자료를 추출하거나 연결시 사용
+- 객체, 변수명 앞에 (...) 마침표 3개를 입력
+- [], {} ,() 안에서만 사용
+
 const newArr = [...arr, 3];
 console.log(newArr); // [1, 2, 3]
 ```
 
+[전개 연산자 ]
+
+```
+var array1 = ['one', 'two'];
+var array2 = ['three', 'four'];
+
+var combined = [array1, array2];
+console.log(combined)
+
+var combined2 = [...array1, ...array2];
+console.log(combined2)
+
+var combined3 = ['zero', ...array1,'add', ...array2];
+console.log(combined3)
+
+var [first, second] = array1; 
+console.log( first, second);
+
+var [one, ...other] = combined2; 
+console.log( one, other);
+// 나머지는 배열로 출력
+
+function func(){
+  console.log(arg)
+}
+func(1,2,3);
+
+function func2(arr1, ...args){
+  // 나머지 배열로 추출, 배열은 항상 마지막에만 사용가능 
+  console.log(arr1)
+  console.log(args)
+}
+func2(1,2,3);
+```
+# [배열 불변하게 사용 3]
+ ```
+ const arr = [0,1,2,3];
+// 중간에 항목 끼우기 
+console.log( arr.slice(0, 1)); 
+
+// concat 과 slice를 합쳐서 사용하기 
+const arr4 = [
+    ...arr.slice(0, 1),
+    92, 91 ,93 ,
+    ...arr.slice(1)
+]
+// 0과 1사이 인덱스에 3개 데이터 삽입
+console.log( arr4 )
+```
 # 27-49
 
 ```javascript
@@ -893,8 +997,13 @@ result = result.concat([5, 6]);
 
 console.log(result); // [1, 2, 3, 4, 5, 6]
 ```
+[배열 불변하게 사용 1]
 
-# 27-60 배열 결합하기
+
+
+
+# 27-60 배열 결합하기 : 배열 불변하게 사용 할 수 있다. 
+
 |메소드 | 의미 | 반환 |
 |---|---|---|
 | 배열1.concat(배열2, 배열3))|배열1에 배열2, 배열3을 결합|배열|
@@ -913,6 +1022,14 @@ console.log(result); // [1, 2, 3, 4]
 |메소드 | 의미 | 반환 |
 |---|---|---|
 | 배열.splice(위치, 추출개수, 요소1, 요소2)|지정위치요소추출, 요소추가|배열|
+arr.splice( start, deleteCount, item ...);
+start : 원본 배열의 요소를 제거하기 시작할 인덱스
+        start만 지정하면 모든 요소 삭제
+        start가 음수이면 마지막 요소를 가리킨다. 
+deleteCount : start부터 제거할 요소의 개수 
+        0인경우 아무 요소도 삭제하지 않는다. 
+
+item : 제거한 위치에 삽입할 요소들의 목록, 생략하면 원본 요소를 제거만 한다. 
 
 ```javascript
 const arr = [1, 2, 3, 4];
@@ -1006,8 +1123,7 @@ function removeAll(array, item) {
 console.log(removeAll(arr, 2)); // [1, 3, 1]
 ```
 
-# 27-67
-
+# 27-67 배열 불변하게 사용할 수 있다. 2
 ```javascript
 const arr = [1, 2, 3];
 
@@ -1022,7 +1138,17 @@ console.log(arr); // [1, 2, 3]
 ```
 
 # 27-68
+arr.slice( start, end);
+start : 복사를 시작할 인덱스, 음수이면 마지막 요소를 가리킨다. 
+        slice(-2) ; // 마지막 2개 인덱스 요소를 배열로 반환 
+        시작할 인덱스만 있는 경우 시작인덱스 이후 모든 요소 복사
+        slice(1) ; // 
+        인수 모두 생략하면 원본 배열 복사
+        slice() ; // 
 
+end : 종료할 인덱스, 종료할 인덱스는 복사에서 제외된다. 
+      종료할 인덱스 - 1 요소까지 복사 
+      
 ```javascript
 const arr = [1, 2, 3];
 
@@ -1052,6 +1178,23 @@ const copy = arr.slice();
 console.log(copy); // [1, 2, 3]
 console.log(copy === arr); // false
 ```
+
+```const arr = [0,1,2,3];
+        
+console.log( arr.slice(0, 1)); 
+// 1이전의 항목을 리턴하여 사용 가능
+
+const arr2 = arr.slice(1, arr.len);
+// shift() 매서드 대신 사용 
+// len을 전달하지 않으면 무조건 마지막 항목까지 사용 
+console.log(arr, arr2);
+  
+  const arr3 = arr.slice(0, arr.length-1);
+// pop() 매서드 대신 사용
+// len을 전달하지 않으면 무조건 마지막 항목까지 사용
+console.log(arr, arr3 );
+```
+
 
 # 27-71
 

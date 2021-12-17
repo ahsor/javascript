@@ -25,17 +25,25 @@
         const i03 = 'https://bxslider.com/assets/images/succulents.jpg';
 
         const box = document.querySelector('.box');
-        // box.addEventListener('mousemove', function(event){
-        //     let posX = event.screenX%3; 
-
-        // })
-        $('body').mousemove(function(ev){
-            //Math.random()과 같은 개념
-            let pos = Math.floor( ev.pageX/$(window).width()*3);
+        const hideImg = document.querySelectorAll('.box img');
+        
+        box.addEventListener('mousemove', function(event){
+            let pos = Math.floor(event.pageX/window.innerWidth*3);
             console.log( pos );
-            $('.box img').hide();
-            $('.box img').eq(pos).show();
+            for( let a = 0 ; a<hideImg.length ; a++)
+                hideImg[a].style.display = 'none'; 
+            // [...hideImg].forEach(function(img, i){
+            //     img.style.display = 'none';
+            // })
+            hideImg[pos].style.display = 'block';
         })
+        // $('body').mousemove(function(ev){
+        //     //Math.random()과 같은 개념
+        //     let pos = Math.floor( ev.pageX/$(window).width()*3);
+        //     console.log( pos );
+        //     $('.box img').hide();
+        //     $('.box img').eq(pos).show();
+        // })
     </script>
 </body>
 </html>
