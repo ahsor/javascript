@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>자바스크립트 마스터북</title>
+<script src="../lib/polyfill.js"></script>
+</head>
+<body>
+<input id="btn" type="button" value="클릭" />
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+  var Counter = function(elem) {
+    this.count = 0;
+    this.elem = elem;
+  //  elem.addEventListener('click', function() {
+  //    this.count++;
+  //    this.show();
+  //  }, false);
+
+      elem.addEventListener('click', () => {
+      this.count++;
+      this.show();
+      }, false);
+  };
+
+  Counter.prototype.show = function() {
+    console.log(this.elem.id + '는' + this.count + '회 클릭되었다.');
+  }
+
+  var c = new Counter(document.getElementById('btn'));
+}, false);
+
+</script>
+</body>
+</html>

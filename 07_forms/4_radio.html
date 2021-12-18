@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>form-radio</title>
+</head>
+<body>
+<form>
+  <div>
+    좋아하는 음식은?：
+    <label><input type="radio" name="food" value="라면" />
+      라면</label>
+    <label><input type="radio" name="food" value="만두" />
+      만두</label>
+    <label><input type="radio" name="food" value="불고기" />
+      불고기</label>
+    <input id="btn" type="button" value="송신" />
+  </div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
+  var getRadioValue = function(name) {
+    var result = '';
+    var elems = document.getElementsByName(name);
+
+    for(var i = 0; i < elems.length; i++) {
+      var elem = elems.item(i);
+      if (elem.checked) {
+        result = elem.value;
+        break;
+        //라디오버튼은 중복체크하지 않으므로 체크된 요소를 찾은 즉시 loop를 빠져나옴
+      }
+    }
+    return result;
+  };
+  
+  document.getElementById('btn').addEventListener('click', function() {
+    window.alert(getRadioValue('food'));
+  }, false);
+}, false);
+
+
+</script> 
+
+<!--
+
+<script>
+  $(function(){
+      var btnClick = function(){
+        var el = $('input[name="food"]');
+        /*
+        for(var a = 0; a < el.length; a++){
+            if(el[a].checked){  
+              console.log(a);
+              alert( el[a].value)
+              break; 
+            }
+        }
+        */
+        for(var a in el){
+            if(el[a].checked){  
+              console.log(a);
+              alert( el[a].value)
+              break; 
+            }
+        }  
+      }
+
+      $('#btn').click(function(){
+        btnClick();
+      })
+  })
+</script>
+-->
+</body>
+</html>

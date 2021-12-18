@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>스타일토글</title>
+<style>
+    .highlight{ background-color: yellow;}
+</style>
+</head>
+<body>
+<div id="elem">클릭하면 배경색이 변한다.</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elem = document.getElementById('elem');
+
+        elem.addEventListener('click', function() {
+            this.className = (this.className === 'highlight' ? '' : 'highlight');
+        }, false);
+    }, false);
+</script>
+</body>
+</html>

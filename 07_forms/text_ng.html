@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>텍스트사용주의</title>
+<style>
+  #result { background-color: pink;}
+</style>
+</head>
+<body>
+<form>
+  <label for="name">이름: </label>
+  <input id="name" name="name" type="text" size="30" />
+  <input id="btn" type="button" value="송신" />
+</form>
+<div id="result" onclick="alert('라브라브랄라')"></div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('btn').addEventListener('click', function() {
+        var name = document.getElementById('name');
+        var result = document.getElementById('result');
+        result.innerHTML = '안녕하세요, ' + name.value + '씨!';
+    }, false);
+}, false);
+
+</script>
+</body>
+</html>

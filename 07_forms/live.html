@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>자바스크립트 마스터북</title>
+</head>
+<body>
+<ul id="list">
+  <li>개정3판 기초PHP</li>
+  <li>Java포켓 레퍼런스</li>
+  <li>Swift포켓 레퍼런스</li>
+  <li>개정5판 ASP.NET입문</li>
+  <li>앱을 만들자! Android입문</li>
+</ul>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var li = document.getElementsByTagName('li');
+  console.log('변경전:' + li.length);
+
+  var ul = document.getElementById('list');
+  ul.appendChild(document.createElement('li'));
+  console.log('변경후:' + li.length);
+}, false);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+</head>
+<body>
+<div id="outer">
+  <p>outer요소</p>
+  <a id="inner" href="http://www.wings.msn.to">inner요소</a>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('inner').addEventListener('click', function(e) {
+    window.alert('#inner리스너가 발생하였다.');
+    e.stopPropagation();
+    //e.stopImmediatePropagation();
+    //e.preventDefault();
+  }, false);
+
+  document.getElementById('inner').addEventListener('click', function(e) {
+    window.alert('#inner리스너2가 발생하였다.');
+  }, false);
+
+  document.getElementById('outer').addEventListener('click', function(e) {
+    window.alert('#outer리스너가 발생하였다.');
+  }, false);
+}, false);
+
+</script>
+</body>
+</html>

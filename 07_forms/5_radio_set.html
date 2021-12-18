@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>radio-set</title>
+</head>
+<body>
+<form>
+  <div>
+    좋아하는 음식은?：
+    <label><input type="radio" name="food" value="라면" />
+      라면</label>
+    <label><input type="radio" name="food" value="만두" />
+      만두</label>
+    <label><input type="radio" name="food" value="불고기" />
+      불고기</label>
+    <input id="btn" type="button" value="송신" />
+  </div>
+</form>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var setRadioValue = function(name, value) {
+    var elems = document.getElementsByName(name);
+
+    for(var i = 0, len = elems.length; i < len; i++) {
+      var elem = elems.item(i);
+      if (elem.value === value) {
+        elem.checked = true;
+        break;
+      }
+    }
+  };
+  
+  setRadioValue('food', '만두');
+  // 태그에서 checked 한것과 같은 라디오버튼 초기값 셋팅
+  // 기본 선택을 체크하도록 함 
+}, false);
+
+
+</script>
+</body>
+</html>

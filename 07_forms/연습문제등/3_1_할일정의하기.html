@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="IE=edge">
+<title>3-10_array</title>
+<link href="../../_common/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<header>
+<div class="header-contents">
+<h1>항목을 리스트로 표시</h1>
+<h2>배열 작성하기</h2>
+</div><!-- /.header-contents -->
+</header>
+<div class="main-wrapper">
+<section>
+	<h1>해야 할 일 목록</h1>
+	<ul>
+		<li>오늘 해야할 일을 배열에 기록하세요.</li>
+		<li> 3번째 할일을 콘솔에 출력하세요. </li>
+		<li> 모든 데이터를 화면에 출력하세요. </li>
+	</ul>
+	
+	
+</section>
+</div><!-- /.main-wrapper -->
+<footer>JavaScript Samples</footer>
+<script>
+var todo = ['디자인 샘플 작성', '데이터 정리', '스터디 신청', '우유 사기'];
+console.log(todo[4]);
+for (var i = 0; i < todo.length; i++) {
+	console.log(todo[i]);
+}
+</script>
+</body>
+</html>

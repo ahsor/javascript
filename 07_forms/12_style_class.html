@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>외부스타일사용</title>
+<link rel="stylesheet" href="css/style.css" />
+<!--
+    .highlight {
+         background-color: Yellow;
+    }
+    //외부스타일시트를 사용함 
+-->
+</head>
+<body>
+<div id="elem">마우스 포인터를 올리면 색이 변합니다.</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elem = document.getElementById('elem');
+
+        elem.addEventListener('mouseover', function() {
+            this.className = 'highlight';
+        }, false);
+
+        elem.addEventListener('mouseout', function() {
+            this.className = '';
+        }, false);
+    }, false);
+
+</script>
+</body>
+</html>

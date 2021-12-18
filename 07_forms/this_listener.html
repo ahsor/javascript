@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>자바스크립트 마스터북</title>
+</head>
+<body>
+<input id="btn" type="button" value="클릭" />
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+  var data = {
+    title: 'Javascript 레퍼런스',
+    price: 26800,
+    handleEvent: function() {
+      console.log(this.title + '/' + this.price + '원');
+    }
+  };
+
+  document.getElementById('btn').addEventListener(
+    'click', data, false);
+}, false);
+
+</script>
+</body>
+</html>

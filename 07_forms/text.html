@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>텍스트사용하기</title>
+</head>
+<body>
+<div id="result_text">
+  <p style="color: Red;">설정되어 있지 않다!</p>
+</div>
+<div id="result_html">
+  <p style="color: Red;">설정되어 있지 않다!</p>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('result_text').textContent =
+        '<a href="http://www.wings.msn.to/">WINGS프로젝트</a>';
+        // 텍스트로 인식, 처리속도 빠르고, 보안문제 발생도 어려움 
+        // 태그를 포함하고 있지않다면 textContent 추천
+        
+      document.getElementById('result_html').innerHTML =
+        '<a href="http://www.wings.msn.to/">WINGS프로젝트</a>';
+        // html 코드로 인식 
+}, false);
+
+
+</script>
+</body>
+</html>

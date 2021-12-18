@@ -1,0 +1,40 @@
+    <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>폼입력-text</title>
+</head>
+<body>
+<form name='form1'>
+  <label for="name">이름:</label>
+  <input id="name" name="name" type="text" size="30" />
+  <input id="btn" name ='btn' type="button" value="송신" />
+</form>
+<div id="result"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script>
+ /*
+$(function(){  
+  $('#btn').click(function(){
+    var n = $('#name').val();
+    console.log( n )
+  })
+})
+*/    
+ document.addEventListener('DOMContentLoaded', function() {
+     /*
+      document.form1.btn.onclick = function(){
+          var name = document.form1.name
+          console.log(name.value);
+      }
+      */
+      document.querySelector('#btn').addEventListener('click', function() {
+            var name = document.querySelector('#name');
+            console.log(name.value);
+            //name.value = 폼에서 입력한 문자 출력 ';
+      }, false);
+}, false);    
+     
+</script> 
+</body>
+</html>

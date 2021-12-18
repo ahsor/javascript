@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>자바스크립트 마스터북</title>
+</head>
+<body>
+<ul id="list">
+  <li><a href="http://nodejs">
+    서버 사이드 기술</a></li>
+  <li><a href="http://Express.org/">
+    Web Node Express</a></li>
+  <li><a href="http://jquery.com">
+    jQuery역방향 레퍼런스</a></li>
+</ul>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var list = document.getElementById('list');
+      console.log(list.innerHTML);
+      // 대상요소 아래를 html 문자열로 반환
+
+      console.log(list.textContent);
+      // 자식요소 각각의 텍스트만 추출 
+  }, false);
+
+</script>
+</body>
+</html>

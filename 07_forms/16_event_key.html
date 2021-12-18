@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>키값</title>
+</head>
+<body>
+<form>
+  <label for="key">키 입력:</label>
+  <input type="text" id="key" size="10" />
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+
+$('#key').focus().on('keydown', function(e) {
+        console.log('키 코드:' + e.keyCode);
+});    
+/*    
+  document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('key').addEventListener('keydown', function(e) {
+        console.log('키 코드:' + e.keyCode);
+      }, false);
+  }, false);
+*/
+
+</script>
+</body>
+</html>

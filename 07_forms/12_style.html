@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>mouseover</title>
+</head>
+<body>
+<div id="elem">마우스 포인터를 올리면 색이 변합니다.</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elem = document.getElementById('elem');
+
+        elem.addEventListener('mouseover', function() {
+            this.style.backgroundColor = 'Yellow';
+        }, false);
+
+        elem.addEventListener('mouseout', function() {
+            this.style.backgroundColor = '';
+        }, false);
+    }, false);
+</script>
+</body>
+</html>

@@ -24,6 +24,17 @@
 			#image.winter { background:url(images/winter.jpg) }
 		</style>
 		<script>
+			document.addEventListener('DOMContentLoaded', function(){
+				const nav = document.getElementById('nav');
+				const img = document.querySelector('#image');
+				
+				nav.addEventListener('click', function(event){
+					let str = event.target.parentNode.parentNode.getAttribute('id');
+					let tar = str.substring(0, str.length - 3);
+					console.log(tar);
+					img.className = tar;
+				})
+			})
 			$(document).ready(function(){
 				
 			});

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>자바스크립트 마스터북</title>
+</head>
+<body>
+<ul id="list">
+  <li><a href="http://www.wings.msn.to/" class="my">
+    서버 사이드 기술의 배움터 - WINGS</a></li>
+  <li><a href="http://www.web-deli.com/" class="my2">
+    WebDeli</a></li>
+  <li><a href="http://www.buildinsider.net/web/jqueryref" class="external">
+    jQuery역방향 레퍼런스</a></li>
+  <li><a href="http://www.buildinsider.net/web/angularjstips" class="external">
+    AngularJS TIPS</a></li>
+</ul>
+<script>
+  var list = document.querySelectorAll('#list .external');
+for (var i = 0, len = list.length; i < len; i++) {
+  console.log(list.item(i).href);
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>노드추가</title>
+</head>
+<body>
+<form>
+  <div>
+    <label for="name">사이트명:</label><br />
+    <input id="name" name="name" type="text" size="30" />
+  </div>
+  <div>
+    <label for="url">URL:</label><br />
+    <input id="url" name="url" type="url" size="50" />
+  </div>
+  <div>
+    <input id="btn" type="button" value="추가" />
+  </div>
+</form>
+<div id="list"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$('#btn').click(function(){
+    var name = $('#name');
+    var url = $('#url');
+
+    var str = $('<a />').attr('href', $('#url').val()).text(name.val());
+    var anchor = $('#list').html(str);
+})
+/*    
+  document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn').addEventListener('click', function() {
+      var name = document.getElementById('name');
+      var url = document.getElementById('url');
+
+      var anchor = document.createElement('a');
+      anchor.href= url.value;
+      alert( anchor.href )
+      var text = document.createTextNode(name.value);
+      anchor.appendChild(text);
+
+      var br = document.createElement('br');
+      var list = document.getElementById('list');
+      list.appendChild(anchor);
+      // list.insertBefore(anchor, null);
+      
+      list.appendChild(br);
+  }, false);
+}, false);
+*/
+/*
+createElement  요소노드
+createAttribute  속성노드
+createTextNode  텍스트노드
+createComment 주석노드
+
+*/
+</script>
+</body>
+</html>

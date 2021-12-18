@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>마우스좌표이벤트</title>
+</head>
+<body>
+<div id="main" style="position:absolute; margin:50px;
+ top:50px; left:50px; width:200px; height:200px;
+ border:1px solid Black"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(function(){
+        // 사용하는 event는 같으므로 jQuery로도 같은 방법임 
+    })
+</script>
+<script>
+var main = $('#main');
+main.on('mousemove', function(e) {
+    mainInnerHTML = 'screen' + e.screenX + '/' + e.screenY + '<br />'
+    + 'page' + e.pageX + '/' + e.pageY + '<br />'
+    + 'client' + e.clientX + '/' + e.clientY + '<br />'
+    + 'offset' + e.offsetX + '/' + e.offsetY + '<br />';
+    $(this).html(mainInnerHTML)
+ });   
+/*
+    document.addEventListener('DOMContentLoaded', function() {
+        var main = document.getElementById('main');
+        main.addEventListener('mousemove', function(e) {
+            main.innerHTML = 'screen' + e.screenX + '/' + e.screenY + '<br />'
+            + 'page' + e.pageX + '/' + e.pageY + '<br />'
+            + 'client' + e.clientX + '/' + e.clientY + '<br />'
+            + 'offset' + e.offsetX + '/' + e.offsetY + '<br />';
+        }, false);
+    }, false);
+*/
+/*
+    스크린상 좌표
+    페이지상 좌표
+    표시영역상 좌표
+    요소영역상 좌표
+    https://designer-ej.tistory.com/entry/Web-window-size-%EB%B0%8F-%EC%A2%8C%ED%91%9C-%EA%B4%80%EB%A0%A8-%EC%86%8D%EC%84%B1
+
+*/
+</script>
+</body>
+</html>

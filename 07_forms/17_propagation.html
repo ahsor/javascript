@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>이벤트버블링</title>
+</head>
+<body>
+<div id="outer">
+  <p>outer요소</p>
+  <a id="inner" href="http://www.naver.com">inner요소</a>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('inner').addEventListener('click', function(e) {
+    window.alert('#inner리스너가 발생하였다.');
+    e.stopPropagation();
+    //e.stopPropagation();
+    // 버블링 취소로 이벤트 전달 취소
+    //e.stopImmediatePropagation();
+    // 현재 위치에서 전파을 취소
+    //e.preventDefault();
+    // 본래이벤트 동작을 취소
+  }, false);
+
+  document.getElementById('inner').addEventListener('click', function(e) {
+    window.alert('#inner리스너2가 발생하였다.');
+  }, false);
+
+  document.getElementById('outer').addEventListener('click', function(e) {
+    window.alert('#outer리스너가 발생하였다.');
+  }, false);
+}, false);
+
+</script>
+
+</body>
+</html>

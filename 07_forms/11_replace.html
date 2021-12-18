@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>기존노드치환/삭제</title>
+</head>
+<body>
+ <!-- // 이미지를 준비하여 images폴더에 넣고 확인하기-->
+<ul id="list">
+  <li><a href="#" data-isbn="978-4-7981-3547-2">
+    개정3판 기초PHP</a></li>
+  <li><a href="#" data-isbn="978-4-7741-8030-4">
+    Java포켓 레퍼런스</a></li>
+  <li><a href="JavaScript:void(0)" data-isbn="978-4-7741-7984-1">
+    Swift포켓 레퍼런스</a></li>
+  <li><a href="JavaScript:void(0)" data-isbn="978-4-7981-4402-3">
+    개정5판 ASP.NET입문</a></li>
+  <li><a href="JavaScript:void(0)" data-isbn="978-4-8222-9644-5">
+    앱을 만들자! Android입문</a></li>
+</ul>
+<input id="del" type="button" value="삭제"/>
+<div id="pic"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+var list = $('#list li a');
+var pic =$('#pic');
+var del = $('#del');    
+list.on('click', function(e) {
+    // 목록을 클릭하면 내용 가져와서 보여주기
+    var isbn = $(this).attr('data-isbn');
+    if (isbn) {
+      var img = $('<img />');
+      img.attr('src','http://www.wings.msn.to/books/' + isbn + '/' + isbn + '.jpg');
+      // 이미지를 준비하여 images폴더에 넣고 확인하기
+      //img.alt = e.innerHTML;
+      img.attr('height','150px');
+      img.attr('width','108px');
+      pic.html(img);  
+      // del.attr('disabled', 'false');
+        // disabled 제어
+    }
+})
+del.on('click', function() {
+    pic.empty();
+    //del.disabled = true;
+});
+/*
+  document.addEventListener('DOMContentLoaded', function() {
+  var list = document.getElementById('list');
+  var pic = document.getElementById('pic');
+  var del = document.getElementById('del');
+
+  list.addEventListener('click', function(e) {
+    // 목록을 클릭하면 내용 가져와서 보여주기
+    var isbn = e.target.getAttribute('data-isbn');
+    
+    if (isbn) {
+      var img = document.createElement('img');
+      img.src = 'http://www.wings.msn.to/books/' + isbn + '/' + isbn + '.jpg';
+      // 이미지를 준비하여 images폴더에 넣고 확인하기
+      img.alt = e.innerHTML;
+      img.height = 150;
+      img.width = 108;
+      if(pic.getElementsByTagName('img').length > 0){
+        pic.replaceChild(img, pic.lastChild);
+      } else {
+        del.disabled = false;
+        pic.appendChild(img);
+      }
+    }
+  }, false);
+
+  del.addEventListener('click', function() {
+    pic.removeChild(pic.lastChild);
+    del.disabled = true;
+  }, false);
+}, false);
+*/
+</script>
+</body>
+</html>

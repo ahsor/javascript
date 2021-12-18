@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>form-checkbox</title>
+</head>
+<body>
+<form>
+  <div>
+    <label><input type="checkbox" name="all" value="전체동의" id="allCheck" />
+      전체동의</label>
+    <label><input type="checkbox" name="food" value="라면" />
+      라면</label>
+    <label><input type="checkbox" name="food" value="만두" />
+      만두</label>
+    <label><input type="checkbox" name="food" value="불고기" />
+      불고기</label>
+    <input id="btn" type="button" value="송신" />
+  </div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+
+</script>
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
+    
+    var setCheckValue = function(name, value) {
+        var elems = document.getElementsByName(name);
+
+        for(var i = 0, len = elems.length; i < len; i++) {
+              var elem = elems.item(i);
+              if (value.indexOf(elem.value) > -1) {
+                    elem.checked = true;
+              }
+        }
+  };
+  var setCheckFalse = function(name) {
+        var elems = document.getElementsByName(name);
+
+        for(var i = 0, len = elems.length; i < len; i++) {
+              elems.item(i).checked = false;
+              //elem.checked = false;
+        }
+  };
+  
+ document.getElementById('allCheck').addEventListener('click', function() {
+            var onoff = document.getElementById('allCheck');
+            //console.log(onoff.value);
+            if(onoff.checked) {
+               setCheckValue('food', ['라면','만두', '불고기']);
+            } else {
+               setCheckFalse('food');
+               //console.log(onoff.value);
+            }
+      }, false);    
+    
+  
+ // setCheckValue('food', ['만두', '불고기']);
+    // 로딩과 동시에 데이타 셋팅 
+    // 전체 동의 페이지 작성시 필요
+}, false);
+
+
+</script> 
+</body>
+</html>

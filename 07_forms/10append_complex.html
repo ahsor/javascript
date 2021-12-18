@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>요소추가</title>
+</head>
+<body>
+<ul id="list"></ul>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+var books = [
+            { title: 'html5&css3', price: 32000 },
+            { title: 'JavaScript', price: 26800 },
+            { title: 'jQuery', price: 26000 },
+            { title: 'Nodejs', price: 20000 }
+    ];
+
+var list = $('#list');
+for(var i in books) {
+    var b = books[i];
+    var li = $('<li />');
+    var text = `${b.title} : ${b.price} 원`;
+    
+    console.log(text)
+    list.append($('<li />').text(text));
+}   
+    
+/*    
+document.addEventListener('DOMContentLoaded', function() {
+    var books = [
+            { title: 'html5&css3', price: 32000 },
+            { title: 'JavaScript', price: 26800 },
+            { title: 'Nodejs', price: 20000 }
+    ];
+
+    var list = document.getElementById('list');
+
+    for(var i = 0; i < books.length; i++) {
+        var b = books[i]
+        var li = document.createElement('li');
+        var text = document.createTextNode(b.title + '：'+ b.price + '원');
+
+        li.appendChild(text);
+        // 하위 항목을 먼저 넣고 상위를 추가
+        list.appendChild(li);
+    }
+}, false);
+*/
+</script>
+</body>
+</html>

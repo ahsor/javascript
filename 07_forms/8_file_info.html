@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>form-file</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<form>
+  <label for="file">파일:</label>
+  <input id="file" name="file" type="file" multiple />
+</form>
+<script>
+  //  $("#file").on('change', function(e) {  
+  $('#file').change(function(e){
+    //jQuery 선택자는  처리 안됨
+    // 파일 선택은 change 이벤트
+        var inputs = $("#file")[0].files;
+                    // 배열처리하여 처리함  
+        for (var i = 0, len = inputs.length; i < len; i++) {
+              var input = inputs[i];
+              console.log('파일명:' + input.name);
+              console.log('종류:' + input.type);
+              console.log('사이즈:' + input.size / 1024 + 'KB');
+              console.log('최종갱신일:' + input.lastModifiedDate);
+        }
+     
+  }) 
+ /*
+  window.addEventListener('DOMContentLoaded', function() {
+      document.getElementById("file").addEventListener('change', function(e) {
+        // 파일 선택은 change 이벤트
+        var inputs = document.getElementById("file").files; //
+        for (var i = 0, len = inputs.length; i < len; i++) {
+              var input = inputs[i];
+              console.log('파일명:' + input.name);
+              console.log('종류:' + input.type);
+              console.log('사이즈:' + input.size / 1024 + 'KB');
+              console.log('최종갱신일:' + input.lastModifiedDate);
+        }
+      }, true);
+});
+*/
+</script>
+</body>
+</html>

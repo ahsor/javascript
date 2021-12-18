@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>class-list</title>
+
+<style>
+.highlight {
+  background-color: Yellow;
+}
+
+</style>
+</head>
+<body>
+<div id="elem" class="line">클릭하면 색이 변한다.</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+  var elem = document.getElementById('elem');
+
+  elem.addEventListener('click', function() {
+    this.classList.toggle('highlight');
+  }, false);
+}, false);
+
+</script>

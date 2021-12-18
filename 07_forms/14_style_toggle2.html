@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>스타일토글</title>
+<style>
+.highlight {
+  background-color: Yellow;
+}
+
+.line {
+  border: 1px solid Red;
+}
+</style>
+<!--공백문자를 포함한 클랙스명-->
+</head>
+<body>
+<div id="elem" class="line">클릭하면 배경색이 변한다.</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elem = document.getElementById('elem');
+
+        elem.addEventListener('click', function() {
+            var classes = this.className.split(' ');
+            var index = classes.indexOf('highlight');
+            if(index === -1) {
+            classes.push('highlight');
+            } else {
+            classes.splice(index, 1);
+            }
+            this.className = classes.join(' ');
+        }, false);
+    }, false);
+</script>
+</body>
+</html>

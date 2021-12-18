@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>list</title>
+</head>
+<body>
+<form>
+  <div>
+    <label for="food">좋아하는 음식은?：</label>
+    <select id="food" multiple>
+      <option value="라면">라면</option>
+      <option value="만두">만두</option>
+      <option value="불고기">불고기</option>
+    </select>
+    <input id="btn" type="button" value="송신" />
+  </div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(function(){
+    $('#btn').click(function(){
+      var result = [];
+      var opts = $('#food>option');
+      
+     /*
+      for(var i = 0; i < opts.length ; i++){
+        //console.log( i);
+        if( opts[i].selected ){
+             //console.log( opts[i].value );
+            result.push(opts[i].value);
+        }
+      }
+      */
+      for(var i in opts){
+          if( opts[i].selected ){
+             //console.log( opts[i].value );
+            result.push(opts[i].value);
+        }
+      }  
+      alert(result.toString())
+    })
+})
+</script>
+<!-- <script>
+document.addEventListener('DOMContentLoaded', function() {
+  var getSelectValue = function(name) {
+    var result = [];
+    var opts = document.getElementById(name).options;
+    // option들의 값을 가져옴; 
+
+    for(var i = 0, len = opts.length; i < len; i++) {
+      var opt = opts.item(i);
+      if (opt.selected) {
+        // 선택값은 checed가 아니라 selected
+        result.push(opt.value);
+      }
+    }
+    return result;
+  };
+  
+  document.getElementById('btn').addEventListener('click', function() {
+    window.alert(getSelectValue('food'));
+  }, false);
+}, false);
+</script> -->
+</body>
+</html>

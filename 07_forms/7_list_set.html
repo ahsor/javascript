@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>list-set</title>
+</head>
+<body>
+<form>
+  <div>
+    <label for="food">좋아하는 음식은?：</label>
+    <select id="food" multiple>
+      <option value="라면">라면</option>
+      <option value="만두">만두</option>
+      <option value="불고기">불고기</option>
+    </select>
+    <input id="btn" type="button" value="송신" />
+  </div>
+</form>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  var setListValue = function(name, value) {
+    var opts = document.getElementById(name);
+
+    for(var i = 0, len = opts.length; i < len; i++) {
+      var opt = opts.item(i);
+      if (value.indexOf(opt.value) > -1) {
+        //
+        opt.selected = true;
+      }
+    }
+  };
+  
+  setListValue('food', ['만두', '불고기']);
+}, false);
+
+</script>
+</body>
+</html>

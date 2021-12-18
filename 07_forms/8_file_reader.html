@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+</head>
+<body>
+<form>
+  <label for="file">파일:</label>
+  <input id="file" type="file" />
+</form>
+<hr />
+<pre id="result"></pre>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+   
+$('#file').change(function(){
+    var input = $("#file")[0].files;
+    console.log( input.name)
+    $("#result").load(input.name);
+    // 같은 경로의 내용은 읽어 올 수 있음 
+})
+/*  
+window.addEventListener('DOMContentLoaded', function() {
+      document.getElementById("file").addEventListener('change', function(e) {
+            var input = document.getElementById("file").files[0];
+            var reader = new FileReader();
+            reader.addEventListener('load', function() {
+              document.getElementById("result").textContent = reader.result;
+            }, true);
+            reader.addEventListener('error', function() {
+              console.log(reader.error.message);
+            }, true);
+            reader.readAsText(input, 'UTF-8');
+          // 로딩파일을 실행하도록 함 'UTF-8'은 생략가능 
+            // reader.abort();
+      }, true);
+}); 
+  */ 
+</script>
+</body>
+</html>

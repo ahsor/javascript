@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>자바스크립트 마스터북</title>
+</head>
+<body>
+<form>
+  <input id="btn" type="button" value="대화 상자 표시" /> 
+</form>
+<script>
+  window.onload = function() {
+  var btn = document.getElementById('btn');
+
+  btn.onclick = function() {
+    window.alert('안녕하세요, 자바스크립트!');
+  };
+
+  btn.onclick = null;
+};
+
+</script>
+</body>
+</html>

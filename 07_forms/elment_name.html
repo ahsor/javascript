@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>자바스크립트 마스터북</title>
+</head>
+<body>
+<form>
+  <label for="time">시간:</label>
+  <input id="time" name="time" type="text" size="10" />
+</form>
+<script>
+  var current = new Date();
+var nam = document.getElementsByName('time');
+nam[0].value = current.toLocaleTimeString();
+
+//var nam = document.getElementById('time');
+//nam.value = current.toLocaleTimeString();
+
+</script>
+</body>
+</html>

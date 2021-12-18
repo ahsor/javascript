@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>form-checkbox</title>
+</head>
+<body>
+<form>
+  <div>
+    좋아하는 음식은?：
+    <label><input type="checkbox" name="food" value="라면" />
+      라면</label>
+    <label><input type="checkbox" name="food" value="만두" />
+      만두</label>
+    <label><input type="checkbox" name="food" value="불고기" />
+      불고기</label>
+    <input id="btn" type="button" value="송신" />
+  </div>
+
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+
+</script>
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
+  var setCheckValue = function(name, value) {
+    var elems = document.getElementsByName(name);
+
+    for(var i = 0, len = elems.length; i < len; i++) {
+      var elem = elems.item(i);
+      if (value.indexOf(elem.value) > -1) {
+        elem.checked = true;
+      }
+    }
+  };
+  
+  setCheckValue('food', ['만두', '불고기']);
+    // 로딩과 동시에 데이타 셋팅 
+    // 전체 동의 페이지 작성시 필요
+}, false);
+
+
+</script> 
+</body>
+</html>

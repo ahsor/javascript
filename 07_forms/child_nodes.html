@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>child_nodes</title>
+</head>
+<body>
+<form>
+  <label for="food">가장 먹고 싶은 음식은?:</label>
+  <select id="food">
+    <option value="라면">라면</option>
+    <option value="만두">만두</option>
+    <option value="불고기">불고기</option>
+  </select>
+ <input type="submit" value="송신" />
+</form>
+<script>
+  var s = document.getElementById('food');
+var opts = s.childNodes;
+for (var i = 0, len = opts.length; i < len; i++) {
+  var opt = opts.item(i);
+  if (opt.nodeType === 1) {
+    console.log(opt.value);
+  }
+}
+
+</script>
+</body>
+</html>

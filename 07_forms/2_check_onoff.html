@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>check-동의</title>
+</head>
+<body>
+<form>
+  <div>
+    동의하시겠습니까？：
+    <label><input id="onoff" type="checkbox" name="food" value="동의" />
+      동의</label>
+    <input id="btn" type="button" value="승인" />
+  </div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!--
+<script>
+
+$(function(){
+    
+ $('#onoff').change(function(){
+     console.log($('#onoff')[0].checked)
+ })    
+  $('#btn').click(function(){
+        //var onoff = $('input[name="food"]')[0];
+        var onoff = $('#onoff')[0];
+        if( onoff.checked ){
+            console.log( '동의하였습니다.')
+        }else{ 
+            console.log( '체크되지 않았어요');
+        }
+    })
+})
+</script>    
+-->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('btn').addEventListener('click', function() {
+            var onoff = document.getElementById('onoff');
+            if(onoff.checked) {
+                console.log(onoff.value);
+                //onoff.checked=false; 체크해제
+            } else {
+                console.log('체크되지 않았어요');
+            }
+      }, false);
+}, false);
+</script>
+</body>
+</html>

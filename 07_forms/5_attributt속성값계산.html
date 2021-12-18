@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>form-checkbox</title>
+</head>
+<body>
+<form>
+  <div>
+    좋아하는 음식은?
+    <label><input type="checkbox" name="food" value="라면" data-price="1000"/>
+      라면</label>
+    <label><input type="checkbox" name="food" value="만두" data-price="1500"/>
+      만두</label>
+    <label><input type="checkbox" name="food" value="불고기"  data-price="500"/>
+      불고기</label>
+    <input id="btn" type="button" value="송신" />
+  </div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('btn').addEventListener('click', function() {
+          var result = [];
+          var foods = document.getElementsByName('food');
+          var sum = 0; 
+          for(var i = 0; i < foods.length; i++) {
+            var food = foods.item(i);
+            /*
+            var attrs = food.attributes;
+            for( var j = 0; j < attrs.length ; j++ ){
+              var attr = attrs.item(j);
+              console.log(attr.name + ':' + attr.value);
+            }
+           */
+         
+            if (food.checked) {
+              result.push(food.value);
+              var attrs = food.attributes;
+              for( var j = 0; j < attrs.length ; j++ ){
+                var attr = attrs.item(j);
+                if( attr.name=='data-price'){
+                   console.log(attr.name + ':' + attr.value);
+                   sum += parseInt(attr.value);
+                }
+              }
+            }
+          }
+        window.alert(result.toString()+sum);
+      });
+  });
+
+</script>
+</body>
+</html>
