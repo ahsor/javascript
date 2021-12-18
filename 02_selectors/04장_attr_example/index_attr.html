@@ -20,35 +20,28 @@
 			#image { width:522px; height:400px; margin: 10px auto 0px auto; }
 			#image img { width: 522px; height: 400px; }
 		</style>
-		<script>
+		<!-- <script>
 			document.addEventListener('DOMContentLoaded', function(){
-				let nav = document.getElementById('nav');
+				const nav = document.getElementById('nav');
+				const img = document.querySelector('#image>img');
 				// //let btn = nav.children; 
 				// let btn = document.querySelectorAll('#nav li');
 				// console.log(btn); 자식을 사용하지 않고 부모로 실행 위임
 
 				nav.addEventListener('click', function(event){
-					let src = event.target; 
-					console.log(src.src);
-					
+					let index = event.target.parentNode.parentNode;
+					// console.log( index.getAttribute('id'));
+					let str = index.getAttribute('id');
+					let path = `images/${str.substring(0, str.length-3 )}.jpg`;
+					console.log(path);
+					img.setAttribute('src',path);
 				})
 			})
+			
+		</script> -->
+		<script>
 			$(document).ready(function(){
-				$('#nav > ul > #springBtn').bind('click', function(){
-					
-				});
 				
-				$('#nav > ul > #summerBtn').bind('click', function(){
-					
-				});
-				
-				$('#nav > ul > #fallBtn').bind('click', function(){
-					
-				});
-				
-				$('#nav > ul > #winterBtn').bind('click', function(){
-					
-				});
 			});
 		</script>
 	</head>
