@@ -642,7 +642,7 @@ $elems.forEach(elem => elem.className = 'blue');
     const { children } = $fruits;
     console.log(children instanceof NodeList); // false
 
-    // $fruits 요소의 자식 노드는 공백 텍스트 노드(39.3.1절 "공백 텍스트 노드" 참고)를 포함해 모두 5개다.
+    // $fruits 요소의 자식 노드는 공백 텍스트 노드를 포함해 모두 5개다.
     console.log(children); // NodeList(5) [text, li, text, li, text]
 
     //[...children].forEach(child=>$fruits.removeChild(child))

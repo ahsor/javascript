@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <button>5000</button>
+    <script>
+        document.body.style.height = '30000px';
+        // 단위 생략 안됨
+        window.addEventListener('scroll', myscroll);
+
+        document.querySelector('button').addEventListener('click', function(event){
+            let btntop = event.target.textContent;
+            window.scrollTo(0, btntop);
+        })
+        function myscroll(){    
+            const x = window.scrollX; 
+            const y = window.scrollY; 
+            console.log( x, y)
+        }
+    </script>
+</body>
+</html>
