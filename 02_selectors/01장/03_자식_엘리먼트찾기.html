@@ -20,7 +20,11 @@
 				[...els2].forEach((el)=>el.style.background = 'red')
 			})
 			$(document).ready(function(){
+				// $('#ul .elements').css('background-color', 'skyblue');
+				// $('#ul').find('.elements').css('background-color', 'skyblue');
 				
+				// $('#ul>.elements').css('background-color', 'skyblue');
+				$('#ul').children('.elements').css('background-color', 'skyblue');	
 			});
 		</script>
 	</head>

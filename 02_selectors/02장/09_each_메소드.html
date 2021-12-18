@@ -13,12 +13,26 @@
 			#wrapper > ul > li > ul > li  { margin:5px; list-style: none; border: 1px solid blue; }
 		</style>
 		<script>
-			$(document).ready(function(){
-				
-			});
+			document.addEventListener('DOMContentLoaded', function(){
+				const list = document.querySelectorAll('#wrapper>ul>li');
+				list.forEach((l, i)=>{
+					l.style.background = 'skyblue';
+				})
+			})
 		</script>
+		<!-- <script>
+			$(document).ready(function(){
+				//  for( let a = 0; a < $('li').size() ; a++ ){
+				// 		$('li').eq(a).css('background', 'skyblue');
+				//  }
+
+				$('li').each(function(){ // 100만번 돌리기  
+					// 요소(li)개수만큼 반복 처리 
+					$(this).css('background', 'skyblue');
+				})
+			});
+		</script> -->
 	</head>
-	
 	<body>
 		<span>each() 메소드를 사용하여 ul엘리먼트 자식엘리먼트를 순환하여 모두 색을 바꿔 주세요.</span>
 		<div id="wrapper">

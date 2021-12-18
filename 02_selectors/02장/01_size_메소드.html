@@ -13,12 +13,17 @@
 		</style>
 		<script>
 		    $(document).ready(function(){
-		    	
+					let size = $('#wrapper>ul>li').size();
+					console.log( size );
+					$('#wrapper>ul>li').eq(size-1)
+											.css('background', 'skyblue');
+					// size - 1 : 0 1 2 3 4 5  
 		    });
 		</script>
 	</head>
 	<body>
 		<span>size() 메서드로 ul의 자식 엘리먼트의 갯수 세어보기</span>
+		<span>size()를 이용해서 마지막 li 색을 칠하세요.</span>
 		<div id="wrapper">
 			<ul>
 				<li>1</li>

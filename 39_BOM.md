@@ -259,6 +259,7 @@ window.scrollTo(0, 1000);
 const title = document.title; 
 document.title = '타이틀 내용';
 ```
+
 ```
 <main>
     <p><button id="btnApple" class="red">사과</button></p>
@@ -412,7 +413,6 @@ window.addEventListener('online', () => {
 window.addEventListener('offline', () => {
   log('❎️오프라인 상태입니다.');
 });
-
 
 ```
 

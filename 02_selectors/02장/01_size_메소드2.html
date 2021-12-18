@@ -4,30 +4,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<title>02_next_메소드.html</title>
-		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<title>01_size_method</title>
+		<script type="text/javascript" src="../../../js/jquery-3.6.0.min.js"></script>
 		<style>
 			html * { margin:0; padding:0; }
 			body span { color:red; font-size: 30px; }
 			#wrapper > ul > li { margin:5px; list-style: none; border: 1px solid green; }
 		</style>
-
-
 		<script>
-			$(document).ready(function(){
-				const first = document.querySelector('.first');
-				first.nextElementSibling.style.color = 'red';
-
-
-			});
+		    $(document).ready(function(){
+				let size = $('#wrapper>ul>li').length;
+				console.log( size );
+				$('#wrapper>ul>li').eq(size-1)
+										.css('background', 'skyblue');
+				// size - 1 : 0 1 2 3 4 5  
+		    });
 		</script>
 	</head>
-	
 	<body>
-		<span>next() 메소드를 사용하여 1번 엘리먼트의 바로 다음 형제 엘리먼트의 글자색을 변경해 주세요.</span>
+		<span>size() 메서드로 ul의 자식 엘리먼트의 갯수 세어보기</span>
+		<span>size()를 이용해서 마지막 li 색을 칠하세요.</span>
 		<div id="wrapper">
 			<ul>
-				<li class="first">1</li>
+				<li>1</li>
 				<li>2</li>
 				<li>3</li>
 				<li>4</li>

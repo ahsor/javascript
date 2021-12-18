@@ -12,10 +12,27 @@
 			#wrapper > ul > li { margin:5px; list-style: none; border: 1px solid green; }
 		</style>
 		<script>
-			$(document).ready(function(){
+			document.addEventListener('DOMContentLoaded', function(){
+				const hasChildren = document.querySelectorAll('#wrapper>ul>li');
+				//console.log(hasChildren);
+				[...hasChildren].forEach((child, i)=>{
+					if( child.getAttribute('class')){
+						console.log( i );
+						child.style.background = 'red';
+					}
+					
+				})
+
 				
-			});
+			})
 		</script>
+		<!-- <script>
+			$(document).ready(function(){
+				$('li').filter('.el').css('background', 'skyblue');
+				// find() 전체 또는 하위 요소에서 찾기
+				// filter() 하위요소에서만 찾아서 리턴 확인 
+			});
+		</script> -->
 	</head>
 	
 	<body>

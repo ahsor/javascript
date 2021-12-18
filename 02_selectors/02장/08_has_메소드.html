@@ -13,10 +13,31 @@
 			#wrapper > ul > li > ul > li  { margin:5px; list-style: none; border: 1px solid blue; }
 		</style>
 		<script>
-			$(document).ready(function(){
-				
-			});
+			document.addEventListener('DOMContentLoaded', function(){
+				const hasChildren = document.querySelectorAll('#wrapper>ul>li');
+				console.log(hasChildren);
+				// [...hasChildren].forEach((child, i)=>{
+				// 	if( child.children.length >= 1 ){
+				// 		console.log( child.children )
+				// 	}
+				// })
+
+				// ary의 contains  구현
+				const aryChildren = [...hasChildren];
+				[...hasChildren].forEach((child, i)=>{
+					// if( !!child.children.length  ){
+					// 	console.log( true )
+					// }
+					console.log(!!child.children.length );
+				})
+			})
 		</script>
+		<!-- <script>
+			$(document).ready(function(){
+				// $('li').has('ul').css('background', 'skyblue');
+				$('li').has('ul>li').css('background', 'skyblue');
+			});
+		</script> -->
 	</head>
 	
 	<body>

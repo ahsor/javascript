@@ -18,14 +18,15 @@
 				console.log(el.children.length);
 				console.log(el.childNodes.length);
 
-
 				for( let a = 0; a<els.length ; a++){
 					if( a%2 == 1 )
 						els[a].style.background ='red';
 				}
 			})
 			$(document).ready(function(){
-				
+				$('#el>li:odd').css('background', 'skyblue');
+				// 0 1 2 3 4 5
+				//$('#el>li:nth-child(2n+1)').css('background', 'skyblue');
 			});
 		</script>
 	</head>

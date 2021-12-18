@@ -12,10 +12,19 @@
 			li { margin:5px; list-style: none; border: 1px solid green; }
 		</style>
 		<script>
-			$(document).ready(function(){
-				
-			});
+			document.addEventListener('DOMContentLoaded', function(){
+				const ch = document.querySelector('#childEl');
+				console.log( ch.parentNode );
+				ch.parentNode.style.color= "red"
+			})
 		</script>
+		<!-- <script>
+			$(document).ready(function(){
+				console.log($('#childEl').parent());
+				$('#childEl').parent().css('background','skyblue');
+				//console.log($('#childEl').parent().parent());
+			});
+		</script> -->
 	</head>
 	
 	<body>

@@ -18,7 +18,6 @@
 				console.log(el.children.length);
 				console.log(el.childNodes.length);
 
-
 				// for( let a = 0; a<els.length ; a++){
 				// 	if( a > 3 )
 				// 		els[a].style.background ='red';
@@ -29,7 +28,8 @@
 				}
 			})
 			$(document).ready(function(){
-				
+				//$('#el>li:gt(3)').css('background', 'skyblue');
+				$('#el>li').eq(3).nextAll().css('background', 'skyblue');
 			});
 		</script>
 	</head>

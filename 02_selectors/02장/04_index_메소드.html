@@ -12,14 +12,41 @@
 			#wrapper > ul > li { margin:5px; list-style: none; border: 1px solid green; }
 		</style>
 		<script>
-			$(document).ready(function(){
-				
-			});
+			// 클릭할 때마다 이벤트 번호 출력하기 
+			document.addEventListener( 'DOMContentLoaded', function(){
+				const list = document.querySelector('#wrapper');
+				const lists = document.querySelectorAll('#wrapper li');
+
+				list.addEventListener('click', function(event){
+					[...lists].forEach((li, item)=>{
+						if( event.target === li){
+							alert( item)
+						}
+					})
+				})
+			})
 		</script>
+		<!-- <script>
+			document.addEventListener( 'DOMContentLoaded', function(){
+				const list = document.querySelectorAll('#wrapper li');
+				const arrys = [...list];
+				console.log(list);
+				console.log(arrys);
+
+				arrys.forEach((ary, i)=>{
+					if(ary.getAttribute('id') == 'el'){
+						alert( `${i} 인덱스`);
+					}
+				})
+			})
+			// $(document).ready(function(){
+			// 	alert($('#el').index());
+			// });
+		</script> -->
 	</head>
 	
 	<body>
-		<span>ul의 자식 엘리먼트중 네번째 엘리먼트를 index() 메서드로 해당 index값을 alert()을 띄워 봅시다.</span>
+		<span>ul의 자식 엘리먼트중 네번째 엘리먼트를 index() 메서드로 해당 index값을s alert()을 띄워 봅시다.</span>
 		<div id="wrapper">
 			<ul>
 				<li>1</li>

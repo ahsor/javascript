@@ -13,7 +13,9 @@
 		</style>
 		<script>
 			$(document).ready(function(){
-				
+					alert($('#el').is('#nextEl'));
+					alert($('#el').is('.this'));
+					// 같은 요소인지 확인하고 true, false 로 반환
 			});
 		</script>
 	</head>
@@ -28,7 +30,7 @@
 					<ul>
 						<li>3-1</li>
 						<li>3-2</li>
-						<li id="el">3-3
+						<li id="el"  class="this">3-3
 							<ul>
 								<li>3-3-1</li>
 								<li>3-3-2</li>

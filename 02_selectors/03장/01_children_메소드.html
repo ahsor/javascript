@@ -11,11 +11,50 @@
 			body span { color:red; font-size: 30px; }
 			#wrapper > ul > li { margin:5px; list-style: none; border: 1px solid green; }
 		</style>
+		<!-- <script>
+			document.addEventListener('DOMContentLoaded', function(){
+				const wr = document.querySelectorAll('#wrapper>ul>li');
+				[...wr].forEach((w, i)=>{
+					console.log(w);
+					w.style.background = 'red';
+				})
+			})
+		</script> -->
 		<script>
+			document.addEventListener('DOMContentLoaded', function(){
+				const wr = document.querySelector('#wrapper>ul');
+				const ch = wr.children;
+				
+				// let a = $(wr.children).children().size();
+				// console.log(a);
+				// $(wr.children).children().css({'backgroundColor':'red'});
+				
+				for(let a = 0 ; a < ch.length ; a++){
+					ch[a].style.background = 'skyblue';
+				}
+
+				[...ch].forEach((w, i)=>{
+					console.log(w);
+					w.style.background = 'red';
+				})
+			})
+		</script>
+		<!-- <script>
 			$(document).ready(function(){
+				let li = $('#wrapper').children().children().size();
+				let ul = $('#wrapper').children().size();
+				console.log(`li length = ${li} , ul length = ${ul}`);
+
+				$('#wrapper').children().children()
+										.css('background','skyblue');
+
+				console.log( $('#wrapper'));										
+				console.log( $('#wrapper li'));	
+				console.log( document.querySelectorAll('#wrapper li'));	
+				
 				
 			});
-		</script>
+		</script> -->
 	</head>
 	
 	<body>

@@ -12,10 +12,23 @@
 			#wrapper > ul > li { margin:5px; list-style: none; border: 1px solid green; }
 		</style>
 		<script>
-			$(document).ready(function(){
-				
-			});
+			document.addEventListener('DOMContentLoaded', function(){
+				const hasChildren = document.querySelectorAll('#wrapper>ul>li');
+				//console.log(hasChildren);
+				[...hasChildren].forEach((child, i)=>{
+					if( !child.getAttribute('class')){
+						console.log( i );
+						child.style.background = 'red';
+					}
+				})
+			})
 		</script>
+		<!-- <script>
+			$(document).ready(function(){
+				$('li').not('.el').css('background', 'skyblue');
+				//$('li:not(.el)').css('background', 'skyblue');
+			});
+		</script> -->
 	</head>
 	
 	<body>
