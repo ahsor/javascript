@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>장바구니 추가</title>
+		<!-- <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script> -->
+		<style>
+			
+		</style>
+        
+	</head>
+	
+	<body>
+        <button>장바구니 추가</button>
+        <div>
+            <ul id="wrapper"></ul>
+        </div>
+        <script>
+                
+            //const ul = document.querySelector('#wrapper>ul');
+            
+
+			document.addEventListener('DOMContentLoaded', function(){
+                const arys = ['🍎사과','🍌바나나','🍓딸기','🧅양파'];
+
+                var list = document.getElementById('wrapper');
+
+                // for(var i = 0; i < arys.length; i++) {
+                   
+                //     var li = document.createElement('li');
+                //     var text = document.createTextNode( arys[i] + '원');
+
+                //     li.appendChild(text);
+                //     // 하위 항목을 먼저 넣고 상위를 추가
+                //     list.appendChild(li);
+                //     console.log(li);
+                // }
+                let a = 0; 
+				document.querySelector('button')
+                .addEventListener('click', function(event){
+                    if(a>=arys.length) return false;
+                    //let tag = `<li>${ary[a++]}</li>`;
+                    let tag = document.createElement('li'); // < 부등호를 사용하지 않음
+                    let text = document.createTextNode( arys[a++]);
+                    tag.appendChild(text);
+                    console.log(tag);
+                    //list.appendChild(tag);
+                    list.before(tag);
+                    
+				})
+			})
+        </script>
+		<!-- <script>
+        
+			$(document).ready(function(){
+                const arys = ['🍎사과','🍌바나나','🍓딸기','🧅양파'];
+                let i=0; 
+				let tag = document.createElement('li'); // < 부등호를 사용하지 않음
+                let text = document.createTextNode( arys[i++]);
+                tag.append(text);
+
+                $('#wrapper>ul').append(tag);
+			});
+		</script> -->
+	</body>
+</html>

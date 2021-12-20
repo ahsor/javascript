@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>샘플</title>
+  <link rel="stylesheet" href="../../common/css/style.css"/>
+  <link rel="stylesheet" href="style.css"/>
+
+</head>
+<body>
+<button>child 제거</button>
+<main class="main centering">
+  <div id="parent">
+    <div id="child">제거되는 요소</div>
+  </div>
+</main>
+<script>
+    // #child를 직접 제거하세요. 
+    document.querySelector('button')
+    .addEventListener('click', function(){
+        // 섯불리 getElementsByTagName() 사용하면 event 사용할 수 없음 
+        console.log('click');
+        if(document.getElementById('child'))
+            document.getElementById('child').remove();
+        else 
+            console.log( '이미 삭제되었습니다.' );
+    })
+</script>
+</body>
+</html>
+
