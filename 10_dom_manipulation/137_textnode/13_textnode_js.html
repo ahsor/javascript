@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>샘플</title>
+  <link rel="stylesheet" href="style.css"/>
+
+</head>
+<body>
+<main class="main centering">
+  <p id="weather">내일은 맑음</p>
+</main>
+<script>
+const weatherElement = document.querySelector('#weather');
+
+// 3초 뒤 #weather 내용 변경
+setTimeout(() => {
+  weatherElement.textContent = '기온은 24℃가 예상됩니다.';
+  //weatherElement.innerHTML = '기온은 <strong>-3℃</strong>가 예상됩니다.';
+  // innerHTML은 html을 변경하거나 속성을 가져올 수 있다. 
+  // textContent = Node객체 
+  // innerHTML은 Element객체
+  
+}, 3000);
+
+</script>
+</body>
+</html>
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>샘플</title>
+  <link rel="stylesheet" href="../../common/css/style.css"/>
+  <link rel="stylesheet" href="style.css"/>
+
+</head>
+<body>
+<button> 교체 </button>
+<main class="main centering">
+  <div class="container">
+    <div class="old-box box">교체 전 박스</div>
+  </div>
+  <div class="new-box box">교체 후 새박스</div>
+</main>
+<script>
+    const btn = document.addEventListener('click', replaceNode );
+    function replaceNode(){
+        const container = document.querySelector('.container');
+        const oldBox = document.querySelector('.old-box');
+        const newBox = document.querySelector('.new-box');
+
+        container.replaceChild(newBox, oldBox);
+    }
+</script>
+</body>
+</html>
+

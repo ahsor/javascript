@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>샘플</title>
+  <link rel="stylesheet" href="style.css"/>
+
+</head>
+<body>
+<main class="large">
+  <div class="box">박스1</div>
+  <div class="box">박스2</div>
+  <div class="box">박스3</div>
+</main>
+<script>
+    // 각 .box 요소 루프 처리
+    document.querySelectorAll('.box').forEach((targetBox, i )=> {
+    // .box 요소 클릭 시 처리 작업
+        targetBox.addEventListener('click', () => {
+             // 클릭한 .box 요소의 텍스트 표시
+            alert(`${i} 요소 ${targetBox.textContent} 클릭`);
+        });
+    });
+
+</script>
+</body>
+</html>
+

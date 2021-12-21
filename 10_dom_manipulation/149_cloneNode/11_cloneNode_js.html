@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>샘플</title>
+  <link rel="stylesheet" href="../../common/css/style.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <button>노드 복사</button>
+<main class="main centering">
+  <div class="container">
+    <div id="myBox">박스</div>
+  </div>
+</main>
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function(){
+        const btn = document.querySelector('button');
+
+        btn.addEventListener('click', function(){
+            const cloneBox = document.querySelector('#myBox').cloneNode(true);
+            document.querySelector('.container').appendChild(cloneBox);
+            
+            
+            // const cloneBox = document.querySelector('#myBox');
+            // cloneBox.cloneNode(true);
+            // console.log(cloneBox);
+            // error 
+            // document.querySelector('.container').appendChild(cloneBox);
+        })
+    })
+
+</script>
+</body>
+</html>
+

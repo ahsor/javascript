@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>샘플</title>
+  <link rel="stylesheet" href="style.css"/>
+
+</head>
+<body>
+<button id="create-modal-button">모달 윈도우 창 생성</button>
+<script>
+    const cmb = document.querySelector('#create-modal-button');
+
+    cmb.addEventListener('click', showModal);
+    function showModal(){
+        const modalElement = document.createElement('div');
+        modalElement.classList.add('modal');
+        const innerElement = document.createElement('div');
+        innerElement.classList.add('inner');
+        innerElement.innerHTML =` MODAL
+                                  HELLO
+                                `
+        modalElement.appendChild( innerElement);
+        console.log(innerElement);
+        document.body.appendChild(modalElement);
+
+        innerElement.addEventListener('click', function(){
+            document.body.removeChild(modalElement);
+        })
+    }
+
+    
+</script>
+</body>
+</html>
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>샘플</title>
+  <link rel="stylesheet" href="../../common/css/style.css"/>
+  <link rel="stylesheet" href="style.css"/>
+
+</head>
+<body>
+    <!-- 실행 후 개발자도구 확인할 것  -->
+<main class="main centering">
+  <ul>
+    <li><a href="dummypage1.html" target="_blank">링크1</a></li>
+    <li><a href="dummypage2.html">링크2</a></li>
+    <li><a href="dummypage3.html" target="_self">링크3</a></li>
+    <li><a href="dummypage4.html" target="_blank">링크4</a></li>
+  </ul>
+  
+  <p><a href="dummypage5.html">링크5</a></p>
+</main>
+<script>
+    // a 요소 모두 가져오기
+const aElementList = document.querySelectorAll('a');
+
+// a 요소별 처리
+// if로 조건에 맞지 않는 노드는 통과하고 그렇지 않으면 set 
+aElementList.forEach((element) => {
+  //a 태그에 target 속성이 없으면 return
+  if (element.hasAttribute('target') === false) {
+    return;
+  }
+
+  // target이 _blank 속성이 아니면 return
+  if (element.getAttribute('target') !== '_blank') {
+    return;
+  }
+
+  // rel 속성에 noopener 설정
+  element.setAttribute('rel', 'noopener');
+  console.log( element , 'rel 추가 ');
+});
+
+</script>
+</body>
+</html>
+

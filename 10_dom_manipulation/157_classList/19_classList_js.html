@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>샘플</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<main class="main large">
+  <h1>클래스 리스트</h1>
+
+  <div id="box1" class="red"> red </div>
+  <div id="box2" class="blue"> blue </div>
+</main>
+<script>
+    const box1 = document.querySelector('#box1');
+    const box2 = document.querySelector('#box2');
+
+    console.log(box1.classList.contains('red'));
+    console.log(box2.classList.contains('red'));
+</script>
+</body>
+</html>
