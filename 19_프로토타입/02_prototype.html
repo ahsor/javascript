@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const ary = [];
+        // 배열에 배열길이를 구하는 프로토타입 추가 
+        Array.prototype.mem = function(ary){
+            console.log( ary.length );
+        }
+         
+        console.log(ary.mem(ary));
+
+        const ary2 = [1,2,3,4];
+        console.log(ary2.mem(ary2));
+    </script>
+</body>
+</html>

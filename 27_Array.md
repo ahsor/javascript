@@ -73,6 +73,17 @@ for (let i = 0; i < arr.length; i++) {
 }
 ```
 
+# 10-26  for of  : 1230 line에 구체적으로 있음 
+- 순차적으로 이터러블한 데이터를 사용할 때 사용 
+- 즉 배열 처럼 사용할 때 사용
+
+const arry = ['orange', 'apple', 'grape'];
+for (value of arry) {
+  console.log(value);
+  // key 값은 x, y등 변수명으로 대체하면 됨
+}
+
+
 # 27-05
 
 ```javascript

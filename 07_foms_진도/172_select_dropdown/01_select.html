@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="formGroup">
+        <select name="select" id="select">
+            <option value="apple">apple</option>
+            <option value="orange"  selected>orange</option>
+            <option value="grape">grape</option>
+        </select>
+        <input type="button" name="submit" value="전송">
+    </form>
+
+    <script>    
+    const element = document.querySelector('form#formGroup');
+    const select = document.querySelector('#select');
+    
+    // radio 버튼과 같이 단일 선택일 경우  선택된 항목을 직접 접근할 수 있음
+    // selected된 데이터가 없을 경우 첫번째 데이터 선택     
+
+    // .selected를 이용한 접근, 기본값 출력
+    function selectedConfirm(){
+        let selectValue = select.value; 
+        console.log(selectValue);
+    }
+    selectedConfirm();
+
+    // 데이터 전송시 처리 
+    element.submit.addEventListener('click', function(){
+        selectedConfirm();
+    })
+
+    // selected된 즉시 상태변경 처리 
+    element.addEventListener('change', function(){
+        selectedConfirm();
+    })
+
+    </script>
+</body>
+</html>

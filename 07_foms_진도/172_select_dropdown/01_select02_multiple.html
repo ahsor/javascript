@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="formGroup">
+        <select name="select" id="select" multiple>
+            <option value="apple">apple</option>
+            <option value="orange">orange</option>
+            <option value="grape">grape</option>
+        </select>
+        <input type="button" name="submit" value="전송">
+    </form>
+
+    <script>    
+    const element = document.querySelector('form#formGroup');
+    const select = document.querySelector('#select').options;
+
+    // .selected를 이용한 접근, 기본값 출력
+    const selectedValues = [];
+    function selectedConfirm(){
+
+        // for(let a = 0; a< select.length ; a++){
+        //     if( select[a].selected ){
+        //         console.log(select[a].value);
+        //     }
+        // }
+        
+        [...select].forEach((item, i)=>{
+            if(item.selected){
+                console.log(item.value);
+            }
+        })
+        
+    }
+    selectedConfirm();
+
+    // 데이터 전송시 처리 
+    element.submit.addEventListener('click', function(){
+        selectedConfirm();
+    })
+
+    // selected된 즉시 상태변경 처리 
+    // 다중 선택으로 필요 없는 처리임 
+    // element.addEventListener('change', function(){
+    //     selectedConfirm();
+    // })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>text</title>
+  </head>
+  <body>
+    <form action="">
+      <div>텍스트 입력</div>
+      <div id="text">한글은 아름다운 글입니다.</div>
+
+      <div>가져온 텍스트</div>
+      <div>
+        <input type="text" id="conform" />
+      </div>
+    </form>
+    <script>
+      var form = document.querySelector("form");
+      var text = document.querySelector("#text");
+      var read = document.querySelector("#conform");
+
+      //form.addEventListener("");
+      read.addEventListener("click", function () {
+        var inputText = document.querySelector("#text").innerHTML;
+        // 일반 태그의 데이터 읽기
+        // .textContent와 차이점 확인하기
+        console.log(`입력 문자 : ${inputText}`);
+        console.log(`입력 문자수 : ${inputText.length}`);
+        console.log(`@ 문자 위치 : ${inputText.indexOf("@")}`);
+        document.querySelector("#conform").value = inputText;
+        // form 데이터 읽고 쓰기
+      });
+    </script>
+  </body>
+</html>

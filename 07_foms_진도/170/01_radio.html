@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="radioGroup">
+        <label>
+            <input type="radio" name="fruit" value="apple" > Apple
+        </label>
+        <label>
+            <input type="radio" name="fruit" value="Orange" checked> Orange
+        </label>
+        <label>
+            <input type="radio" name="fruit" value="Grape"> Grape
+        </label>
+
+        <input type="button" name="submit" value="전송">
+    </form>
+
+    <script>    
+    const element = document.querySelector('form#radioGroup');
+
+    // radio 버튼 특성상 유일한 선택이므로 
+    // checkbox와 달리 name을 통한 직접 접근이 가능하고 
+    // 즉, for를 사용할 일이 없으나 checkbox와 같이 .checked를 사용해도 상관 없음 
+
+    // name을 이용한 접근, 기본값 출력
+    let fruitValue = element.fruit.value; 
+    console.log(fruitValue);
+
+    element.submit.addEventListener('click', function(){
+        fruitValue = element.fruit.value;
+        console.log(fruitValue); 
+        // 사용자 확인값 출력 
+    })
+    </script>
+</body>
+</html>

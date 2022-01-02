@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <title>샘플</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="../../common/css/style.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <main class="centering">
+    <input id="myText" type="text" />
+    <p class="log"></p>
+    <!-- 
+        입력 폼의 변경을 감시해야 한다. 
+        변경은 change 와 input 이벤트로 감시가 가능하다.
+        input 이벤트는 input 요소 키 입력시 발생한다. 
+        change 이벤트는 input 요소 변경시 발생하는데 가령 enter, 포커스가 벗어났을 때 발생한다. 즉 change는 일정시간 지난 후 발생한다. 
+     -->
+  </main>
+  <script>
+     const myText = document.getElementById('myText');
+     const log = document.querySelector('.log');
+
+     myText.addEventListener('input', handleChange);
+    // input 이벤트를 change 이벤트로 변경해보기
+
+     function handleChange(event){
+         let textValue = event.target.value; 
+         log.innerHTML = textValue; 
+         // log.value와 log.innerHTML 차이점 확인 
+     }
+
+  </script>
+</body>
+</html>

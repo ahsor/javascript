@@ -3,7 +3,8 @@
 함수도 프로퍼티로 사용할 수 있고 프로퍼티 값이 함수일 경우 일반함수와 구분하여 메서드라고 한다.
 프로퍼티 : 객체의 상태를 나타내는 값
 메서드 : 프로퍼티를 참조하고 조작할 수 있는 동작
-javascript 메서드 확인 : ctrl(command) + 함수명 클릭
+MDN javascript 메서드 확인 : ctrl(command) + 함수명 클릭
+Object 는 키와 value의 집합체
 
 # 10-01
 
@@ -150,6 +151,8 @@ console.log(person.name); // kim
 
 // 대괄호 표기법에 의한 프로퍼티 접근
 console.log(person['name']); // kim
+// 반드시 '' 따옴표 필요 
+
 ```
 # 10-12-1
 ```
@@ -288,7 +291,7 @@ const obj = { x, y };
 console.log(obj); // {x: 1, y: 2}
 ```
 
-# 10-21
+# 10-21 키 동적 생성
 
 ```javascript
 // ES5
@@ -307,7 +310,7 @@ obj[prefix + '-' + ++i] = i;
 console.log(obj); // {prop-1: 1, prop-2: 2, prop-3: 3}
 ```
 
-# 10-22
+# 10-22 키 동적 생성 
 
 ```javascript
 // ES6
@@ -353,7 +356,9 @@ const obj = {
 obj.sayHi(); // Hi! kim
 ```
 
-# 10-24-1 
+# 10-24-1  오브젝트를 괄호를 이용해서 생성할 수 있음 
+# 생성자 함수 
+// runtime때 동적으로 데이터 타입이 결정됨 
 
 ```
 const person1 = { name:'kim' , age:1}
@@ -386,6 +391,7 @@ function makePerson(name, age){
 
 ```
 const person4 = new Person('kim', 4);
+// object constructor
 console.log(person4);
 
 function Person(name, age){
@@ -396,7 +402,7 @@ function Person(name, age){
     return this;
 }
 ```
-# 10-26 객체값 확인 in
+# 10-26 객체값 확인 in : object 안에 키값이 있는지 확인
 ```
 "use strict";
 
@@ -411,11 +417,14 @@ var card = {
 };
 
 console.log(card);
+// 동적으로 데이터 삽입 가능하나 
+// 유지보수가 어렵고 예측하지 못한 문제가 발생할 소지가 있음 
 
 card.gender = "male";
 card.hairColor = "brown";
 console.log(card);
 
+// 즉시 삭제도 가능 
 delete card.hairColor;
 console.log(card);
 
@@ -424,8 +433,11 @@ console.log(card["name"]);
 console.log(card.birthDay); // 존재하지 않은 속성 접근 undefined 출력
 console.log("birthDay" in card); // card에 birthDay 존재하지 않음을 확인하고  결과는 false
 console.log("age" in card); // true
+
 ```
 # 10-25  for in
+- 모든 키를 받아와서 처리하고 싶을 때 
+
 ```
 // 객체를 이용한 미성년자 구분
 const kim = {
@@ -443,5 +455,57 @@ for (key in kim) {
 }
 ```
 
-# 10-25  for of
-# 10-25  Object.assign
+# 10-26  for of : 배열에 사용
+- 순차적으로 이터러블한 데이터를 사용할 때 사용 
+- 즉 배열 처럼 사용할 때 사용
+```
+const arry = ['orange', 'apple', 'grape'];
+for (value of arry) {
+  console.log(value);
+  // key 값은 x, y등 변수명으로 대체하면 됨
+}
+```
+# 10-25  Object.assign  객체결합
+
+``` 복사1
+const user = { name:'kim' , age:20};
+const user2 = user; 
+user2.name = 'coder';
+// 참조를 같이 사용하고 있으므로 user도 변경됨 
+console.log( user );
+
+```
+
+```복사 2 : 옛날 방법 
+const user3 = {};
+for( value in user ){
+  user3[value] = user[value]
+}
+console.log(user3);
+
+```
+
+``` 복사 3 : object.assign()
+
+const user4 = {};
+Object.assign(user4, user);
+console.lo(user4);
+
+```
+
+``` 복사 4 : 3번의 다른 표현 
+
+const user5 = Object.assign( {}, user);
+console.lo(user5);
+
+```
+
+```2개이상의 객체 복사
+const fruit1 = { color:'red'};
+const fruit2 = { color:'blue',size :'big'};
+const mixed = Object.assign({}, fruit1, fruit2);
+// 2개의 객체를 섞을 수도 있고
+// 속성이 겹치는 경우 뒤에 있는 객체로 덮어 쓴다. 
+console.log(mixed.color);
+console.log(mixed.size);
+```

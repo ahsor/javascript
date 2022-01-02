@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <style>
+    :root{
+        --dark:#374151;
+        --darker: #1f2937;
+        --darkest : #111872;
+        --light:#333; 
+        --gray:#6b7280;
+        --pink:#ec4899;
+        --purple:#8b5cf6;
+    }
+
+    *{
+        box-sizing: border-box;
+        margin: 0; 
+    }
+    body{ display: flex; flex-direction:column; min-height: 100vh;
+            background: var(--dark);
+            color:#fff; 
+    }
+    header{
+        padding:2rem 1rem;   max-width: 800px;  width:100%; margin:0 auto;
+    }
+
+    /* #new-task-form{
+        display: flex;
+    }
+
+    input, button{
+        appearance:none; 
+        border:none; 
+        outline:none; 
+        background:none; 
+    }
+
+    #new-task-input{ flex:1 1 0; }
+    #new-test-input::placeholder{
+        color:var(--gray);
+    } */
+    </style>
+</head>
+<body>
+    <header>
+        <h1> 주문서 입력 </h1>
+        <form action="" id="new-task-form">
+            <input type="text" id="new-task-input" placeholder="주문하실 메뉴를 입력하세요." />
+            <input type="submit" id="new-task-submit" value="입력" />
+        </form>
+    </header>
+    <section class='task-list'>
+        <h2>Tasks</h2>
+        <div id="tasks">
+            <div class="task">
+                <div class="content">
+                    <input type="text" class="text" value="토피넛라떼" readonly>
+                </div>
+                <div class="actions">
+                    <button class="edit">수정</button>
+                    <button class="delete">삭제</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        window.addEventListener('DOMContentLoaded', ()=>{
+            const form = document.querySelector('#new-task-form');
+            const input = document.querySelector('#new-task-input');
+            const list_el = document.querySelector('#tasks');
+
+            form.addEventListener('submit', (e)=>{
+                e.preventDefault();
+
+                const task = input.value; 
+                
+                if(!task){
+                    alert('메뉴를 선택해 주세요.');
+                    return; 
+                }
+
+                const task_el = document.createElement("div");
+                const task_content_el = document.createElement('div');
+                
+                task_content_el.innerText = task;
+                task_el.appendChild(task_content_el);
+                list_el.appendChild(task_el);
+
+                
+            })
+        })
+    </script>
+</body>
+</html>

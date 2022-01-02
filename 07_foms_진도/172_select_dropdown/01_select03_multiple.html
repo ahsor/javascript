@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="textbox">
+        한글은 아름다운 글입니다. 
+    </div>
+    <form action="" id="formGroup">
+        <input type="text" placeholder="placeholder" name="text" id="text">
+        <!-- placeholder는 안내 문자로 선택이 불가능한 상태  -->
+        <input type="text" value="value">
+        <!-- value는 선택이 가능한 상태로 데이터로 사용가능  -->
+        <select name="select" id="select" multiple size="10">
+            <!-- value는 실제 데이터를 처리함  
+                속성값 value는 getAttribute() 처리가 필요
+            -->
+            <option>apple</option>
+            <option>orange</option>
+            <option>grape</option>
+            <option placeholder="apple">placeholderapple</option>
+            <option placeholder="orange">placeholderorange</option>
+            <option placeholder="grape">placeholdergrape</option>
+            <option value="apple">valueapple</option>
+            <option value="orange">valueorange</option>
+            <option value="grape">valuegrape</option>
+        </select>
+        <input type="button" name="submit" value="전송">
+    </form>
+
+    <script>    
+    const element = document.querySelector('form#formGroup');
+    const select = document.querySelector('#select').options;
+
+    // .selected를 이용한 접근, 기본값 출력
+    const selectedValues = [];
+    function selectedConfirm(){
+
+        // for(let a = 0; a< select.length ; a++){
+        //     if( select[a].selected ){
+        //         console.log(select[a].value);
+        //     }
+        // }
+        
+        [...select].forEach((item, i)=>{
+            if(item.selected){
+                console.log(item.value);
+            }
+        })
+        
+    }
+    selectedConfirm();
+
+    // 데이터 전송시 처리 
+    element.submit.addEventListener('click', function(){
+        //console.log('start')
+        selectedConfirm();
+    })
+
+    // selected된 즉시 상태변경 처리 
+    // 다중 선택으로 필요 없는 처리임 
+    // element.addEventListener('change', function(){
+    //     selectedConfirm();
+    // })
+
+    /*
+    const textArea = document.getElementById('#text');
+    textArea.addEventListener('selectstart', function(){
+        // 처리 불가능 
+        console.log('start');
+        //selectedConfirm();
+    })
+    */
+    const textbox = document.getElementById('textbox');
+    let el = '';
+    textbox.addEventListener('selectstart', function(event){
+        // test할때 항상 새로 로딩하지 않으면 기존의 값도 경고에 띄움 
+        // 이벤트 처리에 대한 내용이므로 데이터 처리 위치는 다음과 같은 곳에서 에러로 처리 되지 않음에 주의
+        textbox.addEventListener('mouseup', function(event){
+            const selText = window.getSelection().toString();
+            //사용자 또는 Caret의 위치에 따라 선택된 텍스트의 범위를 나타내는 Selection 객체를 반환한다. 
+            if( selText.length > 0){
+                 el = selText;
+                 console.log(el);
+            }
+            console.log(el);
+        })
+        //console.log(el);  error
+    })
+    //console.log(el);   error
+    
+    </script>
+</body>
+</html>

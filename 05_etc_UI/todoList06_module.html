@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <style>
+    :root{
+        --dark:#374151;
+        --darker: #1f2937;
+        --darkest : #111872;
+        --light:#333; 
+        --gray:#6b7280;
+        --pink:#ec4899;
+        --purple:#8b5cf6;
+    }
+
+    *{
+        box-sizing: border-box;
+        margin: 0; 
+    }
+    .container{ display: flex;  min-height: 100vh;
+        /* flex-direction:column; 사용하는 이유 */
+            background: var(--dark);
+            color:#fff; justify-content: center; 
+            align-items: center;
+    }
+    header{
+        padding:2rem 1rem;   max-width: 800px;  width:100%; margin:0 auto;
+    }
+    .order-list{
+        background-color: rgb(255, 255, 255); display: flex;
+        flex-direction: column;
+        min-width: 400px; max-width: 600px; border-radius: 10px;
+        height: 500px; box-shadow: 0 0 20px #fff;
+
+    }
+
+    .header{ padding:2em;}
+    .header h1{ color: var(--dark); text-align: center;}
+    .list{ flex-grow:1; padding: 2em; overflow-y: scroll;}
+    /* 남는 여백을 두번째 인수에만 배정하므로서 아래로 밀리는 효과가 됨  */
+
+    .add-task{ padding: 2em; display: flex;}
+    /* display:flex는 자식의 너비를 조정하기 위함  */
+    .add-task input{ border:1px solid #eee; 
+        border-top-left-radius: 5px ;
+        border-bottom-left-radius: 5px ;
+        flex-grow: 1; padding:1em; outline: none;
+    }
+
+    .add-task button{
+        outline: none;   border: none;  
+        padding: 1em; 
+        border-top-right-radius: 5px ;
+        border-bottom-right-radius: 5px ;
+        background-color: var(--dark);  color:#fff;
+        cursor: pointer;
+    }
+
+    .add-task input:active{}
+    .add-task input:hover{}
+    .add-task input:focus{}
+
+    ::-webkit-scrollbar{ width:5px; }
+    ::-webkit-scrollbar-track{
+        box-shadow: inset 0 0 5px #ccc;
+        border:5px;
+    }
+    
+    ::-webkit-scrollbar-thumb{
+        background: var(--gray);
+        border-radius:10px;
+    }
+
+    span.width{ display: inline-block; width: 300px; color:var(--dark);}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="order-list">
+            <div class="header">
+                <h1><span id="total-tasks">0</span> 개 주문</h1>
+            </div>
+            <div class="list">
+                <ul>
+                    
+                </ul>
+            </div>
+            <form class="add-task">
+                <input type="text">
+                <button>삭제</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        // 모듈화 하기 
+        window.addEventListener('DOMContentLoaded', ()=>{
+            let inputElement = document.querySelector('input');
+            let formElement = document.querySelector('form');
+            let listElement = document.querySelector('ul');
+            let totalTaskElement = document.querySelector('#total-tasks');
+
+            let taskList = [
+                '토피넛라떼',
+                '자몽차'
+            ]
+            // 데이터 삽입을 위해서 미리 데이터 입력 해둠 
+
+            function pupulateList(){
+                taskList.forEach(function(item){
+                    let newItem = document.createElement('li');
+
+                    // add text
+                    let span = document.createElement('span');
+                    span.classList.add('width');
+                    span.innerHTML = item; 
+                    newItem.appendChild(span);
+
+                    // add delete button
+                    let anchorElement = document.createElement('a');
+                    anchorElement.classList.add('delete');
+                    anchorElement.innerHTML = '삭제';
+                    newItem.appendChild(anchorElement);
+
+                    // add list 
+                    listElement.appendChild(newItem);
+                })
+                totalTaskElement.innerHTML = taskList.length; 
+            }
+
+            pupulateList();
+        })
+    </script>
+</body>
+</html>

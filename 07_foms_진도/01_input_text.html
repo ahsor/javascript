@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>text</title>
+  </head>
+  <body>
+    <form action="">
+      <div>텍스트 입력</div>
+      <div>
+        <input type="text" id="text" />
+      </div>
+
+      <div>입력한 텍스트</div>
+      <div>
+        <input type="text" id="conform" />
+      </div>
+    </form>
+    <script>
+      var form = document.querySelector("form");
+      var text = document.querySelector("#text");
+
+      //form.addEventListener("");
+      text.addEventListener("blur", function () {
+        var inputText = document.querySelector("#text").value;
+        console.log(`입력 문자 : ${inputText}`);
+        console.log(`입력 문자수 : ${inputText.length}`);
+        console.log(`@ 문자 위치 : ${inputText.indexOf("@")}`);
+        document.querySelector("#conform").value = inputText;
+      });
+    </script>
+  </body>
+</html>

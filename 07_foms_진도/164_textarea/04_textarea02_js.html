@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <title>샘플</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="../../common/css/style.css"/>
+  <link rel="stylesheet" href="style.css"/>
+
+</head>
+<body>
+  <main class="centering">
+    <textarea id="myText"></textarea>
+    <p class="log"></p>
+  </main>
+  <script>
+      const myText = document.getElementById('myText');
+      const log = document.querySelector('.log');
+
+      myText.addEventListener('input', handleChange);
+      // change 이벤트 차이 확인 
+      function  handleChange(event){
+            log.innerHTML = event.target.value; 
+      }
+  </script>
+</body>
+</html>

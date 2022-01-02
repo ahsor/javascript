@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <style>
+    :root{
+        --dark:#374151;
+        --darker: #1f2937;
+        --darkest : #111872;
+        --light:#333; 
+        --gray:#6b7280;
+        --pink:#ec4899;
+        --purple:#8b5cf6;
+    }
+
+    *{
+        box-sizing: border-box;
+        margin: 0; 
+    }
+    body{ display: flex; flex-direction:column; min-height: 100vh;
+            background: var(--dark);
+            color:#fff; 
+    }
+    header{
+        padding:2rem 1rem;   max-width: 800px;  width:100%; margin:0 auto;
+    }
+
+    /* #new-task-form{
+        display: flex;
+    }
+
+    input, button{
+        appearance:none; 
+        border:none; 
+        outline:none; 
+        background:none; 
+    }
+
+    #new-task-input{ flex:1 1 0; }
+    #new-test-input::placeholder{
+        color:var(--gray);
+    } */
+    </style>
+</head>
+<body>
+    <header>
+        <h1> 주문서 입력 </h1>
+        <form action="" id="new-task-form">
+            <input type="text" id="new-task-input" placeholder="주문하실 메뉴를 입력하세요." />
+            <input type="submit" id="new-task-submit" value="입력" />
+        </form>
+    </header>
+    <section class='task-list'>
+        <h2>Tasks</h2>
+        <div id="tasks">
+           
+        </div>
+    </section>
+    
+    <script>
+        // 모듈화 하기 
+        window.addEventListener('DOMContentLoaded', ()=>{
+            const form = document.querySelector('#new-task-form');
+            const input = document.querySelector('#new-task-input');
+            const list_el = document.querySelector('#tasks');
+
+            form.addEventListener('submit', (e)=>{
+                e.preventDefault();
+
+                const task = input.value; 
+                
+                if(!task){
+                    alert('메뉴를 선택해 주세요.');
+                    return; 
+                }
+
+                const task_el = document.createElement("div");
+                const task_content_el = document.createElement('div');
+                
+                //task_content_el.innerText = task;
+                task_el.appendChild(task_content_el);
+
+                // input 요소 만들기  
+                const task_input_el = document.createElement('input');
+                task_input_el.value = task; 
+                task_input_el.setAttribute('readonly', 'readonly');
+                task_content_el.appendChild(task_input_el);
+
+                // button 추가
+                const task_action_el = document.createElement("div");
+                const task_edit_el = document.createElement("button");
+                task_edit_el.innerHTML = '수정';
+                const task_delete_el = document.createElement("button");
+                task_delete_el.innerHTML = "삭제";
+                task_action_el.appendChild(task_edit_el);
+                task_action_el.appendChild(task_delete_el);
+                task_el.appendChild(task_action_el);
+
+                list_el.appendChild(task_el);
+
+                input.value = '';
+
+                // 저장과 수정 버튼을 토글 
+                task_edit_el.addEventListener('click', e=>edit(e, task_input_el)) // edit end 
+                // 함수로 빼내기
+                
+                task_delete_el.addEventListener('click', ()=>{
+                    list_el.removeChild(task_el);
+                })
+            })
+
+            function edit(e, task_input_el){
+                if(e.target.innerText == '수정'){
+                    // 영문일 경우 대소문자 구분하여 비교해야 함
+                    task_input_el.removeAttribute('readonly');
+                    task_input_el.focus();
+                    e.target.innerText = "저장";
+                }else{
+                    task_input_el.setAttribute('readonly', 'readonly');
+                    e.target.innerText = "수정";
+                }
+            }
+        })
+    </script>
+</body>
+</html>

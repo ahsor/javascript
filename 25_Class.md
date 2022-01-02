@@ -1,7 +1,20 @@
-# 25-01
+# 객체와 클래스 : es6 추가 
+- 자바스크립트를 객체지향 프로그래밍 하고자 할때 
+- 클래스는 붕어빵을 만들 수 있는 틀
+- 클래스 자체에는 틀 즉 템플릿만 정의 해두고 데이터는 들어 있지 않다. 
+- 클래스는 메모리에 올라가진 않고 
+- 클래스에 데이터를 넣어서 만들 것을 오브젝트라고 한다. 
+- 오브젝트는 메모리에도 올라감 
+- 팥붕어빵, 크림붕어빵, 피자붕어빵 ....
+- 클래스 안에는 객체를 나타내는 속성 = 필드가 들어 있고 
+- 동작을 나타내는 메소드가 들어 있다. 
+- 연관있는 데이터를 묶어놓은 묶음
+- 클래스 안에는 데이터(필드)만 들어 있을 수 있음 
+
+# 25-01 기본 클래스 모양 
 
 ```javascript
-// ES5 생성자 함수
+// ES5 생성자 함수  17.md 참고
 var Person = (function () {
   // 생성자 함수
   function Person(name) {
@@ -18,11 +31,13 @@ var Person = (function () {
 }());
 
 // 인스턴스 생성
-var me = new Person('Lee');
-me.sayHi(); // Hi! My name is Lee
+var me = new Person('kim');
+me.sayHi(); // Hi! My name is kim
 ```
 
 # 25-02
+
+키워드 class를 사용해 클래스를 선언하며 클래스명은 파스칼 케이스를 사용하는 것이 일반적이다.
 
 ```javascript
 // 클래스 선언문
@@ -39,7 +54,11 @@ const Person = class {};
 const Person = class MyClass {};
 ```
 
-# 25-04
+# 25-04  생성자 
+- 클래스에 constructor()를 삽입하면 초기화시 해당 메소드가 실행
+- constructor()문의 삽입은 한번만 가능
+- 클래스를 초기화 할때 초기값을 constructor() 인수로 전달하여 외부값을 사용할 수 있다.
+- 클래스는 고유의 변수와 함수를 가질 수 있으며 이를 멤버라고 한다. 
 
 ```javascript
 // 클래스 선언문
@@ -52,7 +71,7 @@ class Person {
 
   // 프로토타입 메서드
   sayHi() {
-    console.log(`Hi! My name is ${this.name}`);
+    console.log(`Hi! ${this.name}`);
   }
 
   // 정적 메서드
@@ -61,13 +80,22 @@ class Person {
   }
 }
 
+```
+- class 선언으로 정의한 클래스를 실제 데이터로 사용하기 위해서 
+ ** new ** 연산자를 사용하며 인스턴스가 필요하다. 
+
+- 인스턴스화한 데이터는  멤버에 접근이 가능하다. 
+
+```
 // 인스턴스 생성
-const me = new Person('Lee');
+const me = new Person('kim');
 
 // 인스턴스의 프로퍼티 참조
-console.log(me.name); // Lee
+console.log(me.name); // kim
+
 // 프로토타입 메서드 호출
-me.sayHi(); // Hi! My name is Lee
+me.sayHi(); // Hi! My name is kim
+
 // 정적 메서드 호출
 Person.sayHello(); // Hello!
 ```
@@ -164,11 +192,16 @@ console.dir(Person);
 
 ```javascript
 // 인스턴스 생성
-const me = new Person('Lee');
+const me = new Person('kim');
 console.log(me);
 ```
 
-# 25-14
+# 25-14  클래스 변수 = 멤버 = 필드
+- 클래스 멤버 변수를 정의하기 위해서는 constructor() 내부에 
+  `this.변수명`을 사용한다. 여기서 this는 자신을 가르킨다. 
+- 클래스 멤버 변수는 let이나 const 선언을 사용하지 않는다. 
+- 클래스 멤버 변수는 초기값 대입이 가능하며 대입하지 않은 경우 undefined로 정의 
+
 
 ```javascript
 // 클래스
@@ -188,6 +221,7 @@ function Person(name) {
 ```
 
 # 25-15
+- constructor()문의 삽입은 한번만 가능
 
 ```javascript
 class Person {
@@ -217,19 +251,19 @@ console.log(me); // Person {}
 ```
 
 # 25-18
-
+- 클래스 멤버 변수는 초기값 대입이 가능하며 대입하지 않은 경우 undefined로 정의
 ```javascript
 class Person {
   constructor() {
     // 고정값으로 인스턴스 초기화
-    this.name = 'Lee';
+    this.name = 'kim';
     this.address = 'Seoul';
   }
 }
 
 // 인스턴스 프로퍼티가 추가된다.
 const me = new Person();
-console.log(me); // Person {name: "Lee", address: "Seoul"}
+console.log(me); // Person {name: "kim", address: "Seoul"}
 ```
 
 # 25-19
@@ -244,8 +278,8 @@ class Person {
 }
 
 // 인수로 초기값을 전달한다. 초기값은 constructor에 전달된다.
-const me = new Person('Lee', 'Seoul');
-console.log(me); // Person {name: "Lee", address: "Seoul"}
+const me = new Person('kim', 'Seoul');
+console.log(me); // Person {name: "kim", address: "Seoul"}
 ```
 
 # 25-20
@@ -261,7 +295,7 @@ class Person {
 }
 
 // constructor에서 명시적으로 반환한 빈 객체가 반환된다.
-const me = new Person('Lee');
+const me = new Person('kim');
 console.log(me); // {}
 ```
 
@@ -277,8 +311,8 @@ class Person {
   }
 }
 
-const me = new Person('Lee');
-console.log(me); // Person { name: "Lee" }
+const me = new Person('kim');
+console.log(me); // Person { name: "kim" }
 ```
 
 # 25-22
@@ -294,8 +328,8 @@ Person.prototype.sayHi = function () {
   console.log(`Hi! My name is ${this.name}`);
 };
 
-const me = new Person('Lee');
-me.sayHi(); // Hi! My name is Lee
+const me = new Person('kim');
+me.sayHi(); // Hi! My name is kim
 ```
 
 # 25-23
@@ -314,8 +348,8 @@ class Person {
   }
 }
 
-const me = new Person('Lee');
-me.sayHi(); // Hi! My name is Lee
+const me = new Person('kim');
+me.sayHi(); // Hi! My name is kim
 ```
 
 # 25-24
@@ -350,7 +384,11 @@ Person.sayHi = function () {
 Person.sayHi(); // Hi!
 ```
 
-# 25-26
+# 25-26  정적메서드 static
+- 클래스의 인스턴스화 없이 호출하는 메소드를 정적 메소드라고 하고 
+- static 선언으로 정의하며 호출은 '클래스명.메소드'를 사용
+- 다양한 용도로 사용할 수 있는 범용 메소드를 정의하거나 
+- 클래스에 의존하지 않는 함수를 정의할 때 사용 
 
 ```javascript
 class Person {
@@ -367,7 +405,8 @@ class Person {
 }
 ```
 
-# 25-27
+# 25-27  정적메서드 static
+- static 선언으로 정의하며 호출은 '클래스명.메소드'를 사용
 
 ```javascript
 // 정적 메서드는 클래스로 호출한다.
@@ -379,7 +418,7 @@ Person.sayHi(); // Hi!
 
 ```javascript
 // 인스턴스 생성
-const me = new Person('Lee');
+const me = new Person('kim');
 me.sayHi(); // TypeError: me.sayHi is not a function
 ```
 
@@ -454,8 +493,8 @@ class Person {
   }
 }
 
-const me = new Person('Lee');
-console.log(me); // Person {name: "Lee"}
+const me = new Person('kim');
+console.log(me); // Person {name: "kim"}
 ```
 
 # 25-34
@@ -468,19 +507,27 @@ class Person {
   }
 }
 
-const me = new Person('Lee');
+const me = new Person('kim');
 
 // name은 public하다.
-console.log(me.name); // Lee
+console.log(me.name); // kim
 ```
 
-# 25-35
+# 25-35 클래스 데이터의 setter, getter 사용
+- 클래스의 필드처럼 동작하는 함수를 사용하고 싶을때
+- setter/getter는 필드와 같은 방식으로 동작
+- set속성명(값){ }  : 값을 설정하는 함수 정의
+- get속성명(){ }  :  값을 가져오는 함수 정의
+- setter와 getter의 이름은 같다. 
 
 ```javascript
 const person = {
   // 데이터 프로퍼티
-  firstName: 'Ungmo',
-  lastName: 'Lee',
+  firstName: 'jemicom',
+  lastName: 'kim',
+  // = 연산자가 아님을 확인하고 
+  // 생성자 함수 없음 
+
 
   // fullName은 접근자 함수로 구성된 접근자 프로퍼티다.
   // getter 함수
@@ -495,16 +542,16 @@ const person = {
 };
 
 // 데이터 프로퍼티를 통한 프로퍼티 값의 참조.
-console.log(`${person.firstName} ${person.lastName}`); // Ungmo Lee
+console.log(`${person.firstName} ${person.lastName}`); // jemicom kim
 
 // 접근자 프로퍼티를 통한 프로퍼티 값의 저장
 // 접근자 프로퍼티 fullName에 값을 저장하면 setter 함수가 호출된다.
-person.fullName = 'Heegun Lee';
-console.log(person); // {firstName: "Heegun", lastName: "Lee"}
+person.fullName = 'jemicom kim';
+console.log(person); // {firstName: "jemicom", lastName: "kim"}
 
 // 접근자 프로퍼티를 통한 프로퍼티 값의 참조
 // 접근자 프로퍼티 fullName에 접근하면 getter 함수가 호출된다.
-console.log(person.fullName); // Heegun Lee
+console.log(person.fullName); // jemicom kim
 
 // fullName은 접근자 프로퍼티다.
 // 접근자 프로퍼티는 get, set, enumerable, configurable 프로퍼티 어트리뷰트를 갖는다.
@@ -512,13 +559,53 @@ console.log(Object.getOwnPropertyDescriptor(person, 'fullName'));
 // {get: ƒ, set: ƒ, enumerable: true, configurable: true}
 ```
 
-# 25-36
+# 25-36  생성자를 이용한 필드 초기화
+```javascript
+class Person {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    // this.lastName은 get fullName을 호출하고 
+    // lastName set fullName을 호출한다. 
+    // 때문에 call stack error
+  }
+  /*
+  // getter 함수
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+
+  // setter 함수
+  set fullName(firstName, lastName ) {
+     this.firstName = firstName;
+     this.lastName = lastName;
+     // 때문에 call stack error
+     // 때문에 setter나 getter에서 사용되는 변수는 다른 모양으로 이름을 만들어준다. 
+  }
+  */
+  get fullName() {
+    return `${this._firstName} ${this._lastName}`;
+  }
+  set fullName(firstName, lastName ) {
+     this._firstName = firstName;
+     this._lastName = lastName;
+  }
+}
+
+const me = new Person('jemicom', 'kim');
+
+```
+
+# 25-36  생성자를 이용한 필드 초기화
 
 ```javascript
 class Person {
   constructor(firstName, lastName) {
     this.firstName = firstName;
     this.lastName = lastName;
+    // this.lastName은 get fullName을 호출하고 
+    // lastName set fullName을 호출한다. 
+    // 때문에 call stack error
   }
 
   // fullName은 접근자 함수로 구성된 접근자 프로퍼티다.
@@ -533,19 +620,19 @@ class Person {
   }
 }
 
-const me = new Person('Ungmo', 'Lee');
+const me = new Person('jemicom', 'kim');
 
 // 데이터 프로퍼티를 통한 프로퍼티 값의 참조.
-console.log(`${me.firstName} ${me.lastName}`); // Ungmo Lee
+console.log(`${me.firstName} ${me.lastName}`); // jemicom kim
 
 // 접근자 프로퍼티를 통한 프로퍼티 값의 저장
 // 접근자 프로퍼티 fullName에 값을 저장하면 setter 함수가 호출된다.
-me.fullName = 'Heegun Lee';
-console.log(me); // {firstName: "Heegun", lastName: "Lee"}
+me.fullName = 'jemicom kim';
+console.log(me); // {firstName: "jemicom", lastName: "kim"}
 
 // 접근자 프로퍼티를 통한 프로퍼티 값의 참조
 // 접근자 프로퍼티 fullName에 접근하면 getter 함수가 호출된다.
-console.log(me.fullName); // Heegun Lee
+console.log(me.fullName); // jemicom kim
 
 // fullName은 접근자 프로퍼티다.
 // 접근자 프로퍼티는 get, set, enumerable, configurable 프로퍼티 어트리뷰트를 갖는다.
@@ -591,10 +678,10 @@ public class Person {
 ```javascript
 class Person {
   // 클래스 필드 정의
-  name = 'Lee';
+  name = 'kim';
 }
 
-const me = new Person('Lee');
+const me = new Person('kim');
 ```
 
 # 25-40
@@ -602,11 +689,11 @@ const me = new Person('Lee');
 ```javascript
 class Person {
   // 클래스 필드 정의
-  name = 'Lee';
+  name = 'kim';
 }
 
 const me = new Person();
-console.log(me); // Person {name: "Lee"}
+console.log(me); // Person {name: "kim"}
 ```
 
 # 25-41
@@ -623,7 +710,7 @@ class Person {
 ```javascript
 class Person {
   // 클래스 필드
-  name = 'Lee';
+  name = 'kim';
 
   constructor() {
     console.log(name); // ReferenceError: name is not defined
@@ -657,8 +744,8 @@ class Person {
   }
 }
 
-const me = new Person('Lee');
-console.log(me); // Person {name: "Lee"}
+const me = new Person('kim');
+console.log(me); // Person {name: "kim"}
 ```
 
 # 25-45
@@ -670,8 +757,8 @@ class Person {
   }
 }
 
-const me = new Person('Lee');
-console.log(me); // Person {name: "Lee"}
+const me = new Person('kim');
+console.log(me); // Person {name: "kim"}
 ```
 
 # 25-46
@@ -679,7 +766,7 @@ console.log(me); // Person {name: "Lee"}
 ```javascript
 class Person {
   // 클래스 필드에 문자열을 할당
-  name = 'Lee';
+  name = 'kim';
 
   // 클래스 필드에 함수를 할당
   getName = function () {
@@ -690,8 +777,8 @@ class Person {
 }
 
 const me = new Person();
-console.log(me); // Person {name: "Lee", getName: ƒ}
-console.log(me.getName()); // Lee
+console.log(me); // Person {name: "kim", getName: ƒ}
+console.log(me.getName()); // kim
 ```
 
 # 25-47
@@ -737,28 +824,30 @@ class Person {
 }
 
 // 인스턴스 생성
-const me = new Person('Lee');
-console.log(me.name); // Lee
+const me = new Person('kim');
+console.log(me.name); // kim
 ```
 
 # 25-49
 
 ```javascript
 class Person {
-  name = 'Lee'; // 클래스 필드도 기본적으로 public하다.
+  name = 'kim'; // 클래스 필드도 기본적으로 public하다.
 }
 
 // 인스턴스 생성
 const me = new Person();
-console.log(me.name); // Lee
+console.log(me.name); // kim
 ```
 
 
-# 25-50
+# 25-50  public과 private
+- 가장 최근에 추가된 기능으로 아직은 많이 사용하고 있지 않음 
+- 사용하려면 바벨을 사용해야 함 
 
 ```javascript
 class Person {
-  // private 필드 정의
+  // private 필드 정의 : 외부에 노출 되지 않음 
   #name = '';
 
   constructor(name) {
@@ -767,7 +856,7 @@ class Person {
   }
 }
 
-const me = new Person('Lee');
+const me = new Person('kim');
 
 // private 필드 #name은 클래스 외부에서 참조할 수 없다.
 console.log(me.#name);
@@ -792,8 +881,8 @@ class Person {
   }
 }
 
-const me = new Person(' Lee ');
-console.log(me.name); // Lee
+const me = new Person(' kim ');
+console.log(me.name); // kim
 ```
 
 # 25-52
@@ -808,11 +897,12 @@ class Person {
 }
 ```
 
-# 25-53
+# 25-53 
 
 ```javascript
 class MyMath {
-  // static public 필드 정의
+  // static public 필드 정의 : 외부에서 직접 사용할 수 있음 
+  // static 선언은 생략할 수 있음 
   static PI = 22 / 7;
 
   // static private 필드 정의
@@ -828,7 +918,10 @@ console.log(MyMath.PI); // 3.142857142857143
 console.log(MyMath.increment()); // 11
 ```
 
-# 25-54
+# 25-54  클래스 상속 
+- 다른 클래스의 기능을 확장한 클래스를 생성하고 싶을 때 
+- 빌트인 객체를 상속하고 싶을 때 
+- class 클래스명 extends 생성클래스명{}
 
 ```javascript
 class Animal {
@@ -1100,8 +1193,8 @@ class Derived extends Base {
   }
 }
 
-const derived = new Derived('Lee');
-console.log(derived.sayHi()); // Hi! Lee. how are you doing?
+const derived = new Derived('kim');
+console.log(derived.sayHi()); // Hi! kim. how are you doing?
 ```
 
 # 25-69
@@ -1157,7 +1250,7 @@ const obj = {
 
 ```javascript
 const base = {
-  name: 'Lee',
+  name: 'kim',
   sayHi() {
     return `Hi! ${this.name}`;
   }
@@ -1171,7 +1264,7 @@ const derived = {
   }
 };
 
-console.log(derived.sayHi()); // Hi! Lee. how are you doing?
+console.log(derived.sayHi()); // Hi! kim. how are you doing?
 ```
 
 # 25-73

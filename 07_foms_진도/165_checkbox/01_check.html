@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="checkboxGroup">
+        <label>
+            <input type="checkbox" name="fruit" value="apple" > Apple
+        </label>
+        <label>
+            <input type="checkbox" name="fruit" value="Orange" checked> Orange
+        </label>
+        <label>
+            <input type="checkbox" name="fruit" value="Grape"> Grape
+        </label>
+
+        <input type="button" name="submit" value="전송">
+    </form>
+
+    <script>    
+    const element = document.querySelector('form#checkboxGroup');
+    
+    // radio 버튼과 달리 checkbox는 다중 선택이므로 
+    // .checked를 확인한 후 for를 이용해 체크 여부를 일일히 확인하여야 하고 
+    // 즉, radio 버튼처럼 name으로 접근이 불가능 함 
+
+    // .checked을 이용한 접근, 기본값 출력
+    function checkedConfirm(){
+        const fruits = document.getElementsByName('fruit');
+        const checkedValue = [];
+        // function 밖에 선언해도 상관 없음 
+        
+        fruits.forEach((fruit, item)=>{
+            if( fruit.checked ){
+                checkedValue.push(fruit.value);
+                console.log(checkedValue);
+            }
+        })
+    }
+    checkedConfirm();
+
+    element.submit.addEventListener('click', function(){
+        checkedConfirm();
+    })
+    </script>
+</body>
+</html>

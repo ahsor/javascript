@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <title>샘플</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="../../common/css/style.css"/>
+  <link rel="stylesheet" href="style.css"/>
+
+</head>
+<body>
+  <main class="centering">
+    <textarea id="myText">
+    오늘의 날씨는
+    맑음
+    </textarea>
+  </main>
+  <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        const textareaValue = document.getElementById('myText');
+        alert( textareaValue.value );
+        // alert가 빨리 실행되는 이유 
+
+        textareaValue.value = '여러분 안녕하세요.';
+      })
+  </script>
+</body>
+</html>
