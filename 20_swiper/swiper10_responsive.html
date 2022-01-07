@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+  rel="stylesheet"
+  href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+/>
+    <!-- 내 style 위에 로딩해야함에 주의 -->
+    <style>
+        /* .swiper {
+            width: 600px;
+            height: 300px;
+        } 
+        // 반응형 구현시 swiper의 너비가 존재하면 처리 되지 않음
+        */
+    </style>
+</head>
+<body>
+    <div class="swiper">
+        <!-- 반응형 slider -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide">Slide 1</div>
+          <div class="swiper-slide">Slide 2</div>
+          <div class="swiper-slide">Slide 3</div>  
+          <div class="swiper-slide">Slide 4</div>
+          <div class="swiper-slide">Slide 5</div>
+          <div class="swiper-slide">Slide 6</div>  
+          <div class="swiper-slide">Slide 7</div>
+          <div class="swiper-slide">Slide 8</div>
+          <div class="swiper-slide">Slide 9</div>  
+        </div>
+      </div>
+      <!-- swiper는 overflow:hidden 되어 있어 controls가 보이지 않으므로 밖에 표시 -->
+      <div class="controls">
+          <div class="prev">prev</div>
+          <div class="next">next</div>
+      </div>
+
+      <div class="indecators">
+          <ul>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+              <li>7</li>
+              <li>8</li>
+              <li>9</li>
+          </ul>
+      </div>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
+      <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    
+    <script>
+        const swiper = new Swiper('.swiper', {
+          // Optional parameters
+          direction: 'horizontal',
+          loop: true,
+         
+        
+          // 반응형 구현 : 주의 .swiper의 css에서 너비를 제외해야 반응형으로 구현됨
+          // EFFECT와 반응형 섞일 때 주의 동작이 원할하지 않음 
+            slidesPerView: 1,
+            spaceBetween: 10,
+            // Responsive breakpoints
+            breakpoints: {
+                // when window width is >= 320px
+                480: {
+                slidesPerView: 2,
+                spaceBetween: 20
+                },
+                // when window width is >= 480px
+                700: {
+                slidesPerView: 3,
+                spaceBetween: 30
+                },
+                // when window width is >= 640px
+                1200: {
+                slidesPerView: 4,
+                spaceBetween: 40
+                }
+            }
+
+        });
+
+        const controls = document.querySelector('.controls');
+        controls.addEventListener('click', e=>{
+            if( e.target = controls.firstChild ){
+                swiper.slidePrev();
+            }else if( e.target = controls.lastChild){
+                swiper.slideNext();
+            }
+        })
+
+        const indecators = document.querySelector('.indecators');
+        indecators.addEventListener('click', e=>{
+            let index = e.target.innerHTML; 
+            //console.log(index);
+            swiper.slideTo(index);
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+  rel="stylesheet"
+  href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+/>
+     <style>
+        *{ margin:0; padding:0;  box-sizing: border-box; outline: none;}
+        body{ font-family: sans-serif;
+            overflow-x:hidden;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 100vh;
+        } 
+               
+        .swiper-slide{ 
+            text-align: center;
+            padding-top: 200px;
+        }
+        .swiper-slide:nth-child(1){   background-color: #ff5e5e;        }
+        .swiper-slide:nth-child(2){   background-color: #ffc15e;        }
+        .swiper-slide:nth-child(3){   background-color: #5e89ff;        }
+        h1{ font-size: 100px; color:#fff; }
+        .swiper-pagination{
+            bottom:150px !important; 
+        }
+        .swiper-pagination .swiper-pagination-bullet{
+            /* js로 선언되어 있어야 하고 debug로 pager 확인 */
+            position: relative; width:auto; height: auto;
+            border-radius: 0; opacity: 1; color:#fff; 
+            /* pager로 텍스트를 지정한 후 디자인 */
+            background-color: transparent;
+            font-size: 20px; font-weight: 500; margin: 0 50px !important;
+        }
+        .swiper-pagination .swiper-pagination-bullet:before{
+            content: ''; display: block;
+            position: absolute; bottom:-15px; left: 0;
+            width: 100%; height: 3px;
+            background-color: #fff; opacity: 0.5;
+        }
+        .swiper-pagination .swiper-pagination-bullet:after{
+            content: ''; display: block;
+            position: absolute; bottom:-15px; left: 0;
+            width: 0; height: 3px;
+            background-color: #fff; /*opacity: 0.5;*/
+        }
+        .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active:after{
+            /* active 설정 */
+            width:100%; animation: paginationLine 5s linear;
+            /* transition: 5s linear; */
+        }
+        @keyframes paginationLine{
+            from{ width: 0;}
+        } 
+        .img-group{
+            position: absolute; left:100%; top:0; 
+            width: 100%; height: 100%;
+            /* transition: all cubic-bezier(.97, 0.02, 0.02, .98) 2s; */
+            transition: all  2s;
+        }
+        .swiper-slide img{
+            position: absolute; transition: all linear .1s;
+            animation: rotateReversed linear 3s;
+        }
+        @keyframes rotateReversed{
+            to{ transform: rotate(-360deg);}
+        }
+
+        .swiper-slide.swiper-slide-active img{
+            animation:rotate linear 100s infinite;
+        }
+        @keyframes rotate{
+            to{ transform: rotate(720deg);}
+        }
+
+        .swiper-slide h1{
+            position: absolute; left:100%; 
+            text-align: center; width: 100%;
+            transition: all cubic-bezier(.66, .51, .2, .98) 2s;
+        }
+
+        .cat1{ left: 0; top:100px;                  }
+        .cat2{ left: 620px; top:110px;              }
+        .cat3{ left: 400px; top:270px; z-index:-1;  }
+
+    </style>
+</head>
+<body>
+    <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <div class="swiper-slide">
+                  <h1>my cat</h1>
+                  <div class="img-group">
+                      <img data-pos="3" src="http://placekitten.com/200/200" alt="" class="cat1 img-single">
+                      <img data-pos="-8" src="http://placekitten.com/150/200" alt="" class="cat2 img-single">
+                      <img data-pos="7" src="http://placekitten.com/100/100" alt="" class="cat3 img-single">
+                  </div>
+              </div>
+              
+              <div class="swiper-slide">
+                  <h1>my place</h1>
+                  <div class="img-group">
+                      <img data-pos="2" src="http://placehold.it/200x200" alt=""  class="cat1 img-single">
+                      <img data-pos="-5" src="http://placehold.it/100x100" alt=""  class="cat2 img-single">
+                      <img data-pos="7" src="http://placehold.it/150x150" alt=""  class="cat3 img-single">
+                  </div>
+              </div>
+              
+              <div class="swiper-slide">
+                  <h1>my cat&amp;place</h1>
+                  <div class="img-group">
+                      <img data-pos="-7" src="http://placehold.it/200x200" alt=""  class="cat1 img-single">
+                      <img data-pos="3"  src="http://placekitten.com/150/100" alt=""  class="cat2 img-single">
+                      <img data-pos="5" src="http://placehold.it/150x150" alt=""  class="cat3 img-single">
+                  </div>
+              </div>
+              
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+          
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          
+            <!-- If we need scrollbar -->
+            <div class="swiper-scrollbar"></div>
+    </div> <!--swiper end-->
+          
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
+      <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    
+    <script>
+        const menu = ["I love cats", " I love place ", "I love cat&plae"];
+        const swiper = new Swiper('.swiper-container', {
+            // 아래 하단을 trigger가 연동되도록 작동 시작
+            initialSlide:2,
+            touchRatio:0,
+            autoplayDisableOnInteraction:false, //?
+            // trigger 연동 작동 종료 
+
+            autoplay:{
+                delay:5000,
+                disableOnInteraction:false //? 
+            },
+
+            effect:'fade',
+            speed:1000,
+
+            pagination:{
+                el:'.swiper-pagination',
+                clickable:true, 
+                renderBullet:function(index, className){
+                    return `<span class="${className}">${menu[index]}</span>`;
+                }
+            },
+            on:{
+                slideChangeTransitionStart:function(){
+                    $(".swiper-slide.swiper-slide-active h1").css('left',0);
+                    $(".swiper-slide.swiper-slide-active .img-group").css('left','150px');
+                },
+                slideChange:function(){
+                    $(".swiper-slide.swiper-slide-active h1").css('left',"100%");
+                    $(".swiper-slide.swiper-slide-active .img-group").css('left','100%');
+                }
+            } // on end
+        });
+
+        $('.swiper-pagination .swiper-pagination-bullet:first-child').trigger('click');
+
+        $(".swiper-slide").mousemove(function(e){
+            $(".img-single").each(function(){
+                let pos = $(this).attr("data-pos");
+                let x = ($(window).innerWidth() - event.pageX * pos) / 100; 
+                let y = ($(window).innerHeight() - event.pageY * pos) / 100; 
+                $(this).css({"margin-left": x+"px", "margin-top": y+"px"});         
+            })
+        })
+    </script>
+</body>
+</html>

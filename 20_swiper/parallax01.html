@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #back{ height:3000px; }
+        #printer{ position: fixed; background: orange; 
+            left: 100px; top:100px;
+        }
+        .block{ background: green; width:100px; height: 100px;
+            position: absolute; top:200px; left: 200px;
+        }
+        .block1{}
+        .block2{ top:500px; }
+        .block3{ top:1000px; }
+        .block4{ top:1500px; }
+        .block5{ top:2500px; }
+
+        .bgRed{ background: red;}
+    </style>
+</head>
+<body>
+    <div id="printer">0</div>
+    <div id="back"></div>
+    <div class="block block1">block1</div>
+    <div class="block block2">block2</div>
+    <div class="block block3">block3</div>
+    <div class="block block4">block4</div>
+    <div class="block block5">block5</div>
+    
+    <script>
+        let printer = document.querySelector('#printer');
+        let blocks = document.querySelectorAll('.block');
+
+        [...blocks].forEach((block, i)=>{
+            // let thisBlock = block;
+            // thisBlock.innerHTML = thisBlock.offsetTop;
+
+            block.innerHTML = block.offsetTop;
+        })
+
+        document.addEventListener('scroll', change_scroll);
+
+        function change_scroll(){
+            printer.innerHTML = document.documentElement.scrollTop;
+
+            let screenCenter = document.documentElement.scrollTop + window.innerHeight/2;
+            // 변경되는 지정을 계산함 
+            
+            [...blocks].forEach((block, i)=>{
+                //if(block.offsetTop < document.documentElement.scrollTop){
+           
+                if(block.offsetTop < screenCenter){
+                //기본위치에서 색을 변경하지 않고 화면에 나타나는 지점을 변경함 
+                    block.classList.add("bgRed");
+                }else{
+                    block.classList.remove("bgRed");
+                }
+            })
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       *{margin: 0; padding: 0;}
+       .slider{ width: 600px; height: 300px; margin: auto;}
+       .imgBox{ width: 600px; height: 300px; position: relative;}
+       .imgBox>div{ width: 600px; height: 300px; position: absolute;}
+       .imgBox>div:nth-child(1){ background-color: orange;  
+            z-index: 2; left:0; transform: scale(1);
+    }
+       .imgBox>div:nth-child(2){ background-color: green; 
+             z-index: 1; left:70px; transform: scale(0.9);
+    }
+       .imgBox>div:nth-child(3){ background-color: blue;
+             z-index: 0; left:140px; transform: scale(0.8);
+    }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <div class="imgBox">
+            <div class="img1">1</div>
+            <div class="img2">2</div>
+            <div class="img3">3</div>
+        </div>
+    </div>
+    <script>
+        let timer = setInterval( slider, 3000)
+
+        function slider(){
+
+        }
+    </script>
+</body>
+</html>
