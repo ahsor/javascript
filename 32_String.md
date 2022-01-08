@@ -1,7 +1,8 @@
 # 문자열 다루기 
-- 문자열 길이를 확인하고 싶을 때 
-- 문자열 검색을 하고 싶을 때 
-- 문자열을 추출 하고 싶을 때 
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String
+- 문자열 길이를 확인하고 싶을 때 .length
+- 문자열 검색을 하고 싶을 때  .indexOf() .includes()  .startsWidth()  .endsWith()
+- 문자열을 추출 하고 싶을 때  .charAt(index) index생략하면 0, .slice() .substring() .substr()
 - 문자열을 변환 하고 싶을 때 
 - 문자열을 분할 하고 싶을 때 
 - 문자열을 결합 하고 싶을 때 
@@ -75,12 +76,6 @@ Array.from('👍').length; //1
 Array.from('💖').length; //1
 ```
 
-# 문자열 검색을 하고 싶을 때 
-# 문자열을 추출 하고 싶을 때 
-# 문자열을 변환 하고 싶을 때 
-# 문자열을 분할 하고 싶을 때 
-# 문자열을 결합 하고 싶을 때 
-
 # 32-01
 
 ```javascript
@@ -122,7 +117,8 @@ console.log(strObj);
 // String {0: "n", 1: "u", 2: "l", : "l", length: 4, [[PrimitiveValue]]: "null"}
 ```
 
-# 32-06
+
+# 32-06  문자열로 만들기
 
 ```javascript
 // 숫자 타입 => 문자열 타입
@@ -151,8 +147,8 @@ console.log(Object.getOwnPropertyDescriptors(strObj));
 }
 */
 ```
-
-# 32-09
+# 문자열 검색을 하고 싶을 때 
+# 32-09 
 
 ```javascript
 const str = 'Hello World';
@@ -191,7 +187,7 @@ if (str.includes('Hello')) {
 }
 ```
 
-# 32-13
+# 32-13  
 
 ```javascript
 const str = 'Hello world';
@@ -258,6 +254,7 @@ str.endsWith('x'); // -> false
 str.endsWith('lo', 5); // -> true
 ```
 
+# 문자열을 추출 하고 싶을 때 
 # 32-20
 
 ```javascript
@@ -273,6 +270,7 @@ for (let i = 0; i < str.length; i++) {
 ```javascript
 // 인덱스가 문자열의 범위(0 ~ str.length-1)를 벗어난 경우 빈문자열을 반환한다.
 str.charAt(5); // -> ''
+str.charAt(); // 인덱스를 생략하면 0 위치의 값을 반환
 ```
 
 # 32-22
@@ -281,7 +279,9 @@ str.charAt(5); // -> ''
 const str = 'Hello World';
 
 // 인덱스 1부터 인덱스 4 이전까지의 부분 문자열을 반환한다.
+// 시작인덱스, 종료 인덱스
 str.substring(1, 4); // -> ell
+str.substr( 시작인덱스, 글자수)
 ```
 
 # 32-23
@@ -376,7 +376,7 @@ str.trimStart(); // -> 'foo  '
 str.trimEnd();   // -> '   foo'
 
 ```
-
+# 문자열을 변환 하고 싶을 때 
 # 32-31
 
 ```javascript
@@ -465,7 +465,7 @@ function snakeToCamel(snakeCase) {
 const snakeCase = 'hello_world';
 snakeToCamel(snakeCase); // -> 'helloWorld'
 ```
-
+# 문자열을 분할 하고 싶을 때 
 # 32-38
 
 ```javascript
@@ -488,6 +488,7 @@ str.split(); // -> ["How are you doing?"]
 
 ```javascript
 // 공백으로 구분하여 배열로 반환한다. 단, 배열의 길이는 3이다
+// 다수의 분리 문자열을 3개까지만 분리한다.
 str.split(' ', 3); // -> ["How", "are", "you"]
 ```
 
@@ -501,3 +502,5 @@ function reverseString(str) {
 
 reverseString('Hello world!'); // -> '!dlrow olleH'
 ```
+
+# 문자열을 결합 하고 싶을 때 

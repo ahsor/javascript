@@ -7,12 +7,13 @@
 		<title>01_어트리뷰트의_값을_수정하여_이미지_바꾸기</title>
 		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 		<style>
-			html * { margin:0; padding:0; }
+			* { margin:0; padding:0; }
 			body { padding:10px;  margin-top:100px;}
 			body span { color:red; font-size: 30px; }
 			p { margin-bottom: 20px;}
 			#wrapper { width:522px; margin:0 auto; text-align:center;}
-			li { float: left; list-style: none; margin-left: 10px;overflow:hidden; width:123px; height:40px;}
+			#nav>ul{ display: flex;}
+			li { list-style: none; margin-left: 10px;overflow:hidden; width:123px; height:40px;}
 			li.first { margin-left:0px; }
 			li a {display:block;  width:123px;}
 			li a img {display:block;}
@@ -30,9 +31,13 @@
 				
 				nav.addEventListener('click', function(event){
 					let str = event.target.parentNode.parentNode.getAttribute('id');
-					let tar = str.substring(0, str.length - 3);
-					console.log(tar);
-					img.className = tar;
+					// 주어진 메뉴의 아이디 값을 가져옴 
+					// springBtn, summerBtn, fallBtn, winterBtn
+					let btnName = str.substring(0, str.length - 3);
+					// id값의 Btn 3글자를 떼어내고 클래스명을 만들고 
+					console.log(btnName);
+					img.className = btnName;
+					// 클래스로 등록 한다.
 				})
 			})
 			$(document).ready(function(){

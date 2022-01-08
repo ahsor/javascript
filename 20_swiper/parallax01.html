@@ -10,14 +10,14 @@
         #printer{ position: fixed; background: orange; 
             left: 100px; top:100px;
         }
-        .block{ background: green; width:100px; height: 100px;
+        .colorbox{ background: green; width:100px; height: 100px;
             position: absolute; top:200px; left: 200px;
         }
-        .block1{}
-        .block2{ top:500px; }
-        .block3{ top:1000px; }
-        .block4{ top:1500px; }
-        .block5{ top:2500px; }
+        .colorbox1{}
+        .colorbox2{ top:500px; }
+        .colorbox3{ top:1000px; }
+        .colorbox4{ top:1500px; }
+        .colorbox5{ top:2500px; }
 
         .bgRed{ background: red;}
     </style>
@@ -25,21 +25,21 @@
 <body>
     <div id="printer">0</div>
     <div id="back"></div>
-    <div class="block block1">block1</div>
-    <div class="block block2">block2</div>
-    <div class="block block3">block3</div>
-    <div class="block block4">block4</div>
-    <div class="block block5">block5</div>
+    <div class="colorbox colorbox1">colorbox1</div>
+    <div class="colorbox colorbox2">colorbox2</div>
+    <div class="colorbox colorbox3">colorbox3</div>
+    <div class="colorbox colorbox4">colorbox4</div>
+    <div class="colorbox colorbox5">colorbox5</div>
     
     <script>
         let printer = document.querySelector('#printer');
-        let blocks = document.querySelectorAll('.block');
+        let colorboxs = document.querySelectorAll('.colorbox');
 
-        [...blocks].forEach((block, i)=>{
-            // let thisBlock = block;
-            // thisBlock.innerHTML = thisBlock.offsetTop;
+        [...colorboxs].forEach((colorbox, i)=>{
+            // let thiscolorbox = colorbox;
+            // thiscolorbox.innerHTML = thiscolorbox.offsetTop;
 
-            block.innerHTML = block.offsetTop;
+            colorbox.innerHTML = colorbox.offsetTop;
         })
 
         document.addEventListener('scroll', change_scroll);
@@ -50,14 +50,14 @@
             let screenCenter = document.documentElement.scrollTop + window.innerHeight/2;
             // 변경되는 지정을 계산함 
             
-            [...blocks].forEach((block, i)=>{
-                //if(block.offsetTop < document.documentElement.scrollTop){
+            [...colorboxs].forEach((colorbox, i)=>{
+                //if(colorbox.offsetTop < document.documentElement.scrollTop){
            
-                if(block.offsetTop < screenCenter){
+                if(colorbox.offsetTop < screenCenter){
                 //기본위치에서 색을 변경하지 않고 화면에 나타나는 지점을 변경함 
-                    block.classList.add("bgRed");
+                    colorbox.classList.add("bgRed");
                 }else{
-                    block.classList.remove("bgRed");
+                    colorbox.classList.remove("bgRed");
                 }
             })
         }
