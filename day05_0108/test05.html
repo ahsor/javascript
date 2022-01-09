@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <style>
+    .box{ margin: 100px;}
+    div.background{ background-color: red;}
+    .border{ border: 10px solid skyblue;}
+    .borderRadius{ border-radius: 100%;}
+    .boxShadow{ box-shadow: 0 0 30px black;}
+  </style>
+</head>
+<body>
+   <h1>class 제어</h1>
+  <div class="buttonGroup">
+   <button>background</button>
+   <button>border</button>
+   <button>borderRadius</button>
+   <button>boxShadow</button>
+  </div> 
+   <div class="box" id="box"></div>
+   <!-- #box 디자인 필요 -->
+
+   <div>
+     <pre>
+      attr() : 속성을 관리하는 메서드 
+      addClass() : 클래스를 추가
+      removeClass() : 클래스를 제거
+      toggleClass() : 클래스가 있으면 제거, 없으면 추가 
+      hasClass() : class있으면  true, 없으면  false
+    </pre>  
+   </div>
+
+   <script>
+     const btnGroup = document.querySelector('.buttonGroup');
+     const btns = document.querySelectorAll('.buttonGroup>button');
+     /*
+     반복 제어문을 이용한 이벤트 추가
+     for(let a = 0; a<btns.length; a++){
+        btns[a].addEventListener('click', function(){
+          console.log( this.innerHTML);
+        })
+     }
+     
+     
+     btns.forEach((btn)=>{
+          btn.addEventListener('click', function(){
+            console.log( this.innerHTML);
+          })
+     })
+     */
+     const box = document.querySelector('.box'); 
+     btnGroup.addEventListener('click', function(ev){
+          console.log( ev.target.innerHTML);
+          // document.querySelector('.box').className = ev.target.innerHTML;
+          // dom이 실시간으로 살아 움직이는 상황 같은 것으로 
+          // 클래스명이 바뀌어 버림으로서 디자인 불가 
+          // id 등을 사용하여 제어할 수 있음
+          //  document.querySelector('.box').className = ev.target.innerHTML;
+
+          /*
+          // 클래스 제거 
+          if(box.classList.contains(ev.target.innerHTML) )
+              box.classList.remove(ev.target.innerHTML);
+          else
+              box.classList.add(ev.target.innerHTML);
+          // 클래스 추가 
+          */
+          // 클래스 토글
+          box.classList.toggle(ev.target.innerHTML);
+     })
+   </script>
+
+<!-- 
+  <script src="../script/jquery-3.6.0.min.js"></script>
+  <script>
+     $('button').click(function(){
+       // button 의 텍스트를 가져오세요. 
+       let userClass = $(this).text(); // getter
+       // $('.box').addClass('background');
+       $('.box').toggleClass(userClass);
+       console.log( userClass, $('.box').hasClass(userClass));
+     })
+
+  </script> -->
+</body>
+</html>

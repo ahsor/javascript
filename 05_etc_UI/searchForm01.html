@@ -14,7 +14,7 @@
     </header>
     <div>
         <form action="" id="search-form-view">
-            <input type="text" autofocus placeholder="검색어를 입력하세요.">
+            <input name="search" type="text" autofocus placeholder="검색어를 입력하세요.">
             <button type="reset" class="btn-reset">X</button>
         </form>
     </div>
@@ -23,8 +23,8 @@
         const reset = document.querySelector('.btn-reset');
         reset.style.display = 'none';
 
-
-        
+        const input = form.search.value;
+        console.log(input);
     </script>
 
 </body>

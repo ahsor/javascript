@@ -1,3 +1,3 @@
 appendChild()
-befor()
+before()
 after()

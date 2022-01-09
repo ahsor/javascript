@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/reset.css">
+</head>
+<body>
+  <div class="buttonGroup">
+    <button>img1</button>
+    <button>img2</button>
+    <button>img3</button>
+  </div>  
+  <div><img class="transformImg" src="http://placehold.it/200x200" alt=""></div>
+  <script>
+    const imgAry = ["http://placekitten.com/200/200", "http://placekitten.com/220/200", "http://placekitten.com/200/220"];
+
+    const btnGroup = document.querySelector('.buttonGroup');
+    const btns = document.querySelectorAll('.buttonGroup>button');
+    const btnIndex = [];
+    // 버튼 번호를 활용하기 위한 배열
+    btns.forEach((btn, item)=>{
+        btnIndex.push(btn); 
+    })
+    
+    btnGroup.addEventListener('click', function(ev){
+        // 버튼의 번호 필요
+        let i = btnIndex.indexOf(ev.target);
+        document.querySelector('.transformImg').setAttribute('src', imgAry[i]);
+    })
+  </script>
+<!-- 
+  <script src="../script/jquery-3.6.0.js"></script>
+  <script>
+    const imgAry = ["http://placekitten.com/200/200", "http://placekitten.com/220/200", "http://placekitten.com/200/220"];
+
+
+    $('button').click(function(){
+      console.log($(this).index());
+      let num = $(this).index(); 
+      let path = imgAry[num];
+      $('.transformImg').attr('src', path);
+    })
+  </script> -->
+</body>
+</html>

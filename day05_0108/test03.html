@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container{ display: flex; gap: 1em; flex-wrap: wrap;}
+    .container>div{ width:200px; height: 200px;}
+    .red{ background-color: red;}
+    .green{ background-color: green;}
+    .blue{ background-color: blue;}
+    .pink{ background-color: pink;}
+    .purple{ background-color: purple;}
+    button{ padding: 1em;}
+  </style>
+</head>
+<body>
+  <div class="buttonGroup">
+    <button>red</button>
+    <button>green</button>
+    <button>blue</button>
+    <button>pink</button>
+    <button>purple</button>
+    <button>All</button>
+  </div>  
+  <div class="container">
+    <div class="red"    data-keyword="red"></div>
+    <div class="green"  data-keyword="green"></div>
+    <div class="red"    data-keyword="red"></div>
+    <div class="green"  data-keyword="green"></div>
+    <div class="blue"   data-keyword="blue"></div>
+    <div class="red"    data-keyword="red"></div>
+    <div class="green"  data-keyword="green"></div>
+    <div class="blue"   data-keyword="blue"></div>
+    <div class="pink"   data-keyword="pink"></div>
+    <div class="purple" data-keyword="purple"></div>
+    <div class="pink"   data-keyword="pink"></div>
+    <div class="purple" data-keyword="purple"></div>
+    <div class="red"    data-keyword="red"></div>
+    <div class="green"  data-keyword="green"></div>
+    <div class="blue"   data-keyword="blue"></div>
+    <div class="red"    data-keyword="red"></div>
+    <div class="green"  data-keyword="green"></div>
+    <div class="red"    data-keyword="red"></div>
+    <div class="green"  data-keyword="green"></div>
+    <div class="blue"   data-keyword="blue"></div>
+    <div class="pink"   data-keyword="pink"></div>
+    <div class="purple" data-keyword="purple"></div>
+    <div class="blue"   data-keyword="blue"></div>
+    <div class="pink"   data-keyword="pink"></div>
+    <div class="purple" data-keyword="purple"></div>
+    <div class="pink"   data-keyword="pink"></div>
+    <div class="purple" data-keyword="purple"></div>
+    <div class="blue"   data-keyword="blue"></div>
+    <div class="pink"   data-keyword="pink"></div>
+    <div class="purple" data-keyword="purple"></div>
+    <div class="red"    data-keyword="red"></div>
+    <div class="green"  data-keyword="green"></div>
+    <div class="blue"   data-keyword="blue"></div>
+    <div class="pink"   data-keyword="pink"></div>
+    <div class="purple" data-keyword="purple"></div>
+    <div class="red"    data-keyword="red"></div>
+    <div class="green"  data-keyword="green"></div>
+    <div class="blue"   data-keyword="blue"></div>
+    <div class="pink"   data-keyword="pink"></div>
+    <div class="purple" data-keyword="purple"></div>
+  </div>
+  <script>
+    const $boxs = document.querySelectorAll('.container>div');
+    const $button = document.querySelector('.buttonGroup'); 
+    // 버튼 그룹을 추가적으로 만들어서 이벤트를 위임하는 절차가 필요
+    // 버튼 그룹을 만들지 않은 경우 확인할 것 
+    $button.addEventListener('click', function(ev){
+      let keyword = ev.target.innerHTML; 
+      // let keyword = this.innerHTML;  
+      // this == buttonGroup 으로 모든 버튼 객체를 반환
+      console.log(keyword);
+      /*
+      for( let a = 0 ; a<$box.length ; a++ ){
+          let divKeyword = $boxs[a].getAttribute('data-keyword');
+          if( keyword == 'All'){
+              $boxs[a].style.display = 'block';
+          }else  if( keyword != divKeyword ){
+              $boxs[a].style.display = 'none';
+          }else{ 
+              $boxs[a].style.display = 'block';
+          }
+      }
+      */
+      /*
+      // 복수형 객체와 단일형 객체구분 가독성 높음 
+      $boxs.forEach(function(box, item){
+          let divKeyword =box.getAttribute('data-keyword');
+          if( keyword == 'All'){
+              box.style.display = 'block';
+          }else  if( keyword != divKeyword ){
+              box.style.display = 'none';
+          }else{ 
+              box.style.display = 'block';
+          }
+      })
+      */
+      // 객체형 for ? 오류 원인 확인 필요
+      for(let box in $boxs){
+          //console.log( $boxs[box].getAttribute('data-keyword'));
+          let divKeyword = $boxs[box].getAttribute('data-keyword');
+          if( keyword == 'All'){
+            $boxs[box].style.display = 'block';
+          }else  if( keyword != divKeyword ){
+            $boxs[box].style.display = 'none';
+          }else{ 
+            $boxs[box].style.display = 'block';
+          }
+      }
+    })
+  </script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $('button').click(function(){
+        let keyword = $(this).text();
+        
+        let $box = $('.container>div');
+
+        let count = 0;
+        $box.each(function(){ 
+            let boxKeyword = $(this).attr('data-keyword');
+            // 현재 루틴 돌고 있는 div 의  키워드 리턴 
+            //console.log( count++,  $(this) );
+            if( keyword == 'All'){
+              $(this).show();
+            }else if( keyword !=  boxKeyword){
+              $(this).hide();
+            }else{
+              $(this).show();
+            }
+        })
+
+        /*
+        for( let a = 0; a< $('.container>div').length ; a++ ){
+            //console.log( $box.eq(a).attr('data-keyword') );
+            if( keyword == 'All'){
+              $box.eq(a).show();
+            }else if( keyword != $box.eq(a).attr('data-keyword') ){
+              $box.eq(a).hide();
+            }else{
+              $box.eq(a).show();
+            }
+        }
+        */
+    })
+
+  </script> -->
+</body>
+</html>
