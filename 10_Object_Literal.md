@@ -9,8 +9,15 @@ Object 는 키와 value의 집합체
 # 10-01
 
 ```javascript
+let age = 20; 
+let name = 'kim';
+console.log('이름 : ', name);
+console.log('나이 : ', age);
+
+// 다음과 같이 변경
 var person = {
   name: 'kim',
+  age: 20,
   sayHello: function () {
     console.log(`Hello! My name is ${this.name}.`);
   }
@@ -25,8 +32,65 @@ console.log(person); // {name: "kim", sayHello: ƒ}
 ```javascript
 var empty = {}; // 빈 객체
 console.log(typeof empty); // object
+
+// 빈객체에 데이터 삽입 
+empty['name'] = 'kim';
+empty['age'] = 20;
+empty.add = function( a, b){
+  // 외부 선언이므로 = 사용 
+  return a +b; 
+}
+
+console.log( empty.age );
+console.log( empty.name);
+console.log( empty['name'] );
+console.log( empty['age']);
+console.log( empty.add(5, 5) );
+
 ```
 
+```javascript
+// ES5
+var obj = {
+  name: 'kim',
+  sayHi: function() {
+    // 오브젝트 안에서 사용하는 함수로 : 으로 선언 
+    console.log('Hi! ' + this.name);
+  }
+};
+
+obj.sayHi(); // Hi! kim
+```
+
+
+```javascript
+// ES6
+var obj = {
+  name: 'kim',
+  sayHi() {
+    // function도 생략가능 
+    console.log('Hi! ' + this.name);
+  }
+};
+
+obj.sayHi(); // Hi! kim
+```
+
+
+```javascript
+
+var oper = function(a, b){
+  return a + b; 
+}
+
+var obj = {
+  name: 'kim',
+};
+
+obj['add'] = oper; 
+console.log( obj.add( 5, 5 ));
+
+```
 # 10-03
 
 ```javascript
@@ -76,7 +140,6 @@ console.log(obj); // {hello: "world"}
 ```
 
 # 10-07
-
 
 ```javascript
 var foo = {
@@ -334,6 +397,7 @@ console.log(obj); // {prop-1: 1, prop-2: 2, prop-3: 3}
 var obj = {
   name: 'kim',
   sayHi: function() {
+    // 오브젝트 안에서 사용하는 함수로 : 으로 선언 
     console.log('Hi! ' + this.name);
   }
 };
@@ -366,14 +430,20 @@ const person2 = { name:'park' , age:2}
 const person3 = { name:'lee' , age:3}
 // ... 이런식으로 객체를 생성하는 자체가 과부하
 const person4 = makePerson('jemicom', 4);
-console.log( person4)
+console.log( person4);
+
+// 출력
+// {name: 'jemicom', age: 4}
+// jemicom
+// 4
+
 
 function makePerson(name, age){
     return {
         name:name,
         age:age
     }
-    //이런 경우 다음과 같이 축약형 코드를 사용할 수 있다.
+    //키값과 value값이 같은 경우 다음과 같이 축약형 코드를 사용할 수 있다.
     return {
         name,
         age

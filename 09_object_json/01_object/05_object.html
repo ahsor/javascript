@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <script>
+        const person1 = { name:'kim' , age:1}
+        const person2 = { name:'park' , age:2}
+        const person3 = { name:'lee' , age:3}
+        // ... 이런식으로 객체를 생성하는 자체가 과부하
+        const person4 = makePerson('jemicom', 4);
+        console.log( person4);
+        console.log( person4.name);
+        console.log( person4.age);
+
+        function makePerson(name, age){
+            return {
+                name:name,
+                age:age
+            }
+            /*
+            //이런 경우 다음과 같이 축약형 코드를 사용할 수 있다.
+            return {
+                name,
+                age
+            }
+            */
+        }
+
+    </script>
+
+</body>
+</html>
