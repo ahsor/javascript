@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Person {
+    // private 필드 정의 : 외부에 노출 되지 않음 
+    #name = '';
+  
+    constructor(name) {
+      // private 필드 참조
+      this.#name = name;
+    }
+  }
+  
+  const me = new Person('kim');
+  
+  // private 필드 #name은 클래스 외부에서 참조할 수 없다.
+  console.log(me.#name);
+    </script>
+</body>
+</html>

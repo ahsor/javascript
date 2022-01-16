@@ -27,6 +27,49 @@ console.log(typeof person); // object
 console.log(person); // {name: "kim", sayHello: ƒ}
 ```
 
+# 10-10
+
+```javascript
+var foo = {
+  name: 'kim',
+  name: 'Kim'
+// 중복 선언하면 덮어쓴다. 에러는 발생하지 않는다.
+};
+
+console.log(foo); // {name: "Kim"}
+```
+
+# 10-11
+
+```javascript
+var circle = {
+  radius: 5, // ← 프로퍼티
+
+  // 원의 지름
+  getDiameter: function () { // ← 메서드
+    return 2 * this.radius; // this는 circle을 가리킨다.
+  }
+};
+
+console.log(circle.getDiameter()); // 10
+```
+
+# 10-12
+
+```javascript
+var person = {
+  name: 'kim'
+};
+
+// 마침표 표기법에 의한 프로퍼티 접근
+console.log(person.name); // kim
+
+// 대괄호 표기법에 의한 프로퍼티 접근
+console.log(person['name']); // kim
+// 반드시 '' 따옴표 필요 
+
+```
+
 # 10-02
 
 ```javascript
@@ -175,48 +218,6 @@ console.log(foo); // {var: "", function: ""}
 
 ```
 
-# 10-10
-
-```javascript
-var foo = {
-  name: 'kim',
-  name: 'Kim'
-// 중복 선언하면 덮어쓴다. 에러는 발생하지 않는다.
-};
-
-console.log(foo); // {name: "Kim"}
-```
-
-# 10-11
-
-```javascript
-var circle = {
-  radius: 5, // ← 프로퍼티
-
-  // 원의 지름
-  getDiameter: function () { // ← 메서드
-    return 2 * this.radius; // this는 circle을 가리킨다.
-  }
-};
-
-console.log(circle.getDiameter()); // 10
-```
-
-# 10-12
-
-```javascript
-var person = {
-  name: 'kim'
-};
-
-// 마침표 표기법에 의한 프로퍼티 접근
-console.log(person.name); // kim
-
-// 대괄호 표기법에 의한 프로퍼티 접근
-console.log(person['name']); // kim
-// 반드시 '' 따옴표 필요 
-
-```
 # 10-12-1
 ```
 const o1 = {name:'kim'}

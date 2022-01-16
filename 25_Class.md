@@ -11,6 +11,19 @@
 - 연관있는 데이터를 묶어놓은 묶음
 - 클래스 안에는 데이터(필드)만 들어 있을 수 있음 
 
+# 클래스와 생성자 함수 비교
+| 클래스 | 생성자 함수 |
+|---|---|
+| new 연산자 없이 호출하면 에러발생 | new 연산 없이 호출하면 일반함수로 호출 |
+| 상속을 지원하는 extends, super 키워드 제공| extends, super 키워드 제공하지 않음  | 
+| 호이스팅이 발생하지 않는 것 처럼 동작 | 함수 선언문으로 선언된 생성자 함수는 호이스팅, 함수 표현식으로 정의한 생성자함수는 변수 호이스팅이발생|
+| 모든 코드에 암묵적으로 strict mode지정되고 해제할 수 없다. | 암묵적으로 지정되지 않음 |
+
+- 클래스의 constructor, 프로토타입 메서드 , 정적메서드는 모두 프로퍼티 어트리 뷰트 값이 false, 열거되지 않는다. 
+- 비슷하지만 클래스는 생성자 함수기반의 객체 생성 방식보다 견고하고 명료하다.
+
+- 
+
 # 25-01 기본 클래스 모양 
 
 ```javascript
@@ -37,7 +50,7 @@ me.sayHi(); // Hi! My name is kim
 
 # 25-02
 
-키워드 class를 사용해 클래스를 선언하며 클래스명은 파스칼 케이스를 사용하는 것이 일반적이다.
+키워드 **class**를 사용해 클래스를 선언하며 클래스명은** 파스칼 케이스**를 사용하는 것이 일반적이다. 파스칼케이스를 사용하지 않아도 no error
 
 ```javascript
 // 클래스 선언문
@@ -46,6 +59,10 @@ class Person {}
 
 # 25-03
 
+표현식으로 클래스를 정의할 수도 있다. 
+이때 클래스는 함수와 마찬가지로 이름을 가질 수도 있고 갖지 않을 수도 있다. 
+클래스를 표현식으로 정의할 수 있다는 것은 클래스가 값으로 사용할 수 있는 일급객체라는 뜻
+
 ```javascript
 // 익명 클래스 표현식
 const Person = class {};
@@ -53,6 +70,16 @@ const Person = class {};
 // 기명 클래스 표현식
 const Person = class MyClass {};
 ```
+
+# 클래스 특징
+1. 무명의 리터럴로 생성할 수 있다. 즉 런타임에 실행 가능
+2. 변수나 자료구조(배열, 객체 등)에 저장할 수 있다. 
+3. 함수의 매개변수에게 전달할 수 있다. 
+4. 함수의 변환값으로 사용할 수 있다. 
+5. **클래스는 함수다**
+6. 클래스는 값처럼 사용할 수 있는 일급객체다.
+7. 클래스는 몸체에 정의할 수 있는 메서드는 constructor, 프로토타입 메서드, 정적 메서드 3가지
+
 
 # 25-04  생성자 
 - 클래스에 constructor()를 삽입하면 초기화시 해당 메소드가 실행
@@ -81,9 +108,9 @@ class Person {
 }
 
 ```
-- class 선언으로 정의한 클래스를 실제 데이터로 사용하기 위해서 
- ** new ** 연산자를 사용하며 인스턴스가 필요하다. 
 
+- class 선언으로 정의한 클래스를 실제 데이터로 사용하기 위해서 
+  ** new ** 연산자를 사용하며 인스턴스가 필요하다. 
 - 인스턴스화한 데이터는  멤버에 접근이 가능하다. 
 
 ```
@@ -101,15 +128,19 @@ Person.sayHello(); // Hello!
 ```
 
 # 25-05
+클래스는 런타임 이전에 먼저 평가되어 함수 객체를 생성한다. 
 
 ```javascript
 // 클래스 선언문
 class Person {}
+// 생성자 함수를 호출하여 함수로 평가
 
 console.log(typeof Person); // function
 ```
 
 # 25-06
+클래스는 let, const로 선언한 변수처럼 호이스팅이 된다.
+단 클래스는 클래스 정의 이전에 참조할 수 없다. 
 
 ```javascript
 console.log(Person);
@@ -125,16 +156,18 @@ class Person {}
 const Person = '';
 
 {
-  // 호이스팅이 발생하지 않는다면 ''이 출력되어야 한다.
+  // 호이스팅이 발생하지 않는 것처럼 보이나 그렇다면 ''이 출력되어야 한다.
   console.log(Person);
   // ReferenceError: Cannot access 'Person' before initialization
-
+  // 단 클래스는 클래스 정의 이전에 참조할 수 없다. 
   // 클래스 선언문
   class Person {}
 }
 ```
 
 # 25-08
+
+함수는 new 연산자의 호출에 따라 일반함수로 호출되거나 인스턴스 생성을 위한 생성자 함수로 호출되지만 클래스는 반드시 new 연산자와 함께 호출 되어야 한다. 
 
 ```javascript
 class Person {}
@@ -169,6 +202,7 @@ const you = new MyClass(); // ReferenceError: MyClass is not defined
 ```
 
 # 25-11
+생성자는 인스턴스를 생성하고 초기화 하기 위한 특수 메서드로 이름을 변경할 수 없다.
 
 ```javascript
 class Person {
@@ -181,6 +215,9 @@ class Person {
 ```
 
 # 25-12
+크롬 개발자 도구로 확인할 것 
+인스턴스에 constructor를 보이지 않는다. 
+함수 객체의 일부가 되어 클래스가 정의되어 평가되면 constructor가 동작을 하는 함수객체가 된다. 
 
 ```javascript
 // 클래스는 함수다.
@@ -189,18 +226,21 @@ console.dir(Person);
 ```
 
 # 25-13
-
+크롬 개발자 도구로 확인할 것 
 ```javascript
 // 인스턴스 생성
 const me = new Person('kim');
 console.log(me);
 ```
-
+# 생성자
 # 25-14  클래스 변수 = 멤버 = 필드
 - 클래스 멤버 변수를 정의하기 위해서는 constructor() 내부에 
   `this.변수명`을 사용한다. 여기서 this는 자신을 가르킨다. 
 - 클래스 멤버 변수는 let이나 const 선언을 사용하지 않는다. 
 - 클래스 멤버 변수는 초기값 대입이 가능하며 대입하지 않은 경우 undefined로 정의 
+- constructor()문의 삽입은 한번만 가능
+- 인스턴스를 초기화 하려면 클래스를 생략하면 안된다. 
+- constructor()는 별도의 return 문을 갖지 않아야 한다. 이유는 new로 인스턴스 생성시 암묵적으로 this를 리턴하기 때문이다.
 
 
 ```javascript
@@ -232,6 +272,7 @@ class Person {
 ```
 
 # 25-16
+- 인스턴스를 초기화 하려면 클래스를 생략하면 안된다. 
 
 ```javascript
 class Person {}
@@ -252,6 +293,7 @@ console.log(me); // Person {}
 
 # 25-18
 - 클래스 멤버 변수는 초기값 대입이 가능하며 대입하지 않은 경우 undefined로 정의
+
 ```javascript
 class Person {
   constructor() {
@@ -307,6 +349,7 @@ class Person {
     this.name = name;
 
     // 명시적으로 원시값을 반환하면 원시값 반환은 무시되고 암묵적으로 this가 반환된다.
+    // 클래스의 기본 동작을 훼손한다. 
     return 100;
   }
 }
@@ -315,7 +358,8 @@ const me = new Person('kim');
 console.log(me); // Person { name: "kim" }
 ```
 
-# 25-22
+# 25-22  프로토타입 메서드
+생성자 함수를 사용하는 경우 명시적으로 프로토타입 메서드를 추가하여야 한다. 
 
 ```javascript
 // 생성자 함수
@@ -333,6 +377,7 @@ me.sayHi(); // Hi! My name is kim
 ```
 
 # 25-23
+클래스에서는 prototype을 추가하지 않아도 기본적으로 프로토타입 메서드가 된다. 
 
 ```javascript
 class Person {
@@ -367,7 +412,9 @@ me instanceof Object; // -> true
 me.constructor === Person; // -> true
 ```
 
-# 25-25
+# 25-25 정적메서드 
+
+인스턴스를 생성하지 않아도 호출할 수 있는 메서드로 생성자 함수의 경우 다음과 같이 추가한다.
 
 ```javascript
 // 생성자 함수
@@ -384,7 +431,8 @@ Person.sayHi = function () {
 Person.sayHi(); // Hi!
 ```
 
-# 25-26  정적메서드 static
+# 25-26  클래스 정적메서드 static
+
 - 클래스의 인스턴스화 없이 호출하는 메소드를 정적 메소드라고 하고 
 - static 선언으로 정의하며 호출은 '클래스명.메소드'를 사용
 - 다양한 용도로 사용할 수 있는 범용 메소드를 정의하거나 
@@ -409,8 +457,8 @@ class Person {
 - static 선언으로 정의하며 호출은 '클래스명.메소드'를 사용
 
 ```javascript
-// 정적 메서드는 클래스로 호출한다.
-// 정적 메서드는 인스턴스 없이도 호출할 수 있다.
+
+// 정적 메서드는 인스턴스 없이  클래스로 호출한다.
 Person.sayHi(); // Hi!
 ```
 
@@ -422,12 +470,18 @@ const me = new Person('kim');
 me.sayHi(); // TypeError: me.sayHi is not a function
 ```
 
+# 정적메서드와 프로토타입 메서드 차이 
+1. 정적 메서드와 프로토타입 메서드는 자신이 속해 있는 프로토타입 체인이 다르다.
+2. 정적 메서드는 클래스로 호출하고 프로토타입 메서드는 인스턴스로 호출하다.ㄴ 
+3. 정적 메서드는 인스턴스 프로퍼티(멤버)를 참조할 수 없지만 프로토타입 메서드는 인스턴스 프로퍼티를 참조할 수 있다. 
+
 # 25-29
 
 ```javascript
 class Square {
   // 정적 메서드
   static area(width, height) {
+    // 인스턴스 프로퍼티를 참조하지 않음
     return width * height;
   }
 }
@@ -445,6 +499,7 @@ class Square {
   }
 
   // 프로토타입 메서드
+  // 인스턴스 프로퍼티를 참조한다면 프로토타입 메서드를 사용해야 한다.
   area() {
     return this.width * this.height;
   }
@@ -465,6 +520,16 @@ Object.is({}, {});          // -> false
 Reflect.has({ a: 1 }, 'a'); // -> true
 ```
 
+# 클래스에서 정의한 메서드 특징
+1. function 키워드를 생략한 메서드 축약 표현을 사용
+2. 객체 리터럴과는 다르게 클래스에 메서드를 정의할 때는 콤마가 필요 없다. 
+   const person = { name:'kim', age:function(){ return 30; } }
+   person.age(); // 객체 함수 사용법
+
+3. 암묵적으로 strict mode로 실행
+4. for...in문이나 Object.keys 메서드로 열거할 수 없다. 
+5. 내부 메서드를 갖지 않는 non-constructor로 new 연산자로 호출할 수 없다.
+
 # 25-32
 
 ```javascript
@@ -484,6 +549,7 @@ class Person {
 ```
 
 # 25-33
+인스턴스 프로퍼티는 constructor 내부에서 정의한다. 
 
 ```javascript
 class Person {
@@ -514,6 +580,8 @@ console.log(me.name); // kim
 ```
 
 # 25-35 클래스 데이터의 setter, getter 사용
+
+- 인스턴스 프로퍼티는 언제나 public이다. 
 - 클래스의 필드처럼 동작하는 함수를 사용하고 싶을때
 - setter/getter는 필드와 같은 방식으로 동작
 - set속성명(값){ }  : 값을 설정하는 함수 정의
@@ -533,11 +601,13 @@ const person = {
   // getter 함수
   get fullName() {
     return `${this.firstName} ${this.lastName}`;
+    // this 없이 사용하면 무한 loop에 빠지며 문제 발생 
   },
   // setter 함수
   set fullName(name) {
     // 배열 디스트럭처링 할당: "36.1. 배열 디스트럭처링 할당" 참고
     [this.firstName, this.lastName] = name.split(' ');
+    // 자동 생성자 함수가 호출, 문제 발생을 줄이기 위해 this 사용
   }
 };
 
@@ -843,6 +913,7 @@ console.log(me.name); // kim
 
 # 25-50  public과 private
 - 가장 최근에 추가된 기능으로 아직은 많이 사용하고 있지 않음 
+- 크롬 72이상, node 12 이상 
 - 사용하려면 바벨을 사용해야 함 
 
 ```javascript
@@ -897,7 +968,7 @@ class Person {
 }
 ```
 
-# 25-53 
+# 25-53 example
 
 ```javascript
 class MyMath {
@@ -951,7 +1022,8 @@ console.log(bird.move()); // move
 console.log(bird.fly());  // fly
 ```
 
-# 25-55
+# 25-55 생성자 함수 상속 
+자바스크립트는 클래스 기반 언어가 아니므로 생성자 함수를 사용하여 클래스를 흉내 내려는 시도를 권장하진 않지만 의사클래스를 상속하는 패턴을 사용하여 클래스를 확장할 수 있다. 
 
 ```javascript
 // 의사 클래스 상속(pseudo classical inheritance) 패턴
@@ -977,6 +1049,7 @@ var Bird = (function () {
   function Bird() {
     // Animal 생성자 함수에게 this와 인수를 전달하면서 호출
     Animal.apply(this, arguments);
+    // 생성자함수의 상속
   }
 
   // Bird.prototype을 Animal.prototype을 프로토타입으로 갖는 객체로 교체
@@ -999,7 +1072,7 @@ console.log(bird.move()); // move
 console.log(bird.fly());  // fly
 ```
 
-# 25-56
+# 25-56  클래스 상속
 
 ```javascript
 // 수퍼(베이스/부모)클래스
@@ -1010,7 +1083,7 @@ class Derived extends Base {}
 ```
 
 # 25-57
-
+extends 는 클래스 뿐아니라 생성자함수를 상속 받을 수 있다. 
 ```javascript
 // 생성자 함수
 function Base(a) {
