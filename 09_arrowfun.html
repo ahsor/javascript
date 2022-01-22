@@ -17,6 +17,7 @@
          console.log('화살표함수')
     }    
     let arrow1 = ()=>{
+        // 파라미터가 없을 때 () 괄호는 생략할 수 없음 
         console.log('화살표함수')
     }
     arrow1() ;  
@@ -38,33 +39,44 @@
     let arrow2 = ()=>20
     console.log(arrow2( ))
     
-        
+    ///////////////////////////////
+    // 파라미터가 한개 있을 때  
     let arrow3 = function(a){
         return 10; 
-    
+    }
     let arrow3 = (a)=>{ return a }
     
-    파라미터의 괄호도 생략 가능 
+    //파라미터의 괄호도 생략 가능 
     let arrow3 = a=>{ return a }
     
-    모든 괄호를 생략할 수 있음
+    // 즉, 모든 괄호를 생략할 수 있음
     let arrow3 = a=>  a 
     console.log(arrow3(20))
-   
-        
+    
+    ///////////////////////////////////
+    /// 파라미터가 2개이상 있음    
     let arrow4 = function(a, b){
         return a+b; 
     }
-    
-    ///////////////////////////////////
-    /// 파라미터가 2개이상 있음
+       
     let arrow4 = (a, b) => { return a+b;}
     
-    // 중괄호 생략 가능 
+    // 리턴 중괄호만 생략 가능 
     let arrow4 = (a, b) => a+b
-     */
     
-    console.log(arrow4(10, 20))
+    
+    console.log(arrow4(10, 20));
+
+    // 파라미터가 없을 때 () 괄호는 생략할 수 없음 
+    */
+
+    const arr = [1,2,3];
+    arr.forEach((a)=>console.log(0));
+    arr.forEach(a=>console.log(a));
+    arr.forEach(console.log(a));
+    arr.forEach(console.log);
+    arr.forEach(alert);
+
     </script>
 </body>
 </html>

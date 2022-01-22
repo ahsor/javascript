@@ -1,6 +1,11 @@
 # 10 객체
 자바스크립트를 구성하는 거의 모든 것(함수, 배열, 정규표현식)이 객체다.
 함수도 프로퍼티로 사용할 수 있고 프로퍼티 값이 함수일 경우 일반함수와 구분하여 메서드라고 한다.
+(함수를 리턴하거나 파라미터로 전달하는 함수를 고차함수 일급객체, 
+변수에 할당(assignment)할 수 있다.
+다른 함수를 인자(argument)로 전달 받는다.
+다른 함수의 결과로서 리턴될 수 있다.)
+
 프로퍼티 : 객체의 상태를 나타내는 값
 메서드 : 프로퍼티를 참조하고 조작할 수 있는 동작
 MDN javascript 메서드 확인 : ctrl(command) + 함수명 클릭
@@ -21,6 +26,7 @@ var person = {
   sayHello: function () {
     console.log(`Hello! My name is ${this.name}.`);
   }
+  // 프로퍼티를 나열할 때는 쉼표로 구분하고 마지막 프로퍼티 뒤에는 쉼표를 사용하지 않으나 사용해도 상관없다.
 };
 
 console.log(typeof person); // object
@@ -39,20 +45,7 @@ var foo = {
 console.log(foo); // {name: "Kim"}
 ```
 
-# 10-11
 
-```javascript
-var circle = {
-  radius: 5, // ← 프로퍼티
-
-  // 원의 지름
-  getDiameter: function () { // ← 메서드
-    return 2 * this.radius; // this는 circle을 가리킨다.
-  }
-};
-
-console.log(circle.getDiameter()); // 10
-```
 
 # 10-12
 
@@ -65,9 +58,26 @@ var person = {
 console.log(person.name); // kim
 
 // 대괄호 표기법에 의한 프로퍼티 접근
+console.log(person[name]); // ReferenceError: name is not defined
 console.log(person['name']); // kim
-// 반드시 '' 따옴표 필요 
+// 반드시 '' 따옴표 필요 , key는 언제나 string으로 사용해야 함
 
+console.log(person.age); // undefined
+```
+
+# 10-11 : 지름 구하기 example
+
+```javascript
+var circle = {
+  radius: 5, // ← 프로퍼티
+
+  // 원의 지름
+  getDiameter: function () { // ← 메서드
+    return 2 * this.radius; // this는 circle을 가리킨다.
+  }
+};
+
+console.log(circle.getDiameter()); // 10
 ```
 
 # 10-02
@@ -134,18 +144,8 @@ obj['add'] = oper;
 console.log( obj.add( 5, 5 ));
 
 ```
-# 10-03
 
-```javascript
-var person = {
-  // 프로퍼티 키는 name, 프로퍼티 값은 'kim'
-  name: 'kim',
-  // 프로퍼티 키는 age, 프로퍼티 값은 20
-  age: 20
-};
- // 프로퍼티를 나열할 때는 쉼표로 구분하고 마지막 프로퍼티 뒤에는 쉼표를 사용하지 않으나 
- // 사용해도 좋다.
-```
+
 
 # 10-04
 
@@ -165,10 +165,11 @@ console.log(person); // {firstName: "jemicom", last-name: "kim"}
 var person = {
   firstName: 'jemicom',
   last-name: 'kim' // SyntaxError: Unexpected token -
+  // jQuery에서는 사용하고 있고 
 };
 ```
 
-# 10-06
+# 10-06  
 
 ```javascript
 var obj = {};
@@ -192,33 +193,23 @@ var foo = {
 console.log(foo); // {"": ""}
 ```
 
-# 10-08
-
+# 10-08 : 키값 접근 유의 1
+// 키값을 숫자로 사용할 수도 있으나 
+// 접근 방법에서 오류가 발생하므로 반드시 문자열 접근 해야 함 
 ```javascript
 var foo = {
-  0: 1,
-  1: 2,
-  2: 3
-};
-
+    0: 1,
+    1: 2,
+    2: 3
+  };
+  
 console.log(foo); // {0: 1, 1: 2, 2: 3}
-```
-
-# 10-09
-
-```javascript
-var foo = {
-    // 예약어를 사용해도 에러가 나지 않는다. 
-    // 예상치 못한 에러가 발생할 여지가 있으므로 권장하지 않는다.
-  var: '',
-  function: ''
-};
-
-console.log(foo); // {var: "", function: ""}
+console.log(foo.0); // error
+console.log(foo['0']); // 1
 
 ```
 
-# 10-12-1
+# 10-08 : 키값 접근 유의 2
 ```
 const o1 = {name:'kim'}
 const o2 = {name:'park'}
@@ -237,29 +228,23 @@ printValue(o1, 'name');
 
 ```
 
-# 10-13
+# 10-09
 
 ```javascript
-var person = {
-  name: 'kim'
+var foo = {
+    // 예약어를 사용해도 에러가 나지 않는다. 
+    // 예상치 못한 에러가 발생할 여지가 있으므로 권장하지 않는다.
+  var: '',
+  function: ''
 };
 
-console.log(person[name]); // ReferenceError: name is not defined
-console.log(person['name']); 
-// key는 언제나 string으로 사용해야 함
+console.log(foo); // {var: "", function: ""}
+
 ```
 
-# 10-14
 
-```javascript
-var person = {
-  name: 'kim'
-};
 
-console.log(person.age); // undefined
-```
-
-# 10-15
+# 10-15  : 하지 말것
 
 ```javascript
 var person = {
@@ -304,6 +289,8 @@ var person = {
 // 따라서 person 객체에 age 프로퍼티가 동적으로 생성되고 값이 할당된다.
 person.age = 20;
 
+// 동적으로 데이터 삽입 가능하나 
+// 유지보수가 어렵고 예측하지 못한 문제가 발생할 소지가 있음 
 console.log(person); // {name: "kim", age: 20}
 ```
 
@@ -326,6 +313,40 @@ delete person.age;
 delete person.address;
 
 console.log(person); // {name: "kim"}
+```
+
+# 동적으로 생성된 명함 객체 만들기 
+```
+"use strict";
+
+var name = "홍길동";
+var age = 30;
+var card = {
+  name, // name : name
+  age, // age = age
+  tel: "010-5475-0763",
+  fax: "02-789-8878",
+  email: "honggilgdong@gmail.com",
+};
+
+console.log(card);
+// 동적으로 데이터 삽입 가능하나 
+// 유지보수가 어렵고 예측하지 못한 문제가 발생할 소지가 있음 
+
+card.gender = "male";
+card.hairColor = "brown";
+console.log(card);
+
+// 즉시 삭제도 가능 
+delete card.hairColor;
+console.log(card);
+
+console.log(card.name);
+console.log(card["name"]);
+console.log(card.birthDay); // 존재하지 않은 속성 접근 undefined 출력
+console.log("birthDay" in card); // card에 birthDay 존재하지 않음을 확인하고  결과는 false
+console.log("age" in card); // true
+
 ```
 
 # 10-19
@@ -391,37 +412,9 @@ const obj = {
 console.log(obj); // {prop-1: 1, prop-2: 2, prop-3: 3}
 ```
 
-# 10-23
 
-```javascript
-// ES5
-var obj = {
-  name: 'kim',
-  sayHi: function() {
-    // 오브젝트 안에서 사용하는 함수로 : 으로 선언 
-    console.log('Hi! ' + this.name);
-  }
-};
 
-obj.sayHi(); // Hi! kim
-```
-
-# 10-24
-
-```javascript
-// ES6
-const obj = {
-  name: 'kim',
-  // 메서드 축약 표현
-  sayHi() {
-    console.log('Hi! ' + this.name);
-  }
-};
-
-obj.sayHi(); // Hi! kim
-```
-
-# 10-24-1  오브젝트를 괄호를 이용해서 생성할 수 있음 
+# 10-24  오브젝트를 괄호를 이용해서 생성할 수 있음 
 # 생성자 함수 
 // runtime때 동적으로 데이터 타입이 결정됨 
 
@@ -430,15 +423,9 @@ const person1 = { name:'kim' , age:1}
 const person2 = { name:'park' , age:2}
 const person3 = { name:'lee' , age:3}
 // ... 이런식으로 객체를 생성하는 자체가 과부하
-const person4 = makePerson('jemicom', 4);
-console.log( person4);
 
-// 출력
-// {name: 'jemicom', age: 4}
-// jemicom
-// 4
-
-
+// 즉 makePerson은 클래스 같은 역활을 하는 함수
+// 자바스크립트에 클래스가 없을때 함수를 이용하여 사용했음
 function makePerson(name, age){
     return {
         name:name,
@@ -450,9 +437,13 @@ function makePerson(name, age){
         age
     }
 }
+const person4 = makePerson('jemicom', 4);
+console.log( person4);
 
-// 즉 makePerson은 클래스 같은 역활을 하는 함수
-// 자바스크립트에 클래스가 없을때 함수를 이용하여 사용했음
+// 출력
+// {name: 'jemicom', age: 4}
+// jemicom
+// 4
 
 ```
 
@@ -473,39 +464,8 @@ function Person(name, age){
     return this;
 }
 ```
-# 10-26 객체값 확인 in : object 안에 키값이 있는지 확인
-```
-"use strict";
 
-var name = "홍길동";
-var age = 30;
-var card = {
-  name, // name : name
-  age, // age = age
-  tel: "010-5475-0763",
-  fax: "02-789-8878",
-  email: "honggilgdong@gmail.com",
-};
 
-console.log(card);
-// 동적으로 데이터 삽입 가능하나 
-// 유지보수가 어렵고 예측하지 못한 문제가 발생할 소지가 있음 
-
-card.gender = "male";
-card.hairColor = "brown";
-console.log(card);
-
-// 즉시 삭제도 가능 
-delete card.hairColor;
-console.log(card);
-
-console.log(card.name);
-console.log(card["name"]);
-console.log(card.birthDay); // 존재하지 않은 속성 접근 undefined 출력
-console.log("birthDay" in card); // card에 birthDay 존재하지 않음을 확인하고  결과는 false
-console.log("age" in card); // true
-
-```
 # 10-25  for in
 - 모든 키를 받아와서 처리하고 싶을 때 
 
@@ -536,6 +496,7 @@ for (value of arry) {
   // key 값은 x, y등 변수명으로 대체하면 됨
 }
 ```
+
 # 10-25  Object.assign  객체결합
 
 ``` 복사1
