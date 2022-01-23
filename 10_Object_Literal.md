@@ -212,8 +212,8 @@ console.log(foo['0']); // 1
 # 10-08 : 키값 접근 유의 2
 ```
 const o1 = {name:'kim'}
-const o2 = {name:'park'}
-const o3 = {name:'lee'}
+const o2 = {usrName:'park'}
+const o3 = {id:'lee'}
 
 function printValue(obj, key){
     // obj의 어떤 키를 받을지 전혀 모르는 상태라면
@@ -224,6 +224,8 @@ function printValue(obj, key){
     // 전달받은 키를 이미 'name'로 전달하였으므로 ''는 필요없음 
 }
 printValue(o1, 'name');
+printValue(o2, 'usrName');
+printValue(o3, 'id');
 // 키는 항상 string 타입으로 전달해야 함
 
 ```
@@ -313,40 +315,6 @@ delete person.age;
 delete person.address;
 
 console.log(person); // {name: "kim"}
-```
-
-# 동적으로 생성된 명함 객체 만들기 
-```
-"use strict";
-
-var name = "홍길동";
-var age = 30;
-var card = {
-  name, // name : name
-  age, // age = age
-  tel: "010-5475-0763",
-  fax: "02-789-8878",
-  email: "honggilgdong@gmail.com",
-};
-
-console.log(card);
-// 동적으로 데이터 삽입 가능하나 
-// 유지보수가 어렵고 예측하지 못한 문제가 발생할 소지가 있음 
-
-card.gender = "male";
-card.hairColor = "brown";
-console.log(card);
-
-// 즉시 삭제도 가능 
-delete card.hairColor;
-console.log(card);
-
-console.log(card.name);
-console.log(card["name"]);
-console.log(card.birthDay); // 존재하지 않은 속성 접근 undefined 출력
-console.log("birthDay" in card); // card에 birthDay 존재하지 않음을 확인하고  결과는 false
-console.log("age" in card); // true
-
 ```
 
 # 10-19
@@ -446,6 +414,42 @@ console.log( person4);
 // 4
 
 ```
+
+
+# 동적으로 생성된 명함 객체 만들기 
+```
+"use strict";
+
+var name = "홍길동";
+var age = 30;
+var card = {
+  name, // name : name
+  age, // age = age
+  tel: "010-5475-0763",
+  fax: "02-789-8878",
+  email: "honggilgdong@gmail.com",
+};
+
+console.log(card);
+
+// 동적으로 데이터 삽입 가능하나 
+// 유지보수가 어렵고 예측하지 못한 문제가 발생할 소지가 있음 
+card.gender = "male";
+card.hairColor = "brown";
+console.log(card);
+
+// 즉시 삭제도 가능 
+delete card.hairColor;
+console.log(card);
+
+console.log(card.name);
+console.log(card["name"]);
+console.log(card.birthDay); // 존재하지 않은 속성 접근 undefined 출력
+console.log("birthDay" in card); // card에 birthDay 존재하지 않음을 확인하고  결과는 false
+console.log("age" in card); // true
+
+```
+
 
 # 10-25 생성자 함수
 다른 계산은 하지 않고 순수하게 Object를 생성하는 함수는 다음과 같이 클래스 처럼 

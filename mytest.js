@@ -1,13 +1,7 @@
-var prefix = 'prop';
-var i = 0;
+const user = { id: 1, content: 'HTML', completed: true };
 
-var obj = {};
-
-// 계산된 프로퍼티 이름으로 프로퍼티 키 동적 생성
-// 키값은 문자열로 생성할 수 있고 다음의 연산은 문자열을 만들어 낸다.
-
-obj[prefix + '-' + ++i] = i;
-obj[prefix + '-' + ++i] = i;
-obj[prefix + '-' + ++i] = i;
-
-console.log(obj); // {prop-1: 1, prop-2: 2, prop-3: 3}
+function printTodo({ content, completed }) {
+    console.log(`할일 ${content}은 ${completed ? '완료' : '비완료'} 상태입니다.`);
+  }
+  
+  printTodo({...user});
